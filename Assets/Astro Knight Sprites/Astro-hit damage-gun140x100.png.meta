@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: 3ff563753c6d9d32eace5728cf1a2031
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5141685609264719786
+    second: Astro-hit damage-gun140x100_0
+  - first:
+      213: 8786329879390322423
+    second: Astro-hit damage-gun140x100_1
+  - first:
+      213: -700667329937282393
+    second: Astro-hit damage-gun140x100_2
+  - first:
+      213: -1610152278318823407
+    second: Astro-hit damage-gun140x100_3
+  - first:
+      213: 2839968694865615402
+    second: Astro-hit damage-gun140x100_4
+  - first:
+      213: 7150549868045156423
+    second: Astro-hit damage-gun140x100_5
+  - first:
+      213: -8647671807669632616
+    second: Astro-hit damage-gun140x100_6
+  - first:
+      213: -283126552187740090
+    second: Astro-hit damage-gun140x100_7
+  - first:
+      213: -5276538083132045892
+    second: Astro-hit damage-gun140x100_8
+  - first:
+      213: -3300000697678828792
+    second: Astro-hit damage-gun140x100_9
+  - first:
+      213: 8868665122594367889
+    second: Astro-hit damage-gun140x100_10
+  - first:
+      213: -8603332426267935955
+    second: Astro-hit damage-gun140x100_11
+  - first:
+      213: -7509354252848041292
+    second: Astro-hit damage-gun140x100_12
+  - first:
+      213: -1913183656646650385
+    second: Astro-hit damage-gun140x100_13
+  - first:
+      213: -3073041891949264806
+    second: Astro-hit damage-gun140x100_14
+  - first:
+      213: -2155737598364722040
+    second: Astro-hit damage-gun140x100_15
+  - first:
+      213: -251627680309273953
+    second: Astro-hit damage-gun140x100_16
+  - first:
+      213: -1240918791924398254
+    second: Astro-hit damage-gun140x100_17
+  - first:
+      213: 8461521305276238444
+    second: Astro-hit damage-gun140x100_18
+  - first:
+      213: 2290790255980163783
+    second: Astro-hit damage-gun140x100_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Astro-hit damage-gun140x100_0
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 330
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 658d9012e2015a8b0800000000000000
+      internalID: -5141685609264719786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-gun140x100_1
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 328
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fef57c29705fe970800000000000000
+      internalID: 8786329879390322423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-gun140x100_2
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 328
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7aaed5596cab646f0800000000000000
+      internalID: -700667329937282393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-gun140x100_3
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 328
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1184588a80797a9e0800000000000000
+      internalID: -1610152278318823407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-gun140x100_4
+      rect:
+        serializedVersion: 2
+        x: 621
+        y: 330
+        width: 18
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2ad1be2b78996720800000000000000
+      internalID: 2839968694865615402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-gun140x100_5
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 230
+        width: 16
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7404c81483bdb3360800000000000000
+      internalID: 7150549868045156423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-gun140x100_6
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 230
+        width: 19
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89101b9ee4c4df780800000000000000
+      internalID: -8647671807669632616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-gun140x100_7
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 230
+        width: 19
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6406e5e96e1221cf0800000000000000
+      internalID: -283126552187740090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-gun140x100_8
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 230
+        width: 20
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb50817d198f5c6b0800000000000000
+      internalID: -5276538083132045892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-gun140x100_9
+      rect:
+        serializedVersion: 2
+        x: 621
+        y: 230
+        width: 17
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80bef4089da0432d0800000000000000
+      internalID: -3300000697678828792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-gun140x100_10
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 130
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1992228d0f3d31b70800000000000000
+      internalID: 8868665122594367889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-gun140x100_11
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 129
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2b33bf9db2da9880800000000000000
+      internalID: -8603332426267935955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-gun140x100_12
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 129
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b27c62e71a69c790800000000000000
+      internalID: -7509354252848041292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-gun140x100_13
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 129
+        width: 18
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe55e7bc9910375e0800000000000000
+      internalID: -1913183656646650385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-gun140x100_14
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 130
+        width: 17
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5048725eac5a55d0800000000000000
+      internalID: -3073041891949264806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-gun140x100_15
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 30
+        width: 15
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88c548c63184512e0800000000000000
+      internalID: -2155737598364722040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-gun140x100_16
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 30
+        width: 17
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9a928b35f9028cf0800000000000000
+      internalID: -251627680309273953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-gun140x100_17
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 30
+        width: 17
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2574d34feee57cee0800000000000000
+      internalID: -1240918791924398254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-gun140x100_18
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 30
+        width: 18
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6ac36ccbcc5d6570800000000000000
+      internalID: 8461521305276238444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-gun140x100_19
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 30
+        width: 16
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c2bf96c9958acf10800000000000000
+      internalID: 2290790255980163783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Astro-hit damage-gun140x100_0: -5141685609264719786
+      Astro-hit damage-gun140x100_1: 8786329879390322423
+      Astro-hit damage-gun140x100_10: 8868665122594367889
+      Astro-hit damage-gun140x100_11: -8603332426267935955
+      Astro-hit damage-gun140x100_12: -7509354252848041292
+      Astro-hit damage-gun140x100_13: -1913183656646650385
+      Astro-hit damage-gun140x100_14: -3073041891949264806
+      Astro-hit damage-gun140x100_15: -2155737598364722040
+      Astro-hit damage-gun140x100_16: -251627680309273953
+      Astro-hit damage-gun140x100_17: -1240918791924398254
+      Astro-hit damage-gun140x100_18: 8461521305276238444
+      Astro-hit damage-gun140x100_19: 2290790255980163783
+      Astro-hit damage-gun140x100_2: -700667329937282393
+      Astro-hit damage-gun140x100_3: -1610152278318823407
+      Astro-hit damage-gun140x100_4: 2839968694865615402
+      Astro-hit damage-gun140x100_5: 7150549868045156423
+      Astro-hit damage-gun140x100_6: -8647671807669632616
+      Astro-hit damage-gun140x100_7: -283126552187740090
+      Astro-hit damage-gun140x100_8: -5276538083132045892
+      Astro-hit damage-gun140x100_9: -3300000697678828792
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

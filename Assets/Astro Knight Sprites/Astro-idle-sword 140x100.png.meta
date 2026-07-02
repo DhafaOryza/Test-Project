@@ -1,0 +1,1573 @@
+fileFormatVersion: 2
+guid: 01608d4f0fa5cdecd9b2298542bd50d1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6329590920468303741
+    second: Astro-idle-sword 140x100_0
+  - first:
+      213: -7291563700486304958
+    second: Astro-idle-sword 140x100_1
+  - first:
+      213: 8111607751731178429
+    second: Astro-idle-sword 140x100_2
+  - first:
+      213: -3726154452434512007
+    second: Astro-idle-sword 140x100_3
+  - first:
+      213: 755991561782087529
+    second: Astro-idle-sword 140x100_4
+  - first:
+      213: -5363036119107117698
+    second: Astro-idle-sword 140x100_5
+  - first:
+      213: 9037570325871074529
+    second: Astro-idle-sword 140x100_6
+  - first:
+      213: -2412646099969003445
+    second: Astro-idle-sword 140x100_7
+  - first:
+      213: -7192115793832978097
+    second: Astro-idle-sword 140x100_8
+  - first:
+      213: -7590085365145177720
+    second: Astro-idle-sword 140x100_9
+  - first:
+      213: -5027455167449330690
+    second: Astro-idle-sword 140x100_10
+  - first:
+      213: -464788530324164211
+    second: Astro-idle-sword 140x100_11
+  - first:
+      213: -1233075608163183431
+    second: Astro-idle-sword 140x100_12
+  - first:
+      213: 3591019241403110747
+    second: Astro-idle-sword 140x100_13
+  - first:
+      213: -2440946445966727635
+    second: Astro-idle-sword 140x100_14
+  - first:
+      213: -7769866639726914508
+    second: Astro-idle-sword 140x100_15
+  - first:
+      213: 3263980530865914996
+    second: Astro-idle-sword 140x100_16
+  - first:
+      213: -5381823992900909845
+    second: Astro-idle-sword 140x100_17
+  - first:
+      213: 1546974311439563913
+    second: Astro-idle-sword 140x100_18
+  - first:
+      213: -3276880454715029773
+    second: Astro-idle-sword 140x100_19
+  - first:
+      213: -1404167899792903053
+    second: Astro-idle-sword 140x100_20
+  - first:
+      213: -2478903126242081149
+    second: Astro-idle-sword 140x100_21
+  - first:
+      213: -1456017439588303455
+    second: Astro-idle-sword 140x100_22
+  - first:
+      213: -2753251254374665874
+    second: Astro-idle-sword 140x100_23
+  - first:
+      213: -5795303714949370846
+    second: Astro-idle-sword 140x100_24
+  - first:
+      213: -4590399118439550941
+    second: Astro-idle-sword 140x100_25
+  - first:
+      213: 237093509725349028
+    second: Astro-idle-sword 140x100_26
+  - first:
+      213: -3005272603517678723
+    second: Astro-idle-sword 140x100_27
+  - first:
+      213: -7437757678664926042
+    second: Astro-idle-sword 140x100_28
+  - first:
+      213: 102488084449847630
+    second: Astro-idle-sword 140x100_29
+  - first:
+      213: 3247733913978490395
+    second: Astro-idle-sword 140x100_30
+  - first:
+      213: 383637361720328973
+    second: Astro-idle-sword 140x100_31
+  - first:
+      213: -2514102318234215437
+    second: Astro-idle-sword 140x100_32
+  - first:
+      213: 2880362525490496935
+    second: Astro-idle-sword 140x100_33
+  - first:
+      213: -6352794435880521934
+    second: Astro-idle-sword 140x100_34
+  - first:
+      213: 1899717097824686714
+    second: Astro-idle-sword 140x100_35
+  - first:
+      213: -2043199595115484172
+    second: Astro-idle-sword 140x100_36
+  - first:
+      213: -8327243433473677502
+    second: Astro-idle-sword 140x100_37
+  - first:
+      213: -6752495754715485712
+    second: Astro-idle-sword 140x100_38
+  - first:
+      213: 3054478176289306540
+    second: Astro-idle-sword 140x100_39
+  - first:
+      213: 3484609215451188728
+    second: Astro-idle-sword 140x100_40
+  - first:
+      213: -7307584938266400964
+    second: Astro-idle-sword 140x100_41
+  - first:
+      213: 7305792896077531843
+    second: Astro-idle-sword 140x100_42
+  - first:
+      213: -3128571720639579917
+    second: Astro-idle-sword 140x100_43
+  - first:
+      213: -2745445613140776475
+    second: Astro-idle-sword 140x100_44
+  - first:
+      213: -9193558909556255840
+    second: Astro-idle-sword 140x100_45
+  - first:
+      213: 1234601561159307542
+    second: Astro-idle-sword 140x100_46
+  - first:
+      213: -8551613970537405790
+    second: Astro-idle-sword 140x100_47
+  - first:
+      213: -391989619071879137
+    second: Astro-idle-sword 140x100_48
+  - first:
+      213: -5255208796499413660
+    second: Astro-idle-sword 140x100_49
+  - first:
+      213: -4930910002780263165
+    second: Astro-idle-sword 140x100_50
+  - first:
+      213: 197486675176909518
+    second: Astro-idle-sword 140x100_51
+  - first:
+      213: 7596454917516482346
+    second: Astro-idle-sword 140x100_52
+  - first:
+      213: 2515312161646077840
+    second: Astro-idle-sword 140x100_53
+  - first:
+      213: -8812747468112584865
+    second: Astro-idle-sword 140x100_54
+  - first:
+      213: -7922526506067502190
+    second: Astro-idle-sword 140x100_55
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_0
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 330
+        width: 20
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 380f2fbe796c828a0800000000000000
+      internalID: -6329590920468303741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_1
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 330
+        width: 20
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24b816f52792fca90800000000000000
+      internalID: -7291563700486304958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_2
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 330
+        width: 20
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbbed37e548329070800000000000000
+      internalID: 8111607751731178429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_3
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 330
+        width: 20
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 977966c744a0a4cc0800000000000000
+      internalID: -3726154452434512007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_4
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 330
+        width: 20
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96fc63de152dd7a00800000000000000
+      internalID: 755991561782087529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_5
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 330
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7dd703701ba295b0800000000000000
+      internalID: -5363036119107117698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_6
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 330
+        width: 20
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ec182a0456eb6d70800000000000000
+      internalID: 9037570325871074529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_7
+      rect:
+        serializedVersion: 2
+        x: 1042
+        y: 330
+        width: 20
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b40bd92a72f848ed0800000000000000
+      internalID: -2412646099969003445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_8
+      rect:
+        serializedVersion: 2
+        x: 1182
+        y: 330
+        width: 20
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f49db1d7ac8703c90800000000000000
+      internalID: -7192115793832978097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_9
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 330
+        width: 20
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88171ab03999aa690800000000000000
+      internalID: -7590085365145177720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_10
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 330
+        width: 20
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efb0bfb6924ea3ab0800000000000000
+      internalID: -5027455167449330690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_11
+      rect:
+        serializedVersion: 2
+        x: 1602
+        y: 330
+        width: 20
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d813a525b4dbc89f0800000000000000
+      internalID: -464788530324164211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_12
+      rect:
+        serializedVersion: 2
+        x: 1742
+        y: 330
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b41c3a744c33eee0800000000000000
+      internalID: -1233075608163183431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_13
+      rect:
+        serializedVersion: 2
+        x: 1882
+        y: 330
+        width: 20
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b55dc6959fcd5d130800000000000000
+      internalID: 3591019241403110747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_14
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 230
+        width: 15
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d26a66cd324002ed0800000000000000
+      internalID: -2440946445966727635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_15
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 230
+        width: 15
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4345bea2573eb2490800000000000000
+      internalID: -7769866639726914508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_16
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 230
+        width: 15
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 474cd00effcfb4d20800000000000000
+      internalID: 3263980530865914996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_17
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 230
+        width: 15
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be48773b79bef45b0800000000000000
+      internalID: -5381823992900909845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_18
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 230
+        width: 15
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98c7206a0f4f77510800000000000000
+      internalID: 1546974311439563913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_19
+      rect:
+        serializedVersion: 2
+        x: 763
+        y: 230
+        width: 15
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f64a4d869e2682d0800000000000000
+      internalID: -3276880454715029773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_20
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 230
+        width: 15
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37476d71cb4638ce0800000000000000
+      internalID: -1404167899792903053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_21
+      rect:
+        serializedVersion: 2
+        x: 1043
+        y: 230
+        width: 15
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3864cbf8dba299dd0800000000000000
+      internalID: -2478903126242081149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_22
+      rect:
+        serializedVersion: 2
+        x: 1183
+        y: 230
+        width: 15
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1adb09e5adf2bcbe0800000000000000
+      internalID: -1456017439588303455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_23
+      rect:
+        serializedVersion: 2
+        x: 1323
+        y: 230
+        width: 15
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e61799d429c7ac9d0800000000000000
+      internalID: -2753251254374665874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_24
+      rect:
+        serializedVersion: 2
+        x: 1463
+        y: 230
+        width: 15
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22ce0f0e9f1f29fa0800000000000000
+      internalID: -5795303714949370846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_25
+      rect:
+        serializedVersion: 2
+        x: 1603
+        y: 230
+        width: 15
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 320f420a250ab40c0800000000000000
+      internalID: -4590399118439550941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_26
+      rect:
+        serializedVersion: 2
+        x: 1743
+        y: 230
+        width: 15
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a4eab97a435a4300800000000000000
+      internalID: 237093509725349028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_27
+      rect:
+        serializedVersion: 2
+        x: 1883
+        y: 230
+        width: 15
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7b8d1e5d702b46d0800000000000000
+      internalID: -3005272603517678723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_28
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 130
+        width: 19
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ac3eb55cc6c7c890800000000000000
+      internalID: -7437757678664926042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_29
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 130
+        width: 19
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e49e75bae5c1c6100800000000000000
+      internalID: 102488084449847630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_30
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 130
+        width: 19
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1e4dab99c4421d20800000000000000
+      internalID: 3247733913978490395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_31
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 130
+        width: 19
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0388ebd524f25500800000000000000
+      internalID: 383637361720328973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_32
+      rect:
+        serializedVersion: 2
+        x: 620
+        y: 130
+        width: 19
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fbd9a8034d1c1dd0800000000000000
+      internalID: -2514102318234215437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_33
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 130
+        width: 19
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a54534c47a19f720800000000000000
+      internalID: 2880362525490496935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_34
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 130
+        width: 19
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23f634e7e1756d7a0800000000000000
+      internalID: -6352794435880521934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_35
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 130
+        width: 19
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a729395a2a62d5a10800000000000000
+      internalID: 1899717097824686714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_36
+      rect:
+        serializedVersion: 2
+        x: 1180
+        y: 130
+        width: 19
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fb6be72bc815a3e0800000000000000
+      internalID: -2043199595115484172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_37
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 130
+        width: 19
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 247e8958730bf6c80800000000000000
+      internalID: -8327243433473677502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_38
+      rect:
+        serializedVersion: 2
+        x: 1460
+        y: 130
+        width: 19
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f9a9d823e05a42a0800000000000000
+      internalID: -6752495754715485712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_39
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 130
+        width: 19
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca738efc7bfa36a20800000000000000
+      internalID: 3054478176289306540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_40
+      rect:
+        serializedVersion: 2
+        x: 1740
+        y: 130
+        width: 19
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fd45048e91db5030800000000000000
+      internalID: 3484609215451188728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_41
+      rect:
+        serializedVersion: 2
+        x: 1880
+        y: 130
+        width: 19
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c37e2a4473e369a90800000000000000
+      internalID: -7307584938266400964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_42
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 30
+        width: 16
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ca06456ee3636560800000000000000
+      internalID: 7305792896077531843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_43
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 30
+        width: 16
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f8f1f098941594d0800000000000000
+      internalID: -3128571720639579917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_44
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 30
+        width: 16
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e9e696c2c736e9d0800000000000000
+      internalID: -2745445613140776475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_45
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 30
+        width: 16
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a3954e91eae96080800000000000000
+      internalID: -9193558909556255840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_46
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 30
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6111b04249f222110800000000000000
+      internalID: 1234601561159307542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_47
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 30
+        width: 16
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a2a9d5f660925980800000000000000
+      internalID: -8551613970537405790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_48
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 30
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f18749fa48f5f8af0800000000000000
+      internalID: -391989619071879137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_49
+      rect:
+        serializedVersion: 2
+        x: 1042
+        y: 30
+        width: 16
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 465f420617fb117b0800000000000000
+      internalID: -5255208796499413660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_50
+      rect:
+        serializedVersion: 2
+        x: 1182
+        y: 30
+        width: 16
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30dacd04a73e19bb0800000000000000
+      internalID: -4930910002780263165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_51
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 30
+        width: 16
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecaeac1b51d9db200800000000000000
+      internalID: 197486675176909518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_52
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 30
+        width: 16
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a27d6deef770c6960800000000000000
+      internalID: 7596454917516482346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_53
+      rect:
+        serializedVersion: 2
+        x: 1602
+        y: 30
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0976226951f28e220800000000000000
+      internalID: 2515312161646077840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_54
+      rect:
+        serializedVersion: 2
+        x: 1742
+        y: 30
+        width: 16
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5f1de3aed4d2b580800000000000000
+      internalID: -8812747468112584865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-idle-sword 140x100_55
+      rect:
+        serializedVersion: 2
+        x: 1882
+        y: 30
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29bda3a3e188d0290800000000000000
+      internalID: -7922526506067502190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Astro-idle-sword 140x100_0: -6329590920468303741
+      Astro-idle-sword 140x100_1: -7291563700486304958
+      Astro-idle-sword 140x100_10: -5027455167449330690
+      Astro-idle-sword 140x100_11: -464788530324164211
+      Astro-idle-sword 140x100_12: -1233075608163183431
+      Astro-idle-sword 140x100_13: 3591019241403110747
+      Astro-idle-sword 140x100_14: -2440946445966727635
+      Astro-idle-sword 140x100_15: -7769866639726914508
+      Astro-idle-sword 140x100_16: 3263980530865914996
+      Astro-idle-sword 140x100_17: -5381823992900909845
+      Astro-idle-sword 140x100_18: 1546974311439563913
+      Astro-idle-sword 140x100_19: -3276880454715029773
+      Astro-idle-sword 140x100_2: 8111607751731178429
+      Astro-idle-sword 140x100_20: -1404167899792903053
+      Astro-idle-sword 140x100_21: -2478903126242081149
+      Astro-idle-sword 140x100_22: -1456017439588303455
+      Astro-idle-sword 140x100_23: -2753251254374665874
+      Astro-idle-sword 140x100_24: -5795303714949370846
+      Astro-idle-sword 140x100_25: -4590399118439550941
+      Astro-idle-sword 140x100_26: 237093509725349028
+      Astro-idle-sword 140x100_27: -3005272603517678723
+      Astro-idle-sword 140x100_28: -7437757678664926042
+      Astro-idle-sword 140x100_29: 102488084449847630
+      Astro-idle-sword 140x100_3: -3726154452434512007
+      Astro-idle-sword 140x100_30: 3247733913978490395
+      Astro-idle-sword 140x100_31: 383637361720328973
+      Astro-idle-sword 140x100_32: -2514102318234215437
+      Astro-idle-sword 140x100_33: 2880362525490496935
+      Astro-idle-sword 140x100_34: -6352794435880521934
+      Astro-idle-sword 140x100_35: 1899717097824686714
+      Astro-idle-sword 140x100_36: -2043199595115484172
+      Astro-idle-sword 140x100_37: -8327243433473677502
+      Astro-idle-sword 140x100_38: -6752495754715485712
+      Astro-idle-sword 140x100_39: 3054478176289306540
+      Astro-idle-sword 140x100_4: 755991561782087529
+      Astro-idle-sword 140x100_40: 3484609215451188728
+      Astro-idle-sword 140x100_41: -7307584938266400964
+      Astro-idle-sword 140x100_42: 7305792896077531843
+      Astro-idle-sword 140x100_43: -3128571720639579917
+      Astro-idle-sword 140x100_44: -2745445613140776475
+      Astro-idle-sword 140x100_45: -9193558909556255840
+      Astro-idle-sword 140x100_46: 1234601561159307542
+      Astro-idle-sword 140x100_47: -8551613970537405790
+      Astro-idle-sword 140x100_48: -391989619071879137
+      Astro-idle-sword 140x100_49: -5255208796499413660
+      Astro-idle-sword 140x100_5: -5363036119107117698
+      Astro-idle-sword 140x100_50: -4930910002780263165
+      Astro-idle-sword 140x100_51: 197486675176909518
+      Astro-idle-sword 140x100_52: 7596454917516482346
+      Astro-idle-sword 140x100_53: 2515312161646077840
+      Astro-idle-sword 140x100_54: -8812747468112584865
+      Astro-idle-sword 140x100_55: -7922526506067502190
+      Astro-idle-sword 140x100_6: 9037570325871074529
+      Astro-idle-sword 140x100_7: -2412646099969003445
+      Astro-idle-sword 140x100_8: -7192115793832978097
+      Astro-idle-sword 140x100_9: -7590085365145177720
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

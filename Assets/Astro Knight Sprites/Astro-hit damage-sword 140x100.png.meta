@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: 8adae26f0621cab17ad91963847da903
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6187257063791155054
+    second: Astro-hit damage-sword 140x100_0
+  - first:
+      213: 2601687115528371190
+    second: Astro-hit damage-sword 140x100_1
+  - first:
+      213: 4687849111488894666
+    second: Astro-hit damage-sword 140x100_2
+  - first:
+      213: -2292602077912916461
+    second: Astro-hit damage-sword 140x100_3
+  - first:
+      213: -3530161933019364551
+    second: Astro-hit damage-sword 140x100_4
+  - first:
+      213: 4227018315491056292
+    second: Astro-hit damage-sword 140x100_5
+  - first:
+      213: 5895507061204920068
+    second: Astro-hit damage-sword 140x100_6
+  - first:
+      213: 7793984481798208295
+    second: Astro-hit damage-sword 140x100_7
+  - first:
+      213: 871191494387871267
+    second: Astro-hit damage-sword 140x100_8
+  - first:
+      213: 7032986453389207517
+    second: Astro-hit damage-sword 140x100_9
+  - first:
+      213: -680406715353727279
+    second: Astro-hit damage-sword 140x100_10
+  - first:
+      213: -8217380993619476644
+    second: Astro-hit damage-sword 140x100_11
+  - first:
+      213: -8023670779593917138
+    second: Astro-hit damage-sword 140x100_12
+  - first:
+      213: -750862870496855746
+    second: Astro-hit damage-sword 140x100_13
+  - first:
+      213: -7922491655478204611
+    second: Astro-hit damage-sword 140x100_14
+  - first:
+      213: -2337952873653269606
+    second: Astro-hit damage-sword 140x100_15
+  - first:
+      213: 5736080867237913209
+    second: Astro-hit damage-sword 140x100_16
+  - first:
+      213: -9011498229687325926
+    second: Astro-hit damage-sword 140x100_17
+  - first:
+      213: -5760304760446957656
+    second: Astro-hit damage-sword 140x100_18
+  - first:
+      213: 6570116135715681074
+    second: Astro-hit damage-sword 140x100_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Astro-hit damage-sword 140x100_0
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 330
+        width: 19
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e675c4d948d8dd550800000000000000
+      internalID: 6187257063791155054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-sword 140x100_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 329
+        width: 19
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fb77c1b5ac0b1420800000000000000
+      internalID: 2601687115528371190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-sword 140x100_2
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 329
+        width: 19
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac61deafde59e0140800000000000000
+      internalID: 4687849111488894666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-sword 140x100_3
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 329
+        width: 19
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31e9dae8e8a0f20e0800000000000000
+      internalID: -2292602077912916461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-sword 140x100_4
+      rect:
+        serializedVersion: 2
+        x: 620
+        y: 330
+        width: 19
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93346ceec68520fc0800000000000000
+      internalID: -3530161933019364551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-sword 140x100_5
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 230
+        width: 16
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4aa1ae123c269aa30800000000000000
+      internalID: 4227018315491056292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-sword 140x100_6
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 230
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4072de9bf6c01d150800000000000000
+      internalID: 5895507061204920068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-sword 140x100_7
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 230
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72b3d76879bc92c60800000000000000
+      internalID: 7793984481798208295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-sword 140x100_8
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 230
+        width: 19
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32ea4526c08171c00800000000000000
+      internalID: 871191494387871267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-sword 140x100_9
+      rect:
+        serializedVersion: 2
+        x: 621
+        y: 230
+        width: 17
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd7e560caef2a9160800000000000000
+      internalID: 7032986453389207517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-sword 140x100_10
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 130
+        width: 20
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1defc8482b5be86f0800000000000000
+      internalID: -680406715353727279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-sword 140x100_11
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 129
+        width: 20
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5fb34b168ff5fd80800000000000000
+      internalID: -8217380993619476644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-sword 140x100_12
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 129
+        width: 20
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2d7f9befe136a090800000000000000
+      internalID: -8023670779593917138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-sword 140x100_13
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 129
+        width: 20
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e39310192366495f0800000000000000
+      internalID: -750862870496855746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-sword 140x100_14
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 130
+        width: 20
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d37a93380d7ad0290800000000000000
+      internalID: -7922491655478204611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-sword 140x100_15
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 30
+        width: 15
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9b0b489f3ced8fd0800000000000000
+      internalID: -2337952873653269606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-sword 140x100_16
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 30
+        width: 17
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97261ae5827aa9f40800000000000000
+      internalID: 5736080867237913209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-sword 140x100_17
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 30
+        width: 17
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1bec65ea1ab0f280800000000000000
+      internalID: -9011498229687325926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-sword 140x100_18
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 30
+        width: 18
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a7419bf6594f00b0800000000000000
+      internalID: -5760304760446957656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro-hit damage-sword 140x100_19
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 30
+        width: 16
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2333562c0ddbd2b50800000000000000
+      internalID: 6570116135715681074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Astro-hit damage-sword 140x100_0: 6187257063791155054
+      Astro-hit damage-sword 140x100_1: 2601687115528371190
+      Astro-hit damage-sword 140x100_10: -680406715353727279
+      Astro-hit damage-sword 140x100_11: -8217380993619476644
+      Astro-hit damage-sword 140x100_12: -8023670779593917138
+      Astro-hit damage-sword 140x100_13: -750862870496855746
+      Astro-hit damage-sword 140x100_14: -7922491655478204611
+      Astro-hit damage-sword 140x100_15: -2337952873653269606
+      Astro-hit damage-sword 140x100_16: 5736080867237913209
+      Astro-hit damage-sword 140x100_17: -9011498229687325926
+      Astro-hit damage-sword 140x100_18: -5760304760446957656
+      Astro-hit damage-sword 140x100_19: 6570116135715681074
+      Astro-hit damage-sword 140x100_2: 4687849111488894666
+      Astro-hit damage-sword 140x100_3: -2292602077912916461
+      Astro-hit damage-sword 140x100_4: -3530161933019364551
+      Astro-hit damage-sword 140x100_5: 4227018315491056292
+      Astro-hit damage-sword 140x100_6: 5895507061204920068
+      Astro-hit damage-sword 140x100_7: 7793984481798208295
+      Astro-hit damage-sword 140x100_8: 871191494387871267
+      Astro-hit damage-sword 140x100_9: 7032986453389207517
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

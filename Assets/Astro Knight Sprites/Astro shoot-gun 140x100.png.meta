@@ -1,0 +1,793 @@
+fileFormatVersion: 2
+guid: 8d8a793c03f4d3cc4befebec10a35abf
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8633765972210258350
+    second: Astro shoot-gun 140x100_0
+  - first:
+      213: 3172007185913397394
+    second: Astro shoot-gun 140x100_1
+  - first:
+      213: -1063835354673843248
+    second: Astro shoot-gun 140x100_2
+  - first:
+      213: 8047468670767812819
+    second: Astro shoot-gun 140x100_3
+  - first:
+      213: 755261591637074395
+    second: Astro shoot-gun 140x100_4
+  - first:
+      213: -624751033699080234
+    second: Astro shoot-gun 140x100_5
+  - first:
+      213: 6807410335578051000
+    second: Astro shoot-gun 140x100_6
+  - first:
+      213: -1147625687766390677
+    second: Astro shoot-gun 140x100_7
+  - first:
+      213: -2736930250032490234
+    second: Astro shoot-gun 140x100_8
+  - first:
+      213: 5804202791832176672
+    second: Astro shoot-gun 140x100_9
+  - first:
+      213: -7566710975134930697
+    second: Astro shoot-gun 140x100_10
+  - first:
+      213: 8642577144554913935
+    second: Astro shoot-gun 140x100_11
+  - first:
+      213: -1082843115333080369
+    second: Astro shoot-gun 140x100_12
+  - first:
+      213: 5565798805656748952
+    second: Astro shoot-gun 140x100_13
+  - first:
+      213: 4034035764591153447
+    second: Astro shoot-gun 140x100_14
+  - first:
+      213: -6062815820970026434
+    second: Astro shoot-gun 140x100_15
+  - first:
+      213: -4008189395999622780
+    second: Astro shoot-gun 140x100_16
+  - first:
+      213: -5074744550664800867
+    second: Astro shoot-gun 140x100_17
+  - first:
+      213: 1747284702130585759
+    second: Astro shoot-gun 140x100_18
+  - first:
+      213: -779074130969863913
+    second: Astro shoot-gun 140x100_19
+  - first:
+      213: -6286820183234312122
+    second: Astro shoot-gun 140x100_20
+  - first:
+      213: 6478250818375969114
+    second: Astro shoot-gun 140x100_21
+  - first:
+      213: -101585936302891706
+    second: Astro shoot-gun 140x100_22
+  - first:
+      213: -43104564934893489
+    second: Astro shoot-gun 140x100_23
+  - first:
+      213: -6534065797423240109
+    second: Astro shoot-gun 140x100_24
+  - first:
+      213: 7000850695923740653
+    second: Astro shoot-gun 140x100_25
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_0
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 330
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea19277786c41d770800000000000000
+      internalID: 8633765972210258350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_1
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 330
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 290ca55cabb350c20800000000000000
+      internalID: 3172007185913397394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_2
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 330
+        width: 20
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d3f921a16f7c31f0800000000000000
+      internalID: -1063835354673843248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_3
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 327
+        width: 22
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d053366e1a5eaf60800000000000000
+      internalID: 8047468670767812819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_4
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 325
+        width: 23
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd126028a6a3b7a00800000000000000
+      internalID: 755261591637074395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_5
+      rect:
+        serializedVersion: 2
+        x: 753
+        y: 323
+        width: 26
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d7ee43be307457f0800000000000000
+      internalID: -624751033699080234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_6
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 230
+        width: 16
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b1d37c02a7c87e50800000000000000
+      internalID: 6807410335578051000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_7
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 230
+        width: 22
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6822917480d210f0800000000000000
+      internalID: -1147625687766390677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_8
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 230
+        width: 26
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 609dacf3078740ad0800000000000000
+      internalID: -2736930250032490234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_9
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 242
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 028cc7befabac8050800000000000000
+      internalID: 5804202791832176672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_10
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 230
+        width: 26
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f868015574adf690800000000000000
+      internalID: -7566710975134930697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_11
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 230
+        width: 43
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f800b156f1a90f770800000000000000
+      internalID: 8642577144554913935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_12
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 230
+        width: 45
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fca281b7ce7f8f0f0800000000000000
+      internalID: -1082843115333080369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_13
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 130
+        width: 17
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 893c67e5680bd3d40800000000000000
+      internalID: 5565798805656748952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_14
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 130
+        width: 17
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7215da79726cbf730800000000000000
+      internalID: 4034035764591153447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_15
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 130
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3a967c022d8cdba0800000000000000
+      internalID: -6062815820970026434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_16
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 129
+        width: 18
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48974fa0bfc0068c0800000000000000
+      internalID: -4008189395999622780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_17
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 130
+        width: 21
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9576c3e7b2e299b0800000000000000
+      internalID: -5074744550664800867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_18
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 130
+        width: 23
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f90c7f7dd2a9f3810800000000000000
+      internalID: 1747284702130585759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_19
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 30
+        width: 15
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71958d1a43c2035f0800000000000000
+      internalID: -779074130969863913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_20
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 30
+        width: 17
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64800933a5ab0c8a0800000000000000
+      internalID: -6286820183234312122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_21
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 30
+        width: 21
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a59ee2bcbce57e950800000000000000
+      internalID: 6478250818375969114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_22
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 30
+        width: 23
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64d9d701128179ef0800000000000000
+      internalID: -101585936302891706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_23
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 42
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f40abd660acd66ff0800000000000000
+      internalID: -43104564934893489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_24
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 30
+        width: 43
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35cee85b6c55255a0800000000000000
+      internalID: -6534065797423240109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astro shoot-gun 140x100_25
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 30
+        width: 45
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: defa418ad94082160800000000000000
+      internalID: 7000850695923740653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Astro shoot-gun 140x100_0: 8633765972210258350
+      Astro shoot-gun 140x100_1: 3172007185913397394
+      Astro shoot-gun 140x100_10: -7566710975134930697
+      Astro shoot-gun 140x100_11: 8642577144554913935
+      Astro shoot-gun 140x100_12: -1082843115333080369
+      Astro shoot-gun 140x100_13: 5565798805656748952
+      Astro shoot-gun 140x100_14: 4034035764591153447
+      Astro shoot-gun 140x100_15: -6062815820970026434
+      Astro shoot-gun 140x100_16: -4008189395999622780
+      Astro shoot-gun 140x100_17: -5074744550664800867
+      Astro shoot-gun 140x100_18: 1747284702130585759
+      Astro shoot-gun 140x100_19: -779074130969863913
+      Astro shoot-gun 140x100_2: -1063835354673843248
+      Astro shoot-gun 140x100_20: -6286820183234312122
+      Astro shoot-gun 140x100_21: 6478250818375969114
+      Astro shoot-gun 140x100_22: -101585936302891706
+      Astro shoot-gun 140x100_23: -43104564934893489
+      Astro shoot-gun 140x100_24: -6534065797423240109
+      Astro shoot-gun 140x100_25: 7000850695923740653
+      Astro shoot-gun 140x100_3: 8047468670767812819
+      Astro shoot-gun 140x100_4: 755261591637074395
+      Astro shoot-gun 140x100_5: -624751033699080234
+      Astro shoot-gun 140x100_6: 6807410335578051000
+      Astro shoot-gun 140x100_7: -1147625687766390677
+      Astro shoot-gun 140x100_8: -2736930250032490234
+      Astro shoot-gun 140x100_9: 5804202791832176672
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
