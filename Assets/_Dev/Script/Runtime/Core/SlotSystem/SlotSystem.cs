@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using DG.Tweening;
 using LumineREx.Utils.Grid;
 using LumineREx.Utils.RNG;
 using UnityEngine;
@@ -10,6 +11,13 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
 {
     public class SlotSystem : MonoBehaviour
     {
+        [Header("Configuration")] 
+        [SerializeField]
+        private float spinTime;
+        
+        [SerializeField] 
+        private Reel[] _reels;
+        
         private RNG _rng;
         
         private Grid2D<int> _grid;
@@ -26,7 +34,7 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
 
         private void Start()
         {
-            Roll();
+            
         }
 
         public void Roll()
@@ -34,6 +42,9 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
             FillGridTest();
             Evaluate();
             PrintBoard();
+            // UpdateReels();
+            SpinReels();
+            
         }
 
 
@@ -194,6 +205,28 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
             }
             
         }
-        
+
+        private void SpinReels()
+        {
+            foreach (var reel in _reels)
+            {
+                reel.Spin();
+            }
+
+            DOVirtual.DelayedCall(spinTime, () =>
+            {
+                for(int x = 0; x < 3; x++)
+                {
+                    int[] result = new int[3];
+
+                    for(int y = 0; y < 3; y++)
+                    {
+                        result[y] = _grid.GetValue(x,y);
+                    }
+
+                    _reels[x].Stop(result);
+                }
+            });
+        }
     }
 }
