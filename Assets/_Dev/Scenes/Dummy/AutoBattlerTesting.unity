@@ -131,9 +131,9 @@ GameObject:
   - component: {fileID: 283018551}
   - component: {fileID: 283018553}
   - component: {fileID: 283018554}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -206,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 283018550}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.4, y: -1.04993, z: 0}
+  m_LocalPosition: {x: 9.48, y: -1.04993, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -227,6 +227,7 @@ MonoBehaviour:
   characterDetection: {fileID: 0}
   _character:
     rid: -2
+  baseTransform: {fileID: 2104654580}
   references:
     version: 2
     RefIds:
@@ -382,6 +383,7 @@ GameObject:
   - component: {fileID: 1104422398}
   - component: {fileID: 1104422402}
   - component: {fileID: 1104422401}
+  - component: {fileID: 1104422403}
   m_Layer: 0
   m_Name: Allies
   m_TagString: Untagged
@@ -415,7 +417,7 @@ MonoBehaviour:
     - rid: 5550902114312519749
       type: {class: CharacterStats, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
       data:
-        _radius: 20
+        _radius: 5
 --- !u!212 &1104422399
 SpriteRenderer:
   serializedVersion: 2
@@ -539,6 +541,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Dev.Script.Runtime.Core.Character.Enemy.CharacterDetection
   targetTag: Enemy
+--- !u!50 &1104422403
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104422397}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1129452669
 GameObject:
   m_ObjectHideFlags: 0

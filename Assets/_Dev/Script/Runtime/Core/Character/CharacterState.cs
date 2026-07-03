@@ -4,6 +4,7 @@ namespace _Dev.Script.Runtime.Core.Character
     {
         Idle,
         Attacking,
+        Chasing,
         Moving,
         Dead,
     }

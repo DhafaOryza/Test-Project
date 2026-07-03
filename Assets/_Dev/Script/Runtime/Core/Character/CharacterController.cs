@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using _Dev.Script.Runtime.Core.Character.Enemy;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 namespace _Dev.Script.Runtime.Core.Character
 {
@@ -14,12 +15,15 @@ namespace _Dev.Script.Runtime.Core.Character
         [SerializeReference]
         private Character _character;
         
+        private CharacterState _characterState;
+        
         private List<CharacterController> _targetInRange = new();
         private CharacterController _target;
         
         private void Start()
         {
             if (_character == null) return;
+            _characterState = CharacterState.Idle;
             
             StartCoroutine(Brain());
                 
@@ -29,19 +33,20 @@ namespace _Dev.Script.Runtime.Core.Character
         {
             if (characterDetection == null) return;
             characterDetection.OnCollisionDetected += OnCollisionDetected_Event;
-            characterDetection.OnCollisionOut += OnCollisionDetected_Event;
+            characterDetection.OnCollisionOut += OnCollisionOut_Event;
         }
 
         private void OnDisable()
         {
             if (characterDetection == null) return;
             characterDetection.OnCollisionDetected -= OnCollisionDetected_Event;
-            characterDetection.OnCollisionOut -= OnCollisionDetected_Event;
+            characterDetection.OnCollisionOut -= OnCollisionOut_Event;
         }
 
         protected virtual void FixedUpdate()
         {
             if (_target == null) return;
+            if (_characterState != CharacterState.Chasing) return;
             transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, 0.1f);
         }
 
@@ -53,7 +58,23 @@ namespace _Dev.Script.Runtime.Core.Character
             {
                 if (_target == null)
                 {
+                    _characterState = CharacterState.Idle;
                     _target = FindTarget();
+                    yield return null;
+                    continue;
+                }
+                
+                float sqrDistance = (transform.position - _target.transform.position).sqrMagnitude;
+
+                float sqrRadius = _character.CharacterStats.Radius * _character.CharacterStats.Radius;
+                
+                if (sqrDistance > sqrRadius)
+                {
+                    _characterState = CharacterState.Chasing;
+                }
+                else
+                {
+                    _characterState = CharacterState.Attacking;
                 }
                 
                 yield return new WaitForSeconds(0.1f);
@@ -88,6 +109,13 @@ namespace _Dev.Script.Runtime.Core.Character
         {
             Debug.Log(character.gameObject.name);
             _targetInRange.Remove(character);
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (_character == null) return;
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, _character.CharacterStats.Radius);
         }
     }
 }
