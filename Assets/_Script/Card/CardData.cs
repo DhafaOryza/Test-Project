@@ -11,4 +11,8 @@ public class CardData : ScriptableObject
     [field : SerializeField] public int Damage { get; private set;}
     [field : SerializeField] public int Health { get; private set;}
     [field : SerializeField] public string Effect {get; private set;}
+
+    [field : SerializeField] public BuffEffectType EffectType {get; private set;}
+    [field : SerializeField] public int EffectAmount {get; private set;}
+
 }

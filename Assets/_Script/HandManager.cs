@@ -10,6 +10,7 @@ public class HandManager : MonoBehaviour
     [SerializeField] private GameObject cardPrefab;
     [SerializeField] private SplineContainer splineContainer;
     [SerializeField] private Transform spawnpoint;
+    [SerializeField] private PlayerStats playerStats;
 
     private List<CardView> handCards = new();
     private int playsRemaining;
@@ -32,15 +33,30 @@ public class HandManager : MonoBehaviour
         GameObject g = Instantiate(cardPrefab, spawnpoint.position, spawnpoint.rotation);
         CardView view = g.GetComponent<CardView>();
         view.Setup(card);
+        view.SetPlayerStats(playerStats);
         view.OnCardUsed += HandleCardUsed;
+        view.OnCardDiscarded += HandleCardDiscarded; 
 
         handCards.Add(view);
         UpdateCardPositions();
     }
 
+    private void HandleCardDiscarded(CardView view)
+    {
+       HandleCardUsed(view);
+    }
+
+    public void ForceEndTurn()
+    {
+        if (playsRemaining <= 0) return;
+        playsRemaining = 0;
+        OnplaysChanged?.Invoke(playsRemaining);
+        OnPlayExhausted?.Invoke();
+    }
+
     private void HandleCardUsed(CardView view)
     {
-        if (playsRemaining <= 0) return; // safety, seharusnya dicegah sebelum drop juga
+        if (playsRemaining <= 0) return;
         playsRemaining--;
         handCards.Remove(view);
         UpdateCardPositions();

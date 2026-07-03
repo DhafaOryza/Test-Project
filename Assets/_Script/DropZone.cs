@@ -2,7 +2,8 @@ using UnityEngine;
 
 public enum DropZoneType {
     EnemyArea,
-    PlayEffectArea
+    PlayEffectArea,
+    DiscardArea
     }
 
 public class DropZone : MonoBehaviour

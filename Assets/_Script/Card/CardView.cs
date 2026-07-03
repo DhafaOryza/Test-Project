@@ -7,12 +7,13 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 {
     [SerializeField] private SpriteRenderer cardImage;
     [SerializeField] private TMP_Text title;
-    [SerializeField] private TMP_Text Description;
+    [SerializeField] private TMP_Text description;
+    [SerializeField] private TMP_Text cost; // menampilkan Cost kartu (selalu 1, diatur dari CardData)
+    [SerializeField] private TMP_Text damage; // opsional, cuma dipakai kalau Type = Attack/Debuff
     [SerializeField] private TMP_Text healthText; // opsional, cuma dipakai kalau Type = Enemy/Summon
-    [SerializeField] private TMP_Text cost; // opsional, cuma dipakai kalau Type = Attack/Buff/Debuff
-    [SerializeField] private TMP_Text damage; // opsional, cuma dipakai kalau Type = Attack/Debuff/Summon
     [SerializeField] private LayerMask dropZoneLayer;
     [SerializeField] private bool isInteractable = true;
+    [SerializeField] private PlayerStats playerStats;
 
     public Card CardData => card;
     private Card card;
@@ -21,6 +22,7 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private Quaternion homeRotation;
 
     public System.Action<CardView> OnCardUsed;  // dipanggil HandManager buat hapus dari list & kurangi kesempatan
+    public System.Action<CardView> OnCardDiscarded; // dipanggil HandManager buat hapus dari list TANPA kurangi kesempatan
     public System.Action<CardView> OnCardDefeated; // dipanggil kalau Health kartu ini habis (buat Enemy/Summon)
 
     private void Awake()
@@ -33,25 +35,21 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         this.card = card;
         cardImage.sprite = card.Sprite;
         title.text = card.Title;
-        Description.text = card.Description;
+        description.text = card.Description;
         damage.text = card.Damage.ToString();
-
-        if (cost != null)
-        {
-            cost.text = card.Cost.ToString();
-        }
+        if (cost != null) cost.text = card.Cost.ToString();
 
         bool showsHealth = card.Type == CardType.Enemy || card.Type == CardType.Summon;
         if (healthText != null)
         {
             healthText.gameObject.SetActive(showsHealth);
-            if (showsHealth) healthText.text = $"{card.CurrentHealth}/{card.MaxHealth}";
+            if (showsHealth) healthText.text = $"{card.CurrentHealth}";
         }
     }
 
     public void SetInteractable(bool value) => isInteractable = value;
+    public void SetPlayerStats(PlayerStats stats) => playerStats = stats;
 
-    // Dipanggil HandManager setiap kali posisi tangan di-update, supaya kartu tau harus "pulang" kemana
     public void SetHomeTransform(Vector3 position, Quaternion rotation)
     {
         homePosition = position;
@@ -92,17 +90,17 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         ResolveCardEffect(zone);
     }
 
-
     private DropZone FindDropZoneUnderPointer()
     {
         Vector2 worldPoint = mainCam.ScreenToWorldPoint(Input.mousePosition);
-        Debug.DrawRay(mainCam.ScreenToWorldPoint(Input.mousePosition), Vector3.forward * 10f, Color.red, 1f);
         Collider2D hit = Physics2D.OverlapPoint(worldPoint, dropZoneLayer);
         return hit != null ? hit.GetComponent<DropZone>() : null;
     }
 
     private bool IsValidDropForCardType(DropZoneType zoneType)
     {
+        if (zoneType == DropZoneType.DiscardArea) return true; // semua tipe kartu boleh dibuang
+
         return card.Type switch
         {
             CardType.Attack or CardType.Debuff or CardType.Summon => zoneType == DropZoneType.EnemyArea,
@@ -113,6 +111,14 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     private void ResolveCardEffect(DropZone zone)
     {
+        if (zone.ZoneType == DropZoneType.DiscardArea)
+        {
+            Debug.Log($"{card.Title} dibuang ke Discard Zone");
+            OnCardUsed?.Invoke(this);
+            Destroy(gameObject);
+            return;
+        }
+
         switch (card.Type)
         {
             case CardType.Attack:
@@ -121,14 +127,14 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                     zone.EnemyCardView.ReceiveDamage(card.Damage);
                 break;
             case CardType.Buff:
-                // TODO: panggil sistem buff ke player/tim
+                playerStats?.Heal(card.EffectAmount);
                 break;
             case CardType.Summon:
                 // TODO: spawn ally card di board
                 break;
         }
 
-    
+        Debug.Log($"{card.Title} digunakan ({card.Type})");
         OnCardUsed?.Invoke(this); // HandManager yang handle hapus dari hand + kurangi kesempatan
         Destroy(gameObject);
     }
@@ -138,7 +144,7 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         card.TakeDamage(amount);
 
         if (healthText != null)
-            healthText.text = $"{card.CurrentHealth}/{card.MaxHealth}";
+            healthText.text = $"{card.CurrentHealth}";
 
         Debug.Log($"{card.Title} menerima {amount} damage, sisa HP: {card.CurrentHealth}");
 

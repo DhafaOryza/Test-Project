@@ -18,6 +18,8 @@ public class Card
     public CardType Type => cardData.Type;
 
     public string Effect => cardData.Effect;
+    public BuffEffectType EffectType => cardData.EffectType;
+    public int EffectAmount => cardData.EffectAmount;
 
     public int Cost { get; private set; }
     public int Damage { get; private set; }

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 18164b42d1eb2ba40ad28843523d7587
+guid: 39482c0598ff1cb4cb593da4d53e48ca
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5597995755193609183
-    second: book2_0
+      213: -4723131960762719818
+    second: Red_Medic (1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: book2_0
+      name: Red_Medic (1)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 44
-        height: 54
+        width: 73
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1245a85258cef42b0800000000000000
-      internalID: -5597995755193609183
+      spriteID: 6b1a1738180147eb0800000000000000
+      internalID: -4723131960762719818
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      book2_0: -5597995755193609183
+      Red_Medic (1)_0: -4723131960762719818
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

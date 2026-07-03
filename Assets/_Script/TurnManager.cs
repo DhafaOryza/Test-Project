@@ -30,4 +30,9 @@ public class TurnManager : MonoBehaviour
         handManager.ResetRoundPlays();
 
     }
+
+    public void EndTurnButtonPressed()
+    {
+        handManager.ForceEndTurn();
+    }
 }

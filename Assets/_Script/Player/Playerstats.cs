@@ -15,7 +15,8 @@ public class PlayerStats : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        CurrentHealth = Mathf.Max(0, CurrentHealth - amount);
+        CurrentHealth -= amount;
+        CurrentHealth = Mathf.Clamp(CurrentHealth, 0, maxHealth);
         OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
 
         if (CurrentHealth <= 0)
@@ -27,7 +28,8 @@ public class PlayerStats : MonoBehaviour
 
     public void Heal(int amount)
     {
-        CurrentHealth = Mathf.Min(maxHealth, CurrentHealth + amount);
+        CurrentHealth += amount;
+        CurrentHealth = Mathf.Clamp(CurrentHealth, 0, maxHealth);
         OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
     }
 }

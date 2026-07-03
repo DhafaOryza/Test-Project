@@ -6,17 +6,21 @@ public class PlayerStatusUI : MonoBehaviour
 {
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private TMP_Text healthText;
-    [SerializeField] private Image healthFillImage; // opsional, kalau Image di "StatusPlayer" pakai Fill Amount sebagai bar HP
+    [SerializeField] private Image healthFillImage;
 
     private void OnEnable()
     {
         playerStats.OnHealthChanged += UpdateHealthUI;
-        UpdateHealthUI(playerStats.CurrentHealth, playerStats.MaxHealth); // set awal
     }
 
     private void OnDisable()
     {
         playerStats.OnHealthChanged -= UpdateHealthUI;
+    }
+
+    private void Start()
+    {
+        UpdateHealthUI(playerStats.CurrentHealth, playerStats.MaxHealth); // set awal
     }
 
     private void UpdateHealthUI(int current, int max)
@@ -25,6 +29,6 @@ public class PlayerStatusUI : MonoBehaviour
             healthText.text = $"{current}/{max}";
 
         if (healthFillImage != null)
-            healthFillImage.fillAmount = (float)current / max;
+            healthFillImage.fillAmount = max > 0 ? (float)current / max : 0f;
     }
 }
