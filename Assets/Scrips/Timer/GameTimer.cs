@@ -13,6 +13,9 @@ public class GameTimer : MonoBehaviour
     private float maxTimeInSeconds;
     private bool isGameActive = true;
 
+    public float CurrentTime => currentTime;
+    public bool IsGameActive => isGameActive;
+
     void Start()
     {
         maxTimeInSeconds = timeLimitInMinutes * 60f; 
