@@ -14,9 +14,16 @@ public class HandManager : MonoBehaviour
     private List<CardView> handCards = new();
     private int playsRemaining;
 
+    public System.Action <int> OnplaysChanged;
+    public System.Action OnPlayExhausted;
+
     private void OnEnable() => ResetRoundPlays();
 
-    public void ResetRoundPlays() => playsRemaining = maxPlaysPerRound;
+    public void ResetRoundPlays()
+    {
+        playsRemaining = maxPlaysPerRound;
+        OnplaysChanged?.Invoke(playsRemaining);
+    }
 
     public void AddCardToHand(Card card)
     {
@@ -33,10 +40,19 @@ public class HandManager : MonoBehaviour
 
     private void HandleCardUsed(CardView view)
     {
-        if (playsRemaining <= 0) return;
+        if (playsRemaining <= 0) return; // safety, seharusnya dicegah sebelum drop juga
+        playsRemaining--;
         handCards.Remove(view);
         UpdateCardPositions();
+
+        OnplaysChanged?.Invoke(playsRemaining);
+        if (playsRemaining <= 0)
+        {
+            OnPlayExhausted?.Invoke();
+        }
     }
+
+    public bool HasPlaysRemaining() => playsRemaining > 0;
 
     private void UpdateCardPositions()
     {
@@ -49,15 +65,16 @@ public class HandManager : MonoBehaviour
         for (int i = 0; i < handCards.Count; i++)
         {
             float p = firstCardPosition + i * cardSpacing;
+
             Vector3 splinePosition = spline.EvaluatePosition(p);
             Vector3 cardForwardDir = spline.EvaluateTangent(p);
             Vector3 cardUpDir = spline.EvaluateUpVector(p);
+
             Quaternion rotation = Quaternion.LookRotation(cardUpDir, Vector3.Cross(cardUpDir, cardForwardDir).normalized);
 
             handCards[i].transform.DOMove(splinePosition, 0.25f);
-            handCards[i].transform.DORotateQuaternion(rotation, 0.25f);
+            handCards[i].transform.DOLocalRotateQuaternion(rotation, 0.25f);
 
-            
             handCards[i].SetHomeTransform(splinePosition, rotation);
         }
     }

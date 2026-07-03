@@ -7,15 +7,21 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 {
     [SerializeField] private SpriteRenderer cardImage;
     [SerializeField] private TMP_Text title;
-    [SerializeField] private TMP_Text cost;
+    [SerializeField] private TMP_Text Description;
+    [SerializeField] private TMP_Text healthText; // opsional, cuma dipakai kalau Type = Enemy/Summon
+    [SerializeField] private TMP_Text cost; // opsional, cuma dipakai kalau Type = Attack/Buff/Debuff
+    [SerializeField] private TMP_Text damage; // opsional, cuma dipakai kalau Type = Attack/Debuff/Summon
     [SerializeField] private LayerMask dropZoneLayer;
+    [SerializeField] private bool isInteractable = true;
 
+    public Card CardData => card;
     private Card card;
     private Camera mainCam;
     private Vector3 homePosition;
     private Quaternion homeRotation;
 
-    public System.Action<CardView> OnCardUsed; // dipanggil HandManager buat hapus dari list & kurangi kesempatan
+    public System.Action<CardView> OnCardUsed;  // dipanggil HandManager buat hapus dari list & kurangi kesempatan
+    public System.Action<CardView> OnCardDefeated; // dipanggil kalau Health kartu ini habis (buat Enemy/Summon)
 
     private void Awake()
     {
@@ -27,8 +33,23 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         this.card = card;
         cardImage.sprite = card.Sprite;
         title.text = card.Title;
-        cost.text = card.Cost.ToString();
+        Description.text = card.Description;
+        damage.text = card.Damage.ToString();
+
+        if (cost != null)
+        {
+            cost.text = card.Cost.ToString();
+        }
+
+        bool showsHealth = card.Type == CardType.Enemy || card.Type == CardType.Summon;
+        if (healthText != null)
+        {
+            healthText.gameObject.SetActive(showsHealth);
+            if (showsHealth) healthText.text = $"{card.CurrentHealth}/{card.MaxHealth}";
+        }
     }
+
+    public void SetInteractable(bool value) => isInteractable = value;
 
     // Dipanggil HandManager setiap kali posisi tangan di-update, supaya kartu tau harus "pulang" kemana
     public void SetHomeTransform(Vector3 position, Quaternion rotation)
@@ -39,17 +60,20 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (!isInteractable) return;
         transform.DOKill();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (!isInteractable) return;
         Vector3 worldPoint = mainCam.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y, mainCam.WorldToScreenPoint(transform.position).z));
         transform.position = worldPoint;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (!isInteractable) return;
         DropZone zone = FindDropZoneUnderPointer();
 
         if (zone == null)
@@ -68,9 +92,11 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         ResolveCardEffect(zone);
     }
 
+
     private DropZone FindDropZoneUnderPointer()
     {
         Vector2 worldPoint = mainCam.ScreenToWorldPoint(Input.mousePosition);
+        Debug.DrawRay(mainCam.ScreenToWorldPoint(Input.mousePosition), Vector3.forward * 10f, Color.red, 1f);
         Collider2D hit = Physics2D.OverlapPoint(worldPoint, dropZoneLayer);
         return hit != null ? hit.GetComponent<DropZone>() : null;
     }
@@ -102,7 +128,7 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 break;
         }
 
-        Debug.Log($"{card.Title} digunakan ({card.Type})");
+    
         OnCardUsed?.Invoke(this); // HandManager yang handle hapus dari hand + kurangi kesempatan
         Destroy(gameObject);
     }
@@ -110,14 +136,22 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public void ReceiveDamage(int amount)
     {
         card.TakeDamage(amount);
-        // TODO: update UI health kalau card ini Enemy/Summon
+
+        if (healthText != null)
+            healthText.text = $"{card.CurrentHealth}/{card.MaxHealth}";
+
+        Debug.Log($"{card.Title} menerima {amount} damage, sisa HP: {card.CurrentHealth}");
+
         if (!card.IsAlive)
+        {
+            OnCardDefeated?.Invoke(this);
             Destroy(gameObject);
+        }
     }
 
     private void ReturnToHand()
     {
         transform.DOMove(homePosition, 0.25f);
-        transform.DORotateQuaternion(homeRotation, 0.25f);
+        transform.DOLocalRotateQuaternion(homeRotation, 0.25f);
     }
 }

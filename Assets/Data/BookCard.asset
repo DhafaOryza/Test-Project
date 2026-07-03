@@ -10,8 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 356c77ef13a579c499f950e00caba800, type: 3}
-  m_Name: New Card
+  m_Name: BookCard
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  <Sprite>k__BackingField: {fileID: 0}
-  <Cost>k__BackingField: 0
+  <Title>k__BackingField: book
+  <Description>k__BackingField: magician book
+  <Sprite>k__BackingField: {fileID: -5597995755193609183, guid: 18164b42d1eb2ba40ad28843523d7587, type: 3}
+  <Cost>k__BackingField: 1
+  <Type>k__BackingField: 0
+  <Damage>k__BackingField: 3
+  <Health>k__BackingField: 0
   <Effect>k__BackingField: 

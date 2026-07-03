@@ -4,7 +4,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private List<CardData> cardDataList;
-    [SerializeField] private CardView cardView;
+    [SerializeField] private HandManager handManager;
     private List<Card> deck;
 
     void Start()
@@ -18,11 +18,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            DrawCard();
+        }
+    }
+
     public void DrawCard()
     {
+        if (deck.Count == 0)
+        return;
+
         Card drawnCard = deck[Random.Range(0, deck.Count)];
         deck.Remove(drawnCard);
-        CardView view = Instantiate(cardView);
-        view.Setup(drawnCard);
+        handManager.AddCardToHand(drawnCard);
+        
     }
 }

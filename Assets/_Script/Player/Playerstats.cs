@@ -1,0 +1,33 @@
+using UnityEngine;
+
+public class PlayerStats : MonoBehaviour
+{
+    [SerializeField] private int maxHealth = 50;
+    public int CurrentHealth { get; private set; }
+    public int MaxHealth => maxHealth;
+
+    public System.Action<int, int> OnHealthChanged;
+
+    private void Awake()
+    {
+        CurrentHealth = maxHealth;
+    }
+
+    public void TakeDamage(int amount)
+    {
+        CurrentHealth = Mathf.Max(0, CurrentHealth - amount);
+        OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
+
+        if (CurrentHealth <= 0)
+        {
+            Debug.Log("Player kalah!");
+            // TODO: trigger game over
+        }
+    }
+
+    public void Heal(int amount)
+    {
+        CurrentHealth = Mathf.Min(maxHealth, CurrentHealth + amount);
+        OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
+    }
+}

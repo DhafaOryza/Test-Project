@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 356c77ef13a579c499f950e00caba800, type: 3}
+  m_Name: BufferCard
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  <Title>k__BackingField: GeARing
+  <Description>k__BackingField: Gears
+  <Sprite>k__BackingField: {fileID: -8736445611768796565, guid: d8362d5deba799c4c95054bdc48f2455, type: 3}
+  <Cost>k__BackingField: 1
+  <Type>k__BackingField: 1
+  <Damage>k__BackingField: 0
+  <Health>k__BackingField: 0
+  <Effect>k__BackingField: Healing
