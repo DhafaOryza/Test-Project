@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -11,137 +12,165 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
         [SerializeField] private List<SymbolView> symbols;
         [SerializeField] private List<Sprite> sprites;
 
-        [Header("Settings")]
+        [Header("Layout")]
+        [SerializeField] private int visibleCount = 3;
+        [SerializeField] private int bufferTop = 1;
+        [SerializeField] private int bufferBottom = 1;
+        [SerializeField] private float spacing = 1.5f;
+
+        [Header("Spin Settings")]
         [SerializeField] private float startSpeed = 10f;
         [SerializeField] private float stopSpeed = 2f;
-        [SerializeField] private float deceleration = 25f;
-        [SerializeField] private float spacing = 1.5f;
-        [SerializeField] private float recycleY = -2f;
+        [SerializeField] private float alignSpeed = 6f;
+        [SerializeField] private int extraSpinSteps = 15;
+        
+        private ReelState _state = ReelState.Idle;
 
-        private ReelState state = ReelState.Idle;
+        private List<SymbolView> _slots;
+        private Queue<int> _pendingValues;
+        private int _initialQueueLength;
 
-        private int[] targetResult;
-        private int stopIndex;
+        private float _offset;
+        private float _speed;
 
-        private float speed;
+        private int SlotCount => bufferTop + visibleCount + bufferBottom;
+        
+        private float CenterIndex => (SlotCount - 1) * 0.5f;
 
-        public bool IsSpinning =>
-            state != ReelState.Idle;
+        public bool IsSpinning => _state != ReelState.Idle;
+
+        private void Awake()
+        {
+            _slots = new List<SymbolView>(symbols);
+
+            foreach (var s in _slots)
+                s.SetSymbol(sprites[RandomValue()]);
+
+            ApplyPositions();
+        }
+
+        private void OnValidate()
+        {
+            if (symbols != null && symbols.Count != SlotCount)
+            {
+                Debug.LogWarning(
+                    $"[{name}] symbols count ({symbols.Count}) must = " +
+                    $"bufferTop + visibleCount + bufferBottom ({SlotCount})");
+            }
+        }
 
         private void Update()
         {
-            if (state == ReelState.Idle)
+            if (_state == ReelState.Idle)
                 return;
 
-            UpdateSpeed();
-            MoveSymbols();
+            switch (_state)
+            {
+                case ReelState.Spinning:
+                    _speed = startSpeed;
+                    break;
+
+                case ReelState.Stopping:
+                    float remainingRatio = _pendingValues.Count / (float)_initialQueueLength;
+                    _speed = Mathf.Lerp(stopSpeed, startSpeed, remainingRatio);
+                    break;
+            }
+
+            if (_state == ReelState.Spinning || _state == ReelState.Stopping)
+            {
+                _offset += _speed * Time.deltaTime;
+
+                while (_offset >= spacing)
+                {
+                    _offset -= spacing;
+                    Step();
+                    
+                    if (_state == ReelState.Aligning)
+                        break;
+                }
+            }
+
+            if (_state == ReelState.Aligning)
+            {
+                _offset = Mathf.MoveTowards(_offset, 0f, alignSpeed * Time.deltaTime);
+
+                if (_offset <= 0.001f)
+                {
+                    _offset = 0f;
+                    _state = ReelState.Idle;
+
+                    transform.DOPunchPosition(Vector3.down * .1f, .15f);
+                }
+            }
+
+            ApplyPositions();
         }
 
         public void Spin()
         {
-            speed = startSpeed;
-
-            stopIndex = 0;
-            targetResult = null;
-
-            state = ReelState.Spinning;
+            _pendingValues = null;
+            _offset = 0f;
+            _speed = startSpeed;
+            _state = ReelState.Spinning;
         }
-
+        
         public void Stop(int[] result)
         {
-            if (result == null || result.Length == 0)
-                return;
-
-            targetResult = result;
-
-            stopIndex = 0;
-
-            state = ReelState.Stopping;
-        }
-
-        private void UpdateSpeed()
-        {
-            if (state != ReelState.Stopping)
-                return;
-
-            speed -= deceleration * Time.deltaTime;
-
-            speed = Mathf.Max(speed, stopSpeed);
-        }
-
-        private void MoveSymbols()
-        {
-            foreach (var symbol in symbols)
+            if (result.Length != visibleCount)
             {
-                symbol.transform.localPosition += Vector3.down * (speed * Time.deltaTime);
-
-                if (symbol.transform.localPosition.y < recycleY)
-                {
-                    RecycleSymbol(symbol);
-                }
-            }
-        }
-
-        private void RecycleSymbol(SymbolView symbol)
-        {
-            float highestY = GetHighestSymbolY();
-
-            symbol.transform.localPosition = new Vector3(0, highestY + spacing, 0);
-
-            UpdateSymbol(symbol);
-        }
-
-        private void UpdateSymbol(SymbolView symbol)
-        {
-            if (state == ReelState.Stopping)
-            {
-                symbol.SetSymbol(sprites[targetResult[stopIndex]]);
-
-                stopIndex++;
-
-                if (stopIndex >= targetResult.Length)
-                {
-                    FinishStop();
-                }
-
+                Debug.LogError($"[{name}] result.Length ({result.Length}) must == visibleCount ({visibleCount})");
                 return;
             }
 
-            symbol.SetSymbol(sprites[Random.Range(0, sprites.Count)]);
+            _pendingValues = new Queue<int>();
+            
+            for (int i = 0; i < extraSpinSteps; i++)
+                _pendingValues.Enqueue(RandomValue());
+            
+            for (int i = visibleCount - 1; i >= 0; i--)
+                _pendingValues.Enqueue(result[i]);
+
+            for (int i = 0; i < bufferTop; i++)
+                _pendingValues.Enqueue(RandomValue());
+
+            _initialQueueLength = _pendingValues.Count;
+            _state = ReelState.Stopping;
         }
 
-        private float GetHighestSymbolY()
+        private void Step()
         {
-            float highest = float.MinValue;
+            var symbol = _slots[SlotCount - 1];
+            _slots.RemoveAt(SlotCount - 1);
+            _slots.Insert(0, symbol);
 
-            foreach (var symbol in symbols)
+            symbol.SetSymbol(sprites[NextValue()]);
+        }
+
+        private int NextValue()
+        {
+            if (_state == ReelState.Stopping && _pendingValues.Count > 0)
             {
-                highest = Mathf.Max(highest, symbol.transform.localPosition.y);
+                int value = _pendingValues.Dequeue();
+
+                if (_pendingValues.Count == 0)
+                    _state = ReelState.Aligning;
+
+                return value;
             }
 
-            return highest;
+            return RandomValue();
         }
 
-        private void FinishStop()
+        private int RandomValue() => Random.Range(0, sprites.Count);
+
+        private void ApplyPositions()
         {
-            state = ReelState.Idle;
-
-            speed = stopSpeed;
-
-            SnapSymbols();
-
-            transform.DOPunchPosition(
-                Vector3.down * .1f,
-                .15f);
-
-            Debug.Log("Stopped");
-        }
-
-        private void SnapSymbols()
-        {
-            for (int i = 0; i < symbols.Count; i++)
+            for (int i = 0; i < _slots.Count; i++)
             {
-                symbols[i].transform.localPosition = new Vector3(0, (1 - i) * spacing, 0);
+                var t = _slots[i].transform;
+                var pos = t.localPosition;
+                pos.y = (CenterIndex - i) * spacing - _offset;
+                t.localPosition = pos;
             }
         }
     }

@@ -5,5 +5,6 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
         Idle,
         Spinning,
         Stopping,
+        Aligning
     }
 }
