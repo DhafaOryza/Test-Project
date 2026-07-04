@@ -15,14 +15,14 @@ public class TurnManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        handManager.OnplaysChanged += chanceUI.SetChanceUI;
-        handManager.OnPlayExhausted += HandleEnemyTurn;
+        handManager.OnPlaysChanged += chanceUI.SetChanceUI;
+        handManager.OnPlaysExhausted += HandleEnemyTurn;
     }
 
     private void OnDisable()
     {
-        handManager.OnplaysChanged -= chanceUI.SetChanceUI;
-        handManager.OnPlayExhausted -= HandleEnemyTurn;
+        handManager.OnPlaysChanged -= chanceUI.SetChanceUI;
+        handManager.OnPlaysExhausted -= HandleEnemyTurn;
     }
 
     private void HandleEnemyTurn()

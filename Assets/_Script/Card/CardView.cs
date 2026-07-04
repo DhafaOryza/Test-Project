@@ -119,24 +119,46 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             return;
         }
 
+        bool effectApplied = false;
+
         switch (card.Type)
         {
             case CardType.Attack:
+
             case CardType.Debuff:
-                if (zone.EnemyCardView != null)
+                if (zone.EnemyCardView != null && zone.EnemyCardView.CardData.IsAlive)
+                {
                     zone.EnemyCardView.ReceiveDamage(card.Damage);
+                    effectApplied = true;
+                }
+                else
+                {
+                    Debug.Log("Target tidak valid atau musuh sudah mati!");
+                }
+                    
                 break;
+
             case CardType.Buff:
                 playerStats?.Heal(card.EffectAmount);
+                effectApplied = true;
                 break;
+
             case CardType.Summon:
                 // TODO: spawn ally card di board
+                effectApplied = true;
                 break;
         }
-
-        Debug.Log($"{card.Title} digunakan ({card.Type})");
-        OnCardUsed?.Invoke(this); // HandManager yang handle hapus dari hand + kurangi kesempatan
-        Destroy(gameObject);
+        if (effectApplied)
+        {
+            Debug.Log($"{card.Title} digunakan ({card.Type})");
+            OnCardUsed?.Invoke(this); // HandManager yang handle hapus dari hand + kurangi kesempatan
+            Destroy(gameObject);
+        }
+        else
+        {
+            ReturnToHand();
+        }
+        
     }
 
     public void ReceiveDamage(int amount)
@@ -151,7 +173,7 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         if (!card.IsAlive)
         {
             OnCardDefeated?.Invoke(this);
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 
