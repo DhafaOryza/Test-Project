@@ -197,9 +197,21 @@ public class EnemyManager : MonoBehaviour
 
     public void EnemyAttackPlayer()
     {
-        if (activeEnemy == null || playerStats == null) return;
-        int dmg = activeEnemy.CardData.Damage;
-        playerStats.TakeDamage(dmg);
+        if (activeEnemy == null || playerStats == null) 
+        return;
+
+        Vector3 originalPos = activeEnemy.transform.position;
+        // TODO NANTI: Jika ada Ally, kordinat targetPos ini bisa diganti ke koordinat kartu Ally
+        Vector3 targetPos = originalPos + new Vector3(0, -2.5f, 0);
+
+        activeEnemy.transform.DOMove(targetPos, 0.25f).SetEase(Ease.InBack).SetLink(activeEnemy.gameObject).OnComplete(() =>
+        {
+            int dmg = activeEnemy.CardData.Damage;
+            playerStats.TakeDamage(dmg);
+
+            activeEnemy.transform.DOMove(originalPos, 0.3f).SetEase(Ease.OutQuad).SetLink(activeEnemy.gameObject);
+        });
+        
     }
 
     public void ShowTooltip(string message)

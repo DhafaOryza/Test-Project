@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     private List<Card> drawPile = new();
     private List<Card> discardPile = new();
 
+    public int DrawPileCount => drawPile.Count;
+    public int DiscardPileCount => discardPile.Count;
+
     void Start()
     {
         handManager.OnCardSentToDiscardPile += HandleCardDiscarded;
