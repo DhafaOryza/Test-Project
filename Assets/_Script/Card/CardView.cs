@@ -109,13 +109,12 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         };
     }
 
-    private void ResolveCardEffect(DropZone zone)
+   private void ResolveCardEffect(DropZone zone)
     {
         if (zone.ZoneType == DropZoneType.DiscardArea)
         {
-            Debug.Log($"{card.Title} dibuang ke Discard Zone");
+            ExecuteDiscardVisual(zone);
             OnCardUsed?.Invoke(this);
-            Destroy(gameObject);
             return;
         }
 
@@ -124,41 +123,76 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         switch (card.Type)
         {
             case CardType.Attack:
-
             case CardType.Debuff:
                 if (zone.EnemyCardView != null && zone.EnemyCardView.CardData.IsAlive)
                 {
                     zone.EnemyCardView.ReceiveDamage(card.Damage);
                     effectApplied = true;
                 }
-                else
-                {
-                    Debug.Log("Target tidak valid atau musuh sudah mati!");
-                }
-                    
                 break;
 
             case CardType.Buff:
                 playerStats?.Heal(card.EffectAmount);
                 effectApplied = true;
                 break;
-
-            case CardType.Summon:
-                // TODO: spawn ally card di board
-                effectApplied = true;
-                break;
         }
+
         if (effectApplied)
         {
             Debug.Log($"{card.Title} digunakan ({card.Type})");
-            OnCardUsed?.Invoke(this); // HandManager yang handle hapus dari hand + kurangi kesempatan
-            Destroy(gameObject);
+            
+           
+            DropZone discardZone = GetDiscardZone();
+            if (discardZone != null) 
+            {
+                ExecuteDiscardVisual(discardZone);
+            }
+            
+            OnCardUsed?.Invoke(this); 
+            // Destroy(gameObject); <--- SUDAH DIHAPUS, KARTU TIDAK HANCUR LAGI
         }
         else
         {
             ReturnToHand();
         }
-        
+    }
+
+    private void ExecuteDiscardVisual(DropZone discardZone)
+    {
+        isInteractable = false;
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null) col.enabled = false;
+
+        discardZone.DiscardedVisuals.Add(this);
+
+        if (discardZone.DiscardedVisuals.Count > 2)
+        {
+            CardView oldestCard = discardZone.DiscardedVisuals[0];
+            if (oldestCard != null)
+            {
+                Destroy(oldestCard.gameObject);
+            }
+            discardZone.DiscardedVisuals.RemoveAt(0);
+        }
+
+        int stackIndex = discardZone.DiscardedVisuals.Count - 1;
+        Vector3 offset = new Vector3(0.05f * stackIndex, 0.05f * stackIndex, -0.1f * stackIndex);
+        Vector3 targetPos = discardZone.transform.position + offset;
+
+        transform.DOMove(targetPos, 0.3f).SetEase(Ease.InOutQuad).SetLink(gameObject);
+        transform.DOLocalRotateQuaternion(discardZone.transform.rotation, 0.3f).SetLink(gameObject);
+        //transform.DOScale(new Vector3(0.8f, 0.8f, 0.8f), 0.3f).SetLink(gameObject);
+    }
+
+    // Fungsi pembantu untuk mencari DiscardArea
+    private DropZone GetDiscardZone()
+    {
+        DropZone[] zones = FindObjectsOfType<DropZone>();
+        foreach (var z in zones)
+        {
+            if (z.ZoneType == DropZoneType.DiscardArea) return z;
+        }
+        return null;
     }
 
     public void ReceiveDamage(int amount)
@@ -179,7 +213,7 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     private void ReturnToHand()
     {
-        transform.DOMove(homePosition, 0.25f);
+        transform.DOMove(homePosition, 0.25f).SetLink(gameObject);
         transform.DOLocalRotateQuaternion(homeRotation, 0.25f);
     }
 }

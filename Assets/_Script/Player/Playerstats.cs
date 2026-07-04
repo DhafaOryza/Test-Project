@@ -7,6 +7,7 @@ public class PlayerStats : MonoBehaviour
     public int MaxHealth => maxHealth;
 
     public System.Action<int, int> OnHealthChanged;
+    public System.Action OnPlayerDied;
 
     private void Awake()
     {
@@ -22,7 +23,7 @@ public class PlayerStats : MonoBehaviour
         if (CurrentHealth <= 0)
         {
             Debug.Log("Player kalah!");
-            // TODO: trigger game over
+            OnPlayerDied?.Invoke();
         }
     }
 

@@ -7,16 +7,17 @@ public class HandManager : MonoBehaviour
 {
     [SerializeField] private int maxHandSize;
     [SerializeField] private int maxPlaysPerRound = 3;
-    [SerializeField] private GameObject cardPrefab; // prefab HARUS punya component CardView di root
+    [SerializeField] private GameObject cardPrefab; 
     [SerializeField] private SplineContainer splineContainer;
     [SerializeField] private Transform spawnpoint;
-    [SerializeField] private PlayerStats playerStats; // buat kartu Buff/Heal
+    [SerializeField] private PlayerStats playerStats;
 
     private List<CardView> handCards = new();
     private int playsRemaining;
 
     public System.Action<int> OnPlaysChanged; // dikirim tiap kesempatan berubah, dengar dari ChanceUI/TurnManager
     public System.Action OnPlaysExhausted;    // dikirim sekali saat kesempatan habis (giliran musuh mulai)
+    public System.Action<Card> OnCardSentToDiscardPile;
 
     private void Awake()
     {
@@ -57,10 +58,11 @@ public class HandManager : MonoBehaviour
 
     private void HandleCardUsed(CardView view)
     {
-        if (playsRemaining <= 0) return; // safety, seharusnya dicegah sebelum drop juga
+        if (playsRemaining <= 0) return;
         playsRemaining--;
         bool removed = handCards.Remove(view);
         //Debug.Log($"[HandManager] Card dipakai/discard, removed dari list: {removed}. Sisa hand: {handCards.Count}/{maxHandSize}, sisa chance: {playsRemaining}");
+        OnCardSentToDiscardPile?.Invoke(view.CardData);
         UpdateCardPositions();
 
         OnPlaysChanged?.Invoke(playsRemaining);
@@ -73,10 +75,10 @@ public class HandManager : MonoBehaviour
 
     private void HandleCardDiscarded(CardView view)
     {
-        HandleCardUsed(view); // discard sekarang juga mengurangi kesempatan
+        HandleCardUsed(view);
     }
 
-    // Dipanggil TurnManager saat tombol "End Turn" dipencet
+    
     public void ForceEndTurn()
     {
         if (playsRemaining <= 0)
@@ -110,8 +112,8 @@ public class HandManager : MonoBehaviour
 
             Quaternion rotation = Quaternion.LookRotation(cardUpDir, Vector3.Cross(cardUpDir, cardForwardDir).normalized);
 
-            handCards[i].transform.DOMove(splinePosition, 0.25f);
-            handCards[i].transform.DOLocalRotateQuaternion(rotation, 0.25f);
+            handCards[i].transform.DOMove(splinePosition, 0.25f).SetLink(handCards[i].gameObject);
+            handCards[i].transform.DOLocalRotateQuaternion(rotation, 0.25f).SetLink(handCards[i].gameObject);
 
             // penting: update "rumah" card supaya drag-return akurat sesuai posisi terbaru di hand
             handCards[i].SetHomeTransform(splinePosition, rotation);

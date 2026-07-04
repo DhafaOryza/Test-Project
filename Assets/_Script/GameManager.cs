@@ -1,41 +1,157 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private List<CardData> cardDataList;
+    [Header("Deck System")]
+    [Tooltip("Isi list ini dengan kartu yang dipilih player di awal game")]
+    [SerializeField] private List<CardData> playerStartingDeck; 
     [SerializeField] private HandManager handManager;
-    [SerializeField] private int deckSize = 30; // total kartu di deck, sebelumnya cuma 10 makanya cepat habis
-    private List<Card> deck;
+    
+    [Header("UI System")]
+    [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private GameObject gameOverPanel;
+
+    [Header("Reshuffle Visuals (Animasi DOTween)")]
+    [SerializeField] private GameObject dummyCardPrefab; // Bisa diisi dengan CardPrefab biasa
+    [SerializeField] private Transform discardPointTransform; // Posisi tempat sampah
+    [SerializeField] private Transform deckSpawnPointTransform; // Posisi deck awal
+    [SerializeField] private DropZone discardDropZone; // DropZone discard untuk menghapus pajangan
+
+    private List<Card> drawPile = new();
+    private List<Card> discardPile = new();
 
     void Start()
     {
-        BuildDeck();
+        handManager.OnCardSentToDiscardPile += HandleCardDiscarded;
+        playerStats.OnPlayerDied += ShowGameOverPanel;
+
+        if (gameOverPanel != null) gameOverPanel.SetActive(false);
+
+        BuildInitialDeck();
     }
 
-    private void BuildDeck()
+    private void BuildInitialDeck()
     {
-        deck = new();
-        for (int i = 0; i < deckSize; i++)
+        drawPile.Clear();
+        discardPile.Clear();
+
+        foreach (CardData data in playerStartingDeck)
         {
-            CardData data = cardDataList[Random.Range(0, cardDataList.Count)];
-            Card card = new Card(data);
-            deck.Add(card);
+            drawPile.Add(new Card(data));
         }
-        //Debug.Log($"[GameManager] Deck dibuat ulang, isi: {deck.Count} kartu");
+
+        ShuffleList(drawPile);
+        Debug.Log($"[GameManager] Game dimulai! Isi deck: {drawPile.Count} kartu");
     }
 
     public void DrawCard()
     {
-        if (deck.Count == 0)
+        if (drawPile.Count == 0)
         {
-            //Debug.Log("[GameManager] Deck kosong, reshuffle otomatis");
-            BuildDeck(); // reshuffle otomatis biar gak pernah kehabisan
+            if (discardPile.Count == 0)
+            {
+                Debug.Log("[GameManager] Peringatan! Draw Pile dan Discard Pile kosong!");
+                return;
+            }
+
+            Debug.Log($"[GameManager] Mengocok {discardPile.Count} kartu dari Discard ke Deck...");
+            
+            // Logika pindah kartu
+            drawPile.AddRange(discardPile);
+            discardPile.Clear();
+            ShuffleList(drawPile);
+
+            
+            float animDuration = PlayReshuffleAnimation();
+            DOVirtual.DelayedCall(animDuration, () => ExecuteDraw());
+        }
+        else
+        {
+            ExecuteDraw();
+        }
+    }
+
+    private void ExecuteDraw()
+    {
+        Card drawnCard = drawPile[0];
+        drawPile.RemoveAt(0);
+        handManager.AddCardToHand(drawnCard);
+    }
+
+    private float PlayReshuffleAnimation()
+    {
+        float totalDuration = 0f;
+
+        if (discardDropZone != null)
+        {
+            foreach (var cardVisual in discardDropZone.DiscardedVisuals)
+            {
+                if (cardVisual != null)
+                Destroy(cardVisual.gameObject);
+            }
+            discardDropZone.DiscardedVisuals.Clear();
         }
 
-        Card drawnCard = deck[Random.Range(0, deck.Count)];
-        deck.Remove(drawnCard);
-        //Debug.Log($"[GameManager] Draw '{drawnCard.Title}', sisa deck: {deck.Count}");
-        handManager.AddCardToHand(drawnCard);
+        // ilusi 3 kartu beterbangan dari Discard ke Deck
+        int dummyCount = 3; 
+        for (int i = 0; i < dummyCount; i++)
+        {
+            GameObject dummy = Instantiate(dummyCardPrefab, discardPointTransform.position, discardPointTransform.rotation);
+            
+            // Hapus komponen interaksi agar murni menjadi pajangan mati
+            Destroy(dummy.GetComponent<CardView>());
+            Collider2D col = dummy.GetComponent<Collider2D>();
+            if (col != null) Destroy(col);
+
+            
+            float delay = i * 0.15f; 
+            float MoveTime = 0.4f;
+
+            // Terbangkan ke arah Deck dengan jeda waktu berurutan
+            dummy.transform.DOMove(deckSpawnPointTransform.position, 0.4f)
+                .SetDelay(delay)
+                .SetEase(Ease.InOutQuad)
+                .OnComplete(() => Destroy(dummy)); 
+                
+            
+            dummy.transform.DORotate(new Vector3(0, 0, 180), 0.4f, RotateMode.FastBeyond360).SetDelay(delay);
+            totalDuration = Mathf.Max(totalDuration, delay + MoveTime);
+        }
+
+        return totalDuration + 0.1f;
+    }
+
+    private void HandleCardDiscarded(Card discardedCard)
+    {
+        discardPile.Add(discardedCard);
+    }
+
+    private void ShuffleList(List<Card> list)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            Card temp = list[i];
+            int randomIndex = Random.Range(i, list.Count);
+            list[i] = list[randomIndex];
+            list[randomIndex] = temp;
+        }
+    }
+
+    private void ShowGameOverPanel()
+    {
+        if (gameOverPanel != null) gameOverPanel.SetActive(true);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ShowDeckViewer()
+    {
+        Debug.Log("Menampilkan list kartu deck...");
     }
 }
