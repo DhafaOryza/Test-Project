@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 1357736456671100254}
   - component: {fileID: 4581672562063504464}
   - component: {fileID: 2244286429715891138}
-  m_Layer: 0
+  - component: {fileID: 9214925822950814080}
+  m_Layer: 6
   m_Name: EnemyCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,6 +164,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.91, y: 1.2843149}
   m_EdgeRadius: 0
+--- !u!114 &9214925822950814080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635088034058363121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e3b23e13dedeb0888b44e6e1a3410fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DropZone
+  <ZoneType>k__BackingField: 0
+  <EnemyCardView>k__BackingField: {fileID: 4581672562063504464}
 --- !u!1 &1532801502425977587
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,7 +189,7 @@ GameObject:
   - component: {fileID: 7770479672042146256}
   - component: {fileID: 3737302817852674846}
   - component: {fileID: 5040570865343421657}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +326,7 @@ GameObject:
   - component: {fileID: 8739801718471555923}
   - component: {fileID: 2725818192540012779}
   - component: {fileID: 7592105248430845924}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -387,7 +402,7 @@ GameObject:
   - component: {fileID: 627964373122249502}
   - component: {fileID: 460643534490218970}
   - component: {fileID: 2199185323371824683}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Desc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -526,7 +541,7 @@ GameObject:
   - component: {fileID: 5629958033433071983}
   - component: {fileID: 826105071680747125}
   - component: {fileID: 6000884608643704367}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -664,7 +679,7 @@ GameObject:
   - component: {fileID: 1727819384258103851}
   - component: {fileID: 8808897009992694683}
   - component: {fileID: 8338389495429286174}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -767,7 +782,7 @@ GameObject:
   - component: {fileID: 5498589956229740721}
   - component: {fileID: 3694386817936750391}
   - component: {fileID: 83289671817205798}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -843,7 +858,7 @@ GameObject:
   - component: {fileID: 7064482865771515730}
   - component: {fileID: 8620560108636032315}
   - component: {fileID: 8228647676355135997}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: ImageCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -916,7 +931,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4947511276532385379}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: DescConjtainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -953,7 +968,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1907399365146921255}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Statistic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -992,7 +1007,7 @@ GameObject:
   - component: {fileID: 8224826937971842127}
   - component: {fileID: 5934602474946125937}
   - component: {fileID: 4828068679149863081}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

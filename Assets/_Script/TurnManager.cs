@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
-
     [Header("Managers")]
     [SerializeField] private AllyManager allyManager;
     [SerializeField] private HandManager handManager;
@@ -12,12 +11,7 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private ChanceUI chanceUI;
     [SerializeField] private float delayBeforeTurnTranstition = 1f;
     [SerializeField] private int cardsPerTurn = 3;
-    [SerializeField] private  PlayerStats playerStats;
-
-    private void Start()
-    {
-        
-    }
+    [SerializeField] private PlayerStats playerStats;
 
     private void OnEnable()
     {
@@ -64,9 +58,10 @@ public class TurnManager : MonoBehaviour
         }
 
         CardView currentAlly = allyManager.ActiveAllies[index];
-        Transform enemyTarget = enemyManager.ActiveEnemyTransform;
+        // Pilih target musuh pertama yang masih hidup
+        Transform enemyTarget = enemyManager.ActiveEnemies.Count > 0 ? enemyManager.ActiveEnemies[0].transform : null;
 
-        if (currentAlly != null || enemyTarget != null)
+        if (currentAlly != null && enemyTarget != null)
         {
             allyManager.AllyAttackTarget(currentAlly, enemyTarget, () =>
             {
@@ -79,36 +74,47 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    private void HandleEnemyTurn()
-    {
-        Invoke(nameof(ExecuteEnemyTurn), delayBeforeTurnTranstition);
-    }
-
     private void ExecuteEnemyTurn()
     {
+        Debug.Log("[TurnManager] Giliran Pasukan Musuh dimulai!");
+        PlayEnemyAttack(0); // Mulai dari musuh index ke-0
+    }
+
+    // Fungsi antrean keroyokan musuh
+    private void PlayEnemyAttack(int index)
+    {
+        // Jika sudah semua musuh menyerang, kembalikan giliran ke Player
+        if (enemyManager.ActiveEnemies == null || index >= enemyManager.ActiveEnemies.Count)
+        {
+            Debug.Log("[TurnManager] Semua Musuh selesai menyerang. Kembali ke giliran Player!");
+            handManager.ResetRoundPlays();
+            DrawCardForNewTurn();
+            return;
+        }
+
+        CardView currentEnemy = enemyManager.ActiveEnemies[index];
         Transform choosenTarget = playerStats.transform;
+
+        // Logika Random Target
         if (allyManager != null && allyManager.ActiveAllies.Count > 0)
         {
             int RandomChoice = Random.Range(0, allyManager.ActiveAllies.Count + 1);
-
             if (RandomChoice < allyManager.ActiveAllies.Count)
             {
                 choosenTarget = allyManager.ActiveAllies[RandomChoice].transform;
-                Debug.Log($"[TurnManager] Musuh memutuskan untuk menyerang Ally index ke-{RandomChoice}!");
+                Debug.Log($"[TurnManager] Musuh '{currentEnemy.CardData.Title}' menyerang Ally index ke-{RandomChoice}!");
             }
             else
             {
-                Debug.Log("[TurnManager] Musuh memutuskan untuk tetap menyerang Player!");
+                Debug.Log($"[TurnManager] Musuh '{currentEnemy.CardData.Title}' menyerang Player!");
             }
         }
         
-        enemyManager.EnemyAttackTarget(choosenTarget, () =>
+        // Eksekusi serangan musuh ini, lalu panggil diri sendiri (index + 1)
+        enemyManager.EnemyAttackTarget(currentEnemy, choosenTarget, () =>
         {
-            handManager.ResetRoundPlays();
-            DrawCardForNewTurn();
-
+            PlayEnemyAttack(index + 1);
         });
-        
     }
 
     private void DrawCardForNewTurn()

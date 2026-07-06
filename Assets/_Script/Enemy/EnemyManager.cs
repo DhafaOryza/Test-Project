@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -10,232 +11,240 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private CardChoiceManager cardChoiceManager;
 
-    [Header("Drop Zones & Positions (Kotak Warna)")]
-    [SerializeField] private DropZone enemyDropZone;
-    [SerializeField] private Transform DefeatedEnemyPoint;  // Makam
-    [SerializeField] private Transform ActiveEnemyPoint;    // Arena
-    [SerializeField] private Transform NextEnemyPoint;      // Antrean
-
-    [Header("Animation Settings")]
-    [SerializeField] private float moveDuration = 0.5f;
-
-    [Header("Deck & Level System")]
-    [SerializeField] private int maxEnemyDeck = 10;
+    [Header("Level / Wave System")]
+    [Tooltip("Atur jumlah musuh per level. Contoh: 1, 2, 3")]
+    [SerializeField] private List<int> enemiesPerLevel = new List<int>() { 1, 2, 3 };
     [SerializeField] private float hpScalePerLevel = 0.3f;
     [SerializeField] private float damageScalePerLevel = 0.2f;
+
+    [Header("Positions (Titik Koordinat)")]
+    [Tooltip("Titik slot di arena (Kiri, Tengah, Kanan)")]
+    [SerializeField] private List<Transform> activeEnemyPoints;
     
-    [Header("Visual Tumpukan")]
+    [Tooltip("SEKARANG CUKUP 1 TITIK: Koordinat tempat tumpukan Deck/Draw Pile musuh berada")]
+    [SerializeField] private Transform enemyDeckPoint;
+    
+    [SerializeField] private Transform DefeatedEnemyPoint;  // Makam / Graveyard
+
+    [Header("Animation Settings")]
+    [SerializeField] private float moveDuration = 0.6f; // Dinaikkan dari 0.15 agar animasinya mulus terlihat!
     [SerializeField] private Vector3 stackOffset = new Vector3(0.1f, -0.1f, 0.1f);
 
     [Header("Tooltip UI")]
     [SerializeField] private GameObject tooltipPanel;
-    [SerializeField] private TMPro.TMP_Text tooltipText;
+    [SerializeField] private TMP_Text tooltipText;
 
-    private int currentLevel = 1;
+    private int currentLevelIndex = 0;
     private int enemiesDefeatedCount = 0;
+    private int enemiesLeftInCurrentWave = 0;
+    private int totalEnemiesInPool = 0;
 
-    // --- LIST DECK BARU ---
-    private List<CardData> enemyDeck = new List<CardData>();
-
-    private CardView activeEnemy;
-    private CardView nextEnemy;
-    private CardView cardInGraveyard;
-    private GameObject nextDummyCard;
-    private GameObject defeatedDummyCard;
+    public List<CardView> ActiveEnemies { get; private set; } = new List<CardView>();
+    private List<CardView> graveyardCards = new List<CardView>();
+    private List<GameObject> deckDummyCards = new List<GameObject>(); // Menyimpan visual tumpukan deck
 
     public System.Action<CardView> OnEnemyDefeated;
 
-    // Membuka akses untuk HoverArea
+    // Akses data untuk HoverArea / Tooltip
     public int DefeatedCount => enemiesDefeatedCount;
-    public int CardsLeft => enemyDeck.Count;
-    public Transform ActiveEnemyTransform => activeEnemy != null ? activeEnemy.transform : null;
+    public int CardsLeft => totalEnemiesInPool + enemiesLeftInCurrentWave; 
+    public int CurrentLevel => currentLevelIndex + 1; 
 
     void Start()
     {
-        // 1. GENERATE DECK DI AWAL GAME
-        for (int i = 0; i < maxEnemyDeck; i++)
-        {
-            // Pilih monster acak dari Possible Enemies
-            CardData randomMonster = possibleEnemies[Random.Range(0, possibleEnemies.Count)];
-            enemyDeck.Add(randomMonster); // Masukkan ke dalam tumpukan deck
-        }
-
-        if (enemyDeck.Count > 1)
-        {
-            nextDummyCard = CreateDummyCard(NextEnemyPoint);
-        }
-
-        activeEnemy = SpawnCard(ActiveEnemyPoint);
-        ActivateEnemy(activeEnemy);
-
-        nextEnemy = SpawnCard(NextEnemyPoint);
+        // Hitung total seluruh musuh di game untuk menggambar ketebalan visual deck awal
+        CalculateTotalEnemies();
+        UpdateDeckVisuals();
+        StartWave(currentLevelIndex);
     }
 
-    private GameObject CreateDummyCard(Transform basePoint)
+    private void CalculateTotalEnemies()
     {
-        Vector3 dummyPos = basePoint.position + stackOffset;
-        GameObject dummy = Instantiate(cardPrefab, dummyPos, basePoint.rotation);
-        
-        Destroy(dummy.GetComponent<CardView>());
-        
-        Collider2D col = dummy.GetComponent<Collider2D>();
-        if (col != null) Destroy(col);
-
-        Canvas dummyCanvas = GetComponentInChildren<Canvas>();
-        if (dummyCanvas != null)
+        totalEnemiesInPool = 0;
+        for (int i = currentLevelIndex; i < enemiesPerLevel.Count; i++)
         {
-            dummyCanvas.gameObject.SetActive(false);
+            totalEnemiesInPool += enemiesPerLevel[i];
         }
+    }
 
-        Transform imageCardObj = dummy.transform.Find("ImageCard");
-        if (imageCardObj != null)
+    // Mengupdate ketebalan visual tumpukan kartu deck musuh
+    private void UpdateDeckVisuals()
+    {
+        foreach (var dummy in deckDummyCards) if (dummy != null) Destroy(dummy);
+        deckDummyCards.Clear();
+
+        int dummyCount = Mathf.Min(totalEnemiesInPool, 4);
+        for (int i = 0; i < dummyCount; i++)
         {
-            SpriteRenderer imageSprite = imageCardObj.GetComponent<SpriteRenderer>();
-            if (imageSprite != null)
+            Vector3 pos = enemyDeckPoint.position + (stackOffset * i);
+            GameObject dummy = Instantiate(cardPrefab, pos, enemyDeckPoint.rotation);
+            
+            // Matikan logic & canvas agar murni jadi pajangan dekorasi tumpukan deck
+            Destroy(dummy.GetComponent<CardView>());
+            Collider2D col = dummy.GetComponent<Collider2D>();
+            if (col != null) Destroy(col);
+            
+            Canvas canvas = dummy.GetComponentInChildren<Canvas>();
+            if (canvas != null) canvas.gameObject.SetActive(false);
+
+            SpriteRenderer[] sprites = dummy.GetComponentsInChildren<SpriteRenderer>();
+            foreach (var sr in sprites)
             {
-                imageSprite.enabled = false;
+                sr.sortingOrder = -i;
             }
-        }
-        
-        SpriteRenderer Rootsprites = dummy.GetComponent<SpriteRenderer>();
-        if (Rootsprites != null)
-        {
-            Rootsprites.color = new Color(0.7f, 0.7f, 0.7f, 1f); 
-            Rootsprites.sortingOrder = -5;
-        }
 
-        return dummy;
+            deckDummyCards.Add(dummy);
+        }
     }
 
-    private CardView SpawnCard(Transform spawnPoint)
+    private void StartWave(int levelIndex)
     {
+        if (levelIndex >= enemiesPerLevel.Count)
+        {
+            Debug.Log("🎉 SELAMAT! KAMU MENANG SEMUA LEVEL!");
+            return;
+        }
+
+        int enemyCountToSpawn = enemiesPerLevel[levelIndex];
         
-        if (enemyDeck.Count == 0) return null;
+        if (enemyCountToSpawn > activeEnemyPoints.Count) 
+            enemyCountToSpawn = activeEnemyPoints.Count;
 
-       
-        CardData data = enemyDeck[0]; 
-        enemyDeck.RemoveAt(0);
+        enemiesLeftInCurrentWave = enemyCountToSpawn;
+        
+        // Kurangi pool utama karena pasukan wave ini akan keluar dari tumpukan deck
+        totalEnemiesInPool -= enemyCountToSpawn;
+        UpdateDeckVisuals();
 
-        Card enemyCard = new Card(data);
+        ActiveEnemies.Clear();
 
-        // --- SISTEM SCALING STATUS ---
-        int levelMultiplier = currentLevel - 1; 
-        float hpBonus = enemyCard.MaxHealth * (hpScalePerLevel * levelMultiplier);
-        float dmgBonus = enemyCard.Damage * (damageScalePerLevel * levelMultiplier);
+        Debug.Log($"[EnemyManager] Level {levelIndex + 1} Dimulai! Memunculkan {enemyCountToSpawn} musuh.");
 
+        for (int i = 0; i < enemyCountToSpawn; i++)
+        {
+            SpawnEnemyToSlot(i, levelIndex);
+        }
+    }
+
+    private void SpawnEnemyToSlot(int slotIndex, int levelIndex)
+    {
+        CardData randomMonster = possibleEnemies[Random.Range(0, possibleEnemies.Count)];
+        Card enemyCard = new Card(randomMonster);
+
+        // Status Scaling
+        float hpBonus = enemyCard.MaxHealth * (hpScalePerLevel * levelIndex);
+        float dmgBonus = enemyCard.Damage * (damageScalePerLevel * levelIndex);
         enemyCard.MaxHealth += Mathf.RoundToInt(hpBonus);
         enemyCard.CurrentHealth = enemyCard.MaxHealth;
         enemyCard.Damage += Mathf.RoundToInt(dmgBonus);
 
-        GameObject g = Instantiate(cardPrefab, spawnPoint.position, spawnPoint.rotation);
+        // --- FIX ANIMASI: Semua musuh di-spawn dari titik tumpukan Deck yang sama ---
+        GameObject g = Instantiate(cardPrefab, enemyDeckPoint.position, enemyDeckPoint.rotation);
+        
         CardView view = g.GetComponent<CardView>();
         view.Setup(enemyCard);
         view.SetInteractable(false);
 
-        // Matikan collider saat kartu baru spawn (masih antre)
         Collider2D col = g.GetComponent<Collider2D>();
         if (col != null) col.enabled = false;
 
-        return view;
+        // Beri efek jeda antar kartu terbang (Cascade Delay) agar terlihat sangat mulus!
+        Transform targetPoint = activeEnemyPoints[slotIndex];
+        float cascadeDelay = slotIndex * 0.25f; 
+
+        view.transform.DOMove(targetPoint.position, moveDuration)
+            .SetDelay(cascadeDelay)
+            .SetEase(Ease.OutBack) // Efek memantul saat mendarat di arena
+            .OnComplete(() => ActivateEnemy(view));
     }
 
     private void ActivateEnemy(CardView view)
     {
-        if (view == null) return;
-        
-        // Hidupkan kembali collider SAAT MASUK KOTAK MERAH agar bisa diserang
         Collider2D col = view.GetComponent<Collider2D>();
-        if (col != null) col.enabled = true;
+        if (col != null) col.enabled = true; 
 
-        activeEnemy = view;
-        enemyDropZone.EnemyCardView = view; 
+        ActiveEnemies.Add(view);
         view.OnCardDefeated += HandleEnemyDefeated;
-        
-       // Debug.Log($"[EnemyManager] Enemy '{view.CardData.Title}' siap di Kotak Merah! HP: {view.CardData.CurrentHealth}");
     }
 
     private void HandleEnemyDefeated(CardView defeatedView)
     {
-        //Debug.Log($"{defeatedView.CardData.Title} dikalahkan!");
         enemiesDefeatedCount++;
-        currentLevel++; 
+        enemiesLeftInCurrentWave--;
 
-        enemyDropZone.EnemyCardView = null;
         defeatedView.OnCardDefeated -= HandleEnemyDefeated;
-        activeEnemy = null;
+        ActiveEnemies.Remove(defeatedView);
 
-        //Matikan collider kartu yang mati agar tidak menutupi kotak hitam
         Collider2D col = defeatedView.GetComponent<Collider2D>();
         if (col != null) col.enabled = false;
 
-        if (enemiesDefeatedCount > 1 && defeatedDummyCard == null)
+        graveyardCards.Add(defeatedView);
+        int stackIndex = graveyardCards.Count - 1;
+        Vector3 targetPos = DefeatedEnemyPoint.position + (stackOffset * stackIndex);
+
+        // Atur sistem sorting agar kartu yang baru mati berada paling depan secara visual
+        Canvas canvas = defeatedView.GetComponentInChildren<Canvas>();
+        if (canvas != null)
         {
-            defeatedDummyCard = CreateDummyCard(DefeatedEnemyPoint);
+            canvas.overrideSorting = true;
+            canvas.sortingOrder = stackIndex + 2;
         }
 
-        CardView oldCardInGraveyard = cardInGraveyard;
-        cardInGraveyard = defeatedView;
-
-        defeatedView.transform.DOMove(DefeatedEnemyPoint.position, moveDuration)
+        defeatedView.transform.DOMove(targetPos, moveDuration)
             .SetEase(Ease.InOutQuad)
             .SetLink(defeatedView.gameObject)
             .OnComplete(() => 
             {
-                if (oldCardInGraveyard != null) Destroy(oldCardInGraveyard.gameObject);
+                foreach (var graveCard in graveyardCards)
+                {
+                    if (graveCard != defeatedView && graveCard != null)
+                    {
+                        Canvas canvas = graveCard.GetComponentInChildren<Canvas>();
+                        if (canvas != null)
+                        {
+                            canvas.gameObject.SetActive(false);
+                        }
+                    }
+                }
+                
+                // Batasi penumpukan di scene (opsional, untuk mencegah lag)
+                if (graveyardCards.Count > 4)
+                {
+                    CardView oldest = graveyardCards[0];
+                    graveyardCards.RemoveAt(0);
+                    if (oldest != null) Destroy(oldest.gameObject);
+                }
             });
 
-        if (nextEnemy == null && enemyDeck.Count <= 0)
-        {
-            Debug.Log("🎉 SELAMAT! KAMU MENANG!");
-            return;
-        }
-
-        if (cardChoiceManager != null)
-        {
-            cardChoiceManager.BeginRewardSelection();
-        }
-        else
-        {
-            Debug.LogWarning("[EnemyManager] CardChoiceManager belum diisi di Inspector!");
-        }
-
-        if (nextEnemy != null)
-        {
-            CardView incomingEnemy = nextEnemy;
-            nextEnemy = null;
-
-            incomingEnemy.transform.DOMove(ActiveEnemyPoint.position, moveDuration)
-                .SetEase(Ease.InOutQuad)
-                .OnComplete(() => ActivateEnemy(incomingEnemy));
-        }
-
-        DOVirtual.DelayedCall(moveDuration * 0.5f, () => 
-        {
-            nextEnemy = SpawnCard(NextEnemyPoint);
-            
-            if (enemyDeck.Count <= 0 && nextDummyCard != null)
-            {
-                Destroy(nextDummyCard);
-            }
-        });
-        
         OnEnemyDefeated?.Invoke(defeatedView);
+
+        if (enemiesLeftInCurrentWave <= 0)
+        {
+            Debug.Log($"Level {currentLevelIndex + 1} Clear!");
+            if (cardChoiceManager != null) cardChoiceManager.BeginRewardSelection();
+
+            currentLevelIndex++;
+
+            DOVirtual.DelayedCall(1.5f, () => 
+            {
+                StartWave(currentLevelIndex);
+            });
+        }
     }
 
-    public void EnemyAttackTarget(Transform targetTransform, System.Action onComplete = null)
+    public void EnemyAttackTarget(CardView attacker, Transform targetTransform, System.Action onComplete = null)
     {
-        if (activeEnemy == null || targetTransform == null)
+        if (attacker == null || targetTransform == null)
         {
             onComplete?.Invoke();
             return;
         }
         
-        Vector3 originalPos = activeEnemy.transform.position;
+        Vector3 originalPos = attacker.transform.position;
         Vector3 targetPos = new Vector3(targetTransform.position.x , targetTransform.position.y, originalPos.z);
-
        
-        SpriteRenderer[] sprites = activeEnemy.GetComponentsInChildren<SpriteRenderer>();
-        Canvas canvas = activeEnemy.GetComponentInChildren<Canvas>();
+        SpriteRenderer[] sprites = attacker.GetComponentsInChildren<SpriteRenderer>();
+        Canvas canvas = attacker.GetComponentInChildren<Canvas>();
 
         foreach(var sr in sprites) sr.sortingOrder = 100;
         if (canvas != null) 
@@ -244,10 +253,9 @@ public class EnemyManager : MonoBehaviour
             canvas.sortingOrder = 101;
         }
         
-
-        activeEnemy.transform.DOMove(targetPos, 0.25f).SetEase(Ease.InBack).SetLink(activeEnemy.gameObject).OnComplete(() =>
+        attacker.transform.DOMove(targetPos, 0.25f).SetEase(Ease.InBack).SetLink(attacker.gameObject).OnComplete(() =>
         {
-            int dmg = activeEnemy.CardData.Damage;
+            int dmg = attacker.CardData.Damage;
             
             PlayerStats targetPlayer = targetTransform.GetComponent<PlayerStats>();
             if (targetPlayer != null)
@@ -263,12 +271,11 @@ public class EnemyManager : MonoBehaviour
                 }
             }
 
-            activeEnemy.transform.DOMove(originalPos, 0.3f)
+            attacker.transform.DOMove(originalPos, 0.3f)
                 .SetEase(Ease.OutQuad)
-                .SetLink(activeEnemy.gameObject)
+                .SetLink(attacker.gameObject)
                 .OnComplete(() => 
                 {
-                    // Kembalikan ke layer awal (0)
                     foreach(var sr in sprites) sr.sortingOrder = 0;
                     if (canvas != null) canvas.sortingOrder = 0;
                     

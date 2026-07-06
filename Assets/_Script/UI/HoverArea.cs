@@ -12,8 +12,8 @@ public class HoverArea : MonoBehaviour
     [SerializeField] private HoverZoneType zoneType;
     
     [Header("References")]
-    [SerializeField] private EnemyManager enemyManager; // Wajib diisi untuk Tooltip UI
-    [SerializeField] private GameManager gameManager;   // Wajib diisi khusus untuk zona Player
+    [SerializeField] private EnemyManager enemyManager; 
+    [SerializeField] private GameManager gameManager; 
 
     private void OnMouseEnter()
     {

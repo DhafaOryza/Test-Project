@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    //[SerializeField] private SpriteRenderer cardImage;
     [SerializeField] private Image cardImage;
     [SerializeField] private TMP_Text title;
     [SerializeField] private TMP_Text description;
@@ -23,16 +22,13 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private Vector3 homePosition;
     private Quaternion homeRotation;
 
-    /*private UnityEngine.Rendering.SortingGroup sortingGroup;
-    private int originalSortingOrder;*/
-
     private Canvas cardCanvas;
     private SpriteRenderer[] allSprites;
     private int baseCanvasOrder;
 
-    public System.Action<CardView> OnCardUsed;  // dipanggil HandManager buat hapus dari list & kurangi kesempatan
-    public System.Action<CardView> OnCardDiscarded; // dipanggil HandManager buat hapus dari list TANPA kurangi kesempatan
-    public System.Action<CardView> OnCardDefeated; // dipanggil kalau Health kartu ini habis (buat Enemy/Summon)
+    public System.Action<CardView> OnCardUsed;  
+    public System.Action<CardView> OnCardDiscarded; 
+    public System.Action<CardView> OnCardDefeated; 
     public System.Action<CardView> OnCardSummoned;
 
     private void Awake()
@@ -40,8 +36,6 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         mainCam = Camera.main;
         cardCanvas = GetComponentInChildren<Canvas>();
         allSprites = GetComponentsInChildren<SpriteRenderer>();
-
-        //sortingGroup = GetComponent<UnityEngine.Rendering.SortingGroup>();
     }
 
     public void Setup(Card card)
@@ -53,7 +47,18 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             card.ResetHealth();
         }
         
-        cardImage.sprite = card.Sprite;
+        // --- ANTI KOTAK PUTIH ---
+        if (card.Sprite == null)
+        {
+            cardImage.color = new Color(1, 1, 1, 0); 
+        }
+        else
+        {
+            cardImage.color = new Color(1, 1, 1, 1);
+            cardImage.sprite = card.Sprite;
+        }
+        // ------------------------
+
         title.text = card.Title;
         description.text = card.Description;
         damage.text = card.Damage.ToString();
@@ -92,13 +97,6 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             cardCanvas.overrideSorting = true;
             cardCanvas.sortingOrder = 1000;
         }
-
-        /*if (sortingGroup != null)
-        {
-            originalSortingOrder = sortingGroup.sortingOrder;
-            sortingGroup.sortingOrder =  999;
-        }*/
-
 
         transform.DORotate(Vector3.zero, 0.15f);
         transform.DOScale(new Vector3(2.1f, 2.6f, 1.1f), 0.15f);
@@ -141,7 +139,7 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     private bool IsValidDropForCardType(DropZoneType zoneType)
     {
-        if (zoneType == DropZoneType.DiscardArea) return true; // semua tipe kartu boleh dibuang
+        if (zoneType == DropZoneType.DiscardArea) return true; 
 
         return card.Type switch
         {
@@ -185,9 +183,6 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
         if (effectApplied)
         {
-            Debug.Log($"{card.Title} digunakan ({card.Type})");
-            
-           
             if (card.Type == CardType.Summon)
             {
                 ExecuteSummonVisual();
@@ -201,7 +196,6 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                     ExecuteDiscardVisual(discardZone);
                 }
             }
-            
             OnCardUsed?.Invoke(this); 
         }
         else
@@ -213,12 +207,9 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private void ExecuteSummonVisual()
     {
         isInteractable = false; 
-        
-       
         homePosition = transform.position;
         homeRotation = transform.rotation;
 
-        
         if (allSprites != null)
         {
             foreach(var sr in allSprites) sr.sortingOrder = 1;
@@ -227,8 +218,6 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         {
             cardCanvas.sortingOrder = baseCanvasOrder;
         }
-        
-        // (Opsional) Beri sedikit efek debu/hentakan saat Summon turun ke meja
         transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0f), 0.3f, 5);
     }
 
@@ -266,7 +255,6 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         Vector3 offset = new Vector3(0.05f * stackIndex, 0.05f * stackIndex, -0.1f * stackIndex);
         Vector3 targetPos = discardZone.transform.position + offset;
 
-
         SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
         foreach(var sr in sprites) sr.sortingOrder = stackIndex;
 
@@ -276,19 +264,11 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             canvas.overrideSorting = true;
             canvas.sortingOrder = stackIndex + 1; 
         }
-        /*
-        UnityEngine.Rendering.SortingGroup sg = GetComponent<UnityEngine.Rendering.SortingGroup>();
-        if (sg != null)
-        {
-            sg.sortingOrder = stackIndex;
-        }*/
 
         transform.DOMove(targetPos, 0.3f).SetEase(Ease.InOutQuad).SetLink(gameObject);
         transform.DOLocalRotateQuaternion(discardZone.transform.rotation, 0.3f).SetLink(gameObject);
-        //transform.DOScale(new Vector3(0.8f, 0.8f, 0.8f), 0.3f).SetLink(gameObject);
     }
 
-    // Fungsi pembantu untuk mencari DiscardArea
     private DropZone GetDiscardZone()
     {
         DropZone[] zones = FindObjectsOfType<DropZone>();
@@ -306,25 +286,22 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         if (healthText != null)
             healthText.text = $"{card.CurrentHealth}";
 
-        //Debug.Log($"{card.Title} menerima {amount} damage, sisa HP: {card.CurrentHealth}");
-
         if (!card.IsAlive)
         {
             OnCardDefeated?.Invoke(this);
-            //Destroy(gameObject);
         }
         else
         {
-            if (allSprites != null && allSprites.Length > 0)
+            // --- FIX DOTWEEN UNTUK IMAGE CANVAS ---
+            if (cardImage != null)
             {
-                allSprites[0].DOColor(Color.red, 0.15f).OnComplete(() => 
+                cardImage.DOColor(Color.red, 0.15f).OnComplete(() => 
                 {
-                    allSprites[0].DOColor(Color.white, 0.15f); // Kembalikan ke warna asli
+                    cardImage.DOColor(Color.white, 0.15f); 
                 });
-            
-
-            transform.DOShakePosition(0.25f, strength: new Vector3(0.3f, 0.3f, 0),vibrato: 15).SetLink(gameObject);
             }
+            
+            transform.DOShakePosition(0.25f, strength: new Vector3(0.3f, 0.3f, 0),vibrato: 15).SetLink(gameObject);
         }
     }
 
@@ -334,11 +311,6 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         {
             foreach(var sr in allSprites) sr.sortingOrder = 0;
             if (cardCanvas != null) cardCanvas.sortingOrder = baseCanvasOrder;
-            
-            /*if (sortingGroup != null)
-            {
-                sortingGroup.sortingOrder = originalSortingOrder;
-            }*/
         });
         transform.DOLocalRotateQuaternion(homeRotation, 0.25f).SetLink(gameObject);
         transform.DOScale(new Vector3(2f, 2.5f, 1f), 0.25f).SetLink(gameObject);
