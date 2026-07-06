@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a8bc3ccafbb11594a6a2f473bcace9c, type: 3}
+  m_Name: FireRate
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeData
+  upgradeName: FireRate
+  description: 'Reload Rate +20%
+
+    Fire Rate +5%'
+  icon: {fileID: 2208703988740019828, guid: 9b49c67e3ea0d6453981fe13d563cf72, type: 3}
+  type: 3
+  value: 1

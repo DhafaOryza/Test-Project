@@ -1,0 +1,148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2564881518255742686
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 614559110812866716, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      propertyPath: m_Name
+      value: The_Splitter
+      objectReference: {fileID: 0}
+    - target: {fileID: 614559110812866716, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361860466410759730, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361860466410759730, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361860466410759730, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361860466410759730, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361860466410759730, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361860466410759730, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361860466410759730, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361860466410759730, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361860466410759730, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361860466410759730, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361860466410759730, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361860466410759730, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361860466410759730, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881103226938708326, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881103226938708326, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881103226938708326, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7300407595313291826}
+    - target: {fileID: 4881103226938708326, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881103226938708326, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SpawnMinis
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881103226938708326, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: The_Splitter, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881103226938708326, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100335518251449580, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      propertyPath: scatterForce
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100335518251449580, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      propertyPath: miniEnemyPrefab
+      value: 
+      objectReference: {fileID: 614559110812866716, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 614559110812866716, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4874590301007556845}
+  m_SourcePrefab: {fileID: 100100000, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+--- !u!1 &3107220305158997570 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 614559110812866716, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+  m_PrefabInstance: {fileID: 2564881518255742686}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4874590301007556845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3107220305158997570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 737b482bb81de758faafe85f1d90ba60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyChase
+  rb: {fileID: 4750726961482042263}
+--- !u!50 &4750726961482042263 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 7094773766174741833, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+  m_PrefabInstance: {fileID: 2564881518255742686}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7300407595313291826 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5100335518251449580, guid: d70a4cf94fdfad72ba831f30bfd43e95, type: 3}
+  m_PrefabInstance: {fileID: 2564881518255742686}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3107220305158997570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06545e981357674128d16b14beb3bb0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::The_Splitter

@@ -60,7 +60,10 @@ namespace TopDown.Combat
         private IEnumerator ReloadRoutine()
         {
             isReloading = true;
-            yield return new WaitForSeconds(data.reloadTime);
+
+            float actualReloadTime = data.reloadTime + PlayerStats.Instance.reloadMultiplier;
+
+            yield return new WaitForSeconds(actualReloadTime);
             currentAmmo = data.magazineSize;
             isReloading = false;
         }
@@ -68,7 +71,10 @@ namespace TopDown.Combat
         private IEnumerator FireCooldown()
         {
             canShoot = false;
-            yield return new WaitForSeconds(data.fireRate);
+
+            float actualFireRate = data.fireRate + PlayerStats.Instance.fireRateMultiplier;
+
+            yield return new WaitForSeconds(actualFireRate);
             canShoot = true;
         }
 

@@ -59,6 +59,12 @@ public class LevelManager : MonoBehaviour
             currentPoints -= pointsPerLevel;
             currentLevel++;
             UpdateLevelText();
+        
+            if (UpgradeManager.Instance != null)
+            {
+                UpgradeManager.Instance.TriggerLevelUp();
+            }
+
         }
 
         targetFillAmount = (float)currentPoints / pointsPerLevel;

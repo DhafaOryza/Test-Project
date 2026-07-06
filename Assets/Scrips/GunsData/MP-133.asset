@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MP-133
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   pelletCount: 3
-  spreadAngle: 5
+  spreadAngle: 10
   magazineSize: 5
   fireRate: 1
   reloadTime: 2

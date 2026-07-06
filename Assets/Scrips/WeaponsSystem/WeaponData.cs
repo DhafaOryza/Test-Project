@@ -16,7 +16,7 @@ public class WeaponData : ScriptableObject
 
     [Header("Combat")]
     public float range = 15f;
-    public int damage = 1;
+    public float damage = 1;
 
     [Header("Fire Mode")]
     public bool isAutomatic = false;

@@ -18,19 +18,20 @@ public class GameTimer : MonoBehaviour
 
     void Start()
     {
-        maxTimeInSeconds = timeLimitInMinutes * 60f; 
+        currentTime = timeLimitInMinutes * 60f; 
     }
 
     void Update()
     {
         if (!isGameActive) return;
 
-        currentTime += Time.deltaTime;
+        currentTime -= Time.deltaTime;
 
         UpdateTimerUI();
 
-        if (currentTime >= maxTimeInSeconds)
+        if (currentTime <= 0)
         {
+            currentTime = 0;
             GameWon();
         }
     }

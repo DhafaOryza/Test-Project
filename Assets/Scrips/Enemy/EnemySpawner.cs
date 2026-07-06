@@ -5,6 +5,13 @@ public class EnemySpawner : MonoBehaviour
     [Header("Enemy Prefabs")]
     [SerializeField] private GameObject[] enemyPrefabs;
 
+    [Header("Enemy Progression")]
+    // Index 0 (Grunt) = 0 detik
+    // Index 1 (Kamikaze) = 150 detik (2.5 menit)
+    // Index 2 (Splitter) = 300 detik (5 menit)
+    // Index 3 (Shooter) = 450 detik (7.5 menit)
+    [SerializeField] private float[] unlockTimes = {0f, 150f, 300f, 450f};
+
     [Header("Spawn Area (Around Player)")]
     [SerializeField] private Transform player;
     [SerializeField] private float minSpawnRadius = 6f;
@@ -15,8 +22,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float minimumSpawnInterval = 0.5f;
 
     [Header("Difficulty Scaling")]
-    [SerializeField] private float difficultyIncreaseInterval = 300f;
-    [SerializeField] private float intervalReductionPerTier = 0.3f;
+    [SerializeField] private float difficultyIncreaseInterval = 60f;
+    [SerializeField] private float intervalReductionPerTier = 0.15f;
 
     [Header("References")]
     [SerializeField] private GameTimer gameTimer;
@@ -24,6 +31,10 @@ public class EnemySpawner : MonoBehaviour
     private float currentSpawnInterval;
     private float spawnTimer;
     private int lastDifficultyTier = 0;
+    private int availableEnemyCount = 1;
+
+    // variabel khusus untuk spawner yang selalu menghitung maju dari nol
+    private float timeAlive = 0f;
 
     private void Start()
     {
@@ -35,7 +46,10 @@ public class EnemySpawner : MonoBehaviour
     {
         if (gameTimer != null && !gameTimer.IsGameActive) return;
 
+        timeAlive += Time.deltaTime;
+
         CheckDifficultyIncrease();
+        CheckEnemyUnlocks();
 
         spawnTimer -= Time.deltaTime;
         if (spawnTimer <= 0f)
@@ -45,11 +59,26 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    private void CheckEnemyUnlocks()
+    {
+        if (gameTimer == null || enemyPrefabs.Length == 0) return;
+        
+        // mengecek apakah waktu untuk enemy sudah unlock atau belum
+        if (availableEnemyCount < enemyPrefabs.Length && availableEnemyCount < unlockTimes.Length)
+        {
+            if (timeAlive >= unlockTimes[availableEnemyCount])
+            {
+                availableEnemyCount++;
+                Debug.Log("Enemy Bertambah : " + availableEnemyCount);
+            }
+        }
+    }
+
     private void CheckDifficultyIncrease()
     {
         if (gameTimer == null) return;
 
-        int currentTier = Mathf.FloorToInt(gameTimer.CurrentTime / difficultyIncreaseInterval);
+        int currentTier = Mathf.FloorToInt(timeAlive / difficultyIncreaseInterval);
 
         if (currentTier > lastDifficultyTier)
         {
@@ -65,7 +94,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (enemyPrefabs.Length == 0 || player == null) return;
 
-        GameObject enemyToSpawn = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+        GameObject enemyToSpawn = enemyPrefabs[Random.Range(0, availableEnemyCount)];
         Vector2 spawnPosition = GetRandomPositionAroundPlayer();
 
         Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity);

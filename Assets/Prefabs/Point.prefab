@@ -181,5 +181,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PointPickup
   rb: {fileID: 4819166354777881883}
   value: 1
-  pickupRadius: 2
+  pickupRadius: 3
   moveSpeed: 8
