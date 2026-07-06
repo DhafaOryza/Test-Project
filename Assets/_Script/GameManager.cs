@@ -52,6 +52,12 @@ public class GameManager : MonoBehaviour
 
     public void DrawCard()
     {
+        if (handManager.IsHandFull)
+        {
+            Debug.Log("[GameManager] Tangan sudah penuh, batal tarik kartu dari Deck.");
+            return;
+        }
+
         if (drawPile.Count == 0)
         {
             if (discardPile.Count == 0)
@@ -60,15 +66,17 @@ public class GameManager : MonoBehaviour
                 return;
             }
 
-            Debug.Log($"[GameManager] Mengocok {discardPile.Count} kartu dari Discard ke Deck...");
+            //Debug.Log($"[GameManager] Mengocok {discardPile.Count} kartu dari Discard ke Deck...");
+
+            int discardedAmount = discardPile.Count;
+
             
             // Logika pindah kartu
             drawPile.AddRange(discardPile);
             discardPile.Clear();
             ShuffleList(drawPile);
 
-            
-            float animDuration = PlayReshuffleAnimation();
+            float animDuration = PlayReshuffleAnimation(discardedAmount);
             DOVirtual.DelayedCall(animDuration, () => ExecuteDraw());
         }
         else
@@ -77,14 +85,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void AddCardToDiscard(Card discardedCard)
+    {
+        discardPile.Add(discardedCard);
+    }
+
     private void ExecuteDraw()
     {
+        if (handManager.IsHandFull)
+        {
+            return;
+        }
+
         Card drawnCard = drawPile[0];
         drawPile.RemoveAt(0);
         handManager.AddCardToHand(drawnCard);
     }
 
-    private float PlayReshuffleAnimation()
+    private float PlayReshuffleAnimation(int discardedCount)
     {
         float totalDuration = 0f;
 
@@ -99,10 +117,16 @@ public class GameManager : MonoBehaviour
         }
 
         // ilusi 3 kartu beterbangan dari Discard ke Deck
-        int dummyCount = 3; 
+        int dummyCount = Mathf.Min(discardedCount, 5); 
         for (int i = 0; i < dummyCount; i++)
         {
             GameObject dummy = Instantiate(dummyCardPrefab, discardPointTransform.position, discardPointTransform.rotation);
+
+            Canvas dummyCanvas = dummy.GetComponentInChildren<Canvas>();
+            if (dummyCanvas != null)
+            {
+                dummyCanvas.enabled = false;
+            }
             
             // Hapus komponen interaksi agar murni menjadi pajangan mati
             Destroy(dummy.GetComponent<CardView>());

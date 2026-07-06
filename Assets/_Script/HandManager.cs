@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Splines;
 using System.Collections.Generic;
 using DG.Tweening;
+using Unity.XR.OpenVR;
 
 public class HandManager : MonoBehaviour
 {
@@ -11,9 +12,12 @@ public class HandManager : MonoBehaviour
     [SerializeField] private SplineContainer splineContainer;
     [SerializeField] private Transform spawnpoint;
     [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private GameManager gameManager;
+    [SerializeField] private AllyManager allyManager;
 
     private List<CardView> handCards = new();
     private int playsRemaining;
+    public bool IsHandFull => handCards.Count >= maxHandSize;
 
     public System.Action<int> OnPlaysChanged; // dikirim tiap kesempatan berubah, dengar dari ChanceUI/TurnManager
     public System.Action OnPlaysExhausted;    // dikirim sekali saat kesempatan habis (giliran musuh mulai)
@@ -34,6 +38,8 @@ public class HandManager : MonoBehaviour
     {
         playsRemaining = maxPlaysPerRound;
         OnPlaysChanged?.Invoke(playsRemaining);
+
+        UpdateCardsInteractability();
     }
 
     public void AddCardToHand(Card card)
@@ -51,6 +57,12 @@ public class HandManager : MonoBehaviour
         view.OnCardUsed += HandleCardUsed;
         view.OnCardDiscarded += HandleCardDiscarded;
 
+        if (allyManager != null)
+        {
+            view.OnCardSummoned += allyManager.RegisterAlly;
+        }
+
+        view.SetInteractable(playsRemaining > 0);
         handCards.Add(view);
         //Debug.Log($"[HandManager] '{card.Title}' ditambahkan. Total hand sekarang: {handCards.Count}/{maxHandSize}");
         UpdateCardPositions();
@@ -61,14 +73,31 @@ public class HandManager : MonoBehaviour
         if (playsRemaining <= 0) return;
         playsRemaining--;
         bool removed = handCards.Remove(view);
+
+        if (view.CardData.Type != CardType.Summon)
+        {
+            //gameManager.AddCardToDiscard(view.CardData);
+            OnCardSentToDiscardPile?.Invoke(view.CardData);
+        }
+
         //Debug.Log($"[HandManager] Card dipakai/discard, removed dari list: {removed}. Sisa hand: {handCards.Count}/{maxHandSize}, sisa chance: {playsRemaining}");
-        OnCardSentToDiscardPile?.Invoke(view.CardData);
+
         UpdateCardPositions();
+        UpdateCardsInteractability();
 
         OnPlaysChanged?.Invoke(playsRemaining);
 
         if (playsRemaining <= 0)
             OnPlaysExhausted?.Invoke();
+    }
+
+    private void UpdateCardsInteractability()
+    {
+        bool canPlay = playsRemaining > 0;
+        foreach (var card in handCards)
+        {
+            if (card != null) card.SetInteractable(canPlay);
+        }
     }
 
     public bool HasPlaysRemaining() => playsRemaining > 0;
@@ -87,8 +116,10 @@ public class HandManager : MonoBehaviour
             return;
         }
         playsRemaining = 0;
-        Debug.Log("[HandManager] ForceEndTurn -> OnPlaysExhausted di-invoke");
+        //Debug.Log("[HandManager] ForceEndTurn -> OnPlaysExhausted di-invoke");
         OnPlaysChanged?.Invoke(playsRemaining);
+
+        UpdateCardsInteractability();
         OnPlaysExhausted?.Invoke();
     }
 

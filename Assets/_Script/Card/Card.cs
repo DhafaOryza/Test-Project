@@ -33,4 +33,9 @@ public class Card
     {
         CurrentHealth = Mathf.Max(0, CurrentHealth - amount);
     }
+
+    public void ResetHealth()
+    {
+        CurrentHealth = MaxHealth;
+    }
 }

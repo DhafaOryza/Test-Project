@@ -46,7 +46,8 @@ public class EnemyManager : MonoBehaviour
 
     // Membuka akses untuk HoverArea
     public int DefeatedCount => enemiesDefeatedCount;
-    public int CardsLeft => enemyDeck.Count; // Sekarang menghitung sisa dari List Deck
+    public int CardsLeft => enemyDeck.Count;
+    public Transform ActiveEnemyTransform => activeEnemy != null ? activeEnemy.transform : null;
 
     void Start()
     {
@@ -76,14 +77,30 @@ public class EnemyManager : MonoBehaviour
         
         Destroy(dummy.GetComponent<CardView>());
         
-        // Hancurkan collider di kartu pajangan agar mouse tembus ke HoverArea
         Collider2D col = dummy.GetComponent<Collider2D>();
         if (col != null) Destroy(col);
-        
-        SpriteRenderer[] sprites = dummy.GetComponentsInChildren<SpriteRenderer>();
-        foreach (var sr in sprites)
+
+        Canvas dummyCanvas = GetComponentInChildren<Canvas>();
+        if (dummyCanvas != null)
         {
-            sr.color = new Color(0.7f, 0.7f, 0.7f, 1f); 
+            dummyCanvas.gameObject.SetActive(false);
+        }
+
+        Transform imageCardObj = dummy.transform.Find("ImageCard");
+        if (imageCardObj != null)
+        {
+            SpriteRenderer imageSprite = imageCardObj.GetComponent<SpriteRenderer>();
+            if (imageSprite != null)
+            {
+                imageSprite.enabled = false;
+            }
+        }
+        
+        SpriteRenderer Rootsprites = dummy.GetComponent<SpriteRenderer>();
+        if (Rootsprites != null)
+        {
+            Rootsprites.color = new Color(0.7f, 0.7f, 0.7f, 1f); 
+            Rootsprites.sortingOrder = -5;
         }
 
         return dummy;
@@ -195,23 +212,59 @@ public class EnemyManager : MonoBehaviour
         OnEnemyDefeated?.Invoke(defeatedView);
     }
 
-    public void EnemyAttackPlayer()
+    public void EnemyAttackTarget(Transform targetTransform, System.Action onComplete = null)
     {
-        if (activeEnemy == null || playerStats == null) 
-        return;
-
+        if (activeEnemy == null || targetTransform == null)
+        {
+            onComplete?.Invoke();
+            return;
+        }
+        
         Vector3 originalPos = activeEnemy.transform.position;
-        // TODO NANTI: Jika ada Ally, kordinat targetPos ini bisa diganti ke koordinat kartu Ally
-        Vector3 targetPos = originalPos + new Vector3(0, -2.5f, 0);
+        Vector3 targetPos = new Vector3(targetTransform.position.x , targetTransform.position.y, originalPos.z);
+
+       
+        SpriteRenderer[] sprites = activeEnemy.GetComponentsInChildren<SpriteRenderer>();
+        Canvas canvas = activeEnemy.GetComponentInChildren<Canvas>();
+
+        foreach(var sr in sprites) sr.sortingOrder = 100;
+        if (canvas != null) 
+        {
+            canvas.overrideSorting = true;
+            canvas.sortingOrder = 101;
+        }
+        
 
         activeEnemy.transform.DOMove(targetPos, 0.25f).SetEase(Ease.InBack).SetLink(activeEnemy.gameObject).OnComplete(() =>
         {
             int dmg = activeEnemy.CardData.Damage;
-            playerStats.TakeDamage(dmg);
+            
+            PlayerStats targetPlayer = targetTransform.GetComponent<PlayerStats>();
+            if (targetPlayer != null)
+            {
+                targetPlayer.TakeDamage(dmg);
+            }
+            else
+            {
+                CardView targetAlly = targetTransform.GetComponent<CardView>();
+                if (targetAlly != null)
+                {
+                    targetAlly.ReceiveDamage(dmg);
+                }
+            }
 
-            activeEnemy.transform.DOMove(originalPos, 0.3f).SetEase(Ease.OutQuad).SetLink(activeEnemy.gameObject);
+            activeEnemy.transform.DOMove(originalPos, 0.3f)
+                .SetEase(Ease.OutQuad)
+                .SetLink(activeEnemy.gameObject)
+                .OnComplete(() => 
+                {
+                    // Kembalikan ke layer awal (0)
+                    foreach(var sr in sprites) sr.sortingOrder = 0;
+                    if (canvas != null) canvas.sortingOrder = 0;
+                    
+                    onComplete?.Invoke();
+                });
         });
-        
     }
 
     public void ShowTooltip(string message)
