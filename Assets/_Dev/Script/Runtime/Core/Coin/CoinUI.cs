@@ -8,9 +8,9 @@ namespace _Dev.Script.Runtime.Core.Coin
         [SerializeField]
         private TMP_Text _coinText;
         
-        public void UpdateUI()
+        public void UpdateUI(int amount)
         {
-            _coinText.text = $"Coin: {_coinText.text}";
+            _coinText.text = $"{amount}";
         }
     }
 }

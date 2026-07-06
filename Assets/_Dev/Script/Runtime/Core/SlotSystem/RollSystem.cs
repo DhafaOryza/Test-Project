@@ -1,5 +1,6 @@
 using System;
 using _Dev.Script.Runtime.Core.Coin;
+using TMPro;
 using UnityEngine;
 
 namespace _Dev.Script.Runtime.Core.SlotSystem
@@ -15,6 +16,14 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
         [Header("Reference")]
         [SerializeField]
         private SlotSystem _slotSystem;
+
+        [SerializeField] 
+        private TMP_Text _rollPriceText;
+
+        private void Start()
+        {
+            ResetRollPrice();
+        }
 
         public void ResetRollPrice()
         {

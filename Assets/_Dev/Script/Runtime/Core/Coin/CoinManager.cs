@@ -8,14 +8,16 @@ namespace _Dev.Script.Runtime.Core.Coin
         [SerializeField]
         private CoinUI _coinUI;
         
+        [SerializeField]
         private int _coinAmount;
         
         public int CoinAmount => _coinAmount;
 
+        
         public void AddCoin(int amount)
         {
             _coinAmount += amount;
-            _coinUI.UpdateUI();
+            _coinUI.UpdateUI(_coinAmount);
         }
 
         public bool CanUseCoin(int amount)
@@ -23,7 +25,7 @@ namespace _Dev.Script.Runtime.Core.Coin
             if (_coinAmount >= amount)
             {
                 _coinAmount -= amount;
-                _coinUI.UpdateUI();
+                _coinUI.UpdateUI(_coinAmount);
                 return true;
             }
             else
