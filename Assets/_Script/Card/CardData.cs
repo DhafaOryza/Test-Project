@@ -15,4 +15,6 @@ public class CardData : ScriptableObject
     [field : SerializeField] public BuffEffectType EffectType {get; private set;}
     [field : SerializeField] public int EffectAmount {get; private set;}
 
+    [field : SerializeField] public CardRarity Rarity {get; private set;}
+
 }

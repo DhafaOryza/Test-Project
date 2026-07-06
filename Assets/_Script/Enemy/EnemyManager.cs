@@ -8,6 +8,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private GameObject cardPrefab;
     [SerializeField] private List<CardData> possibleEnemies;
     [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private CardChoiceManager cardChoiceManager;
 
     [Header("Drop Zones & Positions (Kotak Warna)")]
     [SerializeField] private DropZone enemyDropZone;
@@ -155,7 +156,7 @@ public class EnemyManager : MonoBehaviour
 
     private void HandleEnemyDefeated(CardView defeatedView)
     {
-        Debug.Log($"{defeatedView.CardData.Title} dikalahkan!");
+        //Debug.Log($"{defeatedView.CardData.Title} dikalahkan!");
         enemiesDefeatedCount++;
         currentLevel++; 
 
@@ -187,6 +188,15 @@ public class EnemyManager : MonoBehaviour
         {
             Debug.Log("🎉 SELAMAT! KAMU MENANG!");
             return;
+        }
+
+        if (cardChoiceManager != null)
+        {
+            cardChoiceManager.BeginRewardSelection();
+        }
+        else
+        {
+            Debug.LogWarning("[EnemyManager] CardChoiceManager belum diisi di Inspector!");
         }
 
         if (nextEnemy != null)
@@ -285,7 +295,7 @@ public class EnemyManager : MonoBehaviour
         if (tooltipPanel != null && tooltipPanel.activeSelf)
         {
             Vector3 mousePos = Input.mousePosition;
-            tooltipPanel.transform.position = mousePos + new Vector3(20f, -20f, 0f); 
+            tooltipPanel.transform.position = mousePos + new Vector3(120f, -40f, 0f); 
         }
     }
 }

@@ -2,15 +2,17 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [SerializeField] private SpriteRenderer cardImage;
+    //[SerializeField] private SpriteRenderer cardImage;
+    [SerializeField] private Image cardImage;
     [SerializeField] private TMP_Text title;
     [SerializeField] private TMP_Text description;
-    [SerializeField] private TMP_Text cost; // menampilkan Cost kartu (selalu 1, diatur dari CardData)
-    [SerializeField] private TMP_Text damage; // opsional, cuma dipakai kalau Type = Attack/Debuff
-    [SerializeField] private TMP_Text healthText; // opsional, cuma dipakai kalau Type = Enemy/Summon
+    [SerializeField] private TMP_Text cost; 
+    [SerializeField] private TMP_Text damage; 
+    [SerializeField] private TMP_Text healthText;
     [SerializeField] private LayerMask dropZoneLayer;
     [SerializeField] private bool isInteractable = true;
     [SerializeField] private PlayerStats playerStats;

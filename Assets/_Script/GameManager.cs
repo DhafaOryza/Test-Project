@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     [Tooltip("Isi list ini dengan kartu yang dipilih player di awal game")]
     [SerializeField] private List<CardData> playerStartingDeck; 
     [SerializeField] private HandManager handManager;
+    [SerializeField] private CardChoiceManager cardChoiceManager;
+    [SerializeField] private TurnManager turnManager;
     
     [Header("UI System")]
     [SerializeField] private PlayerStats playerStats;
@@ -30,10 +32,35 @@ public class GameManager : MonoBehaviour
     {
         handManager.OnCardSentToDiscardPile += HandleCardDiscarded;
         playerStats.OnPlayerDied += ShowGameOverPanel;
-
         if (gameOverPanel != null) gameOverPanel.SetActive(false);
 
+        if (cardChoiceManager != null)
+        {
+            cardChoiceManager.OnDeckReady += StartGameWithChosenDeck;
+            cardChoiceManager.OnRewardCardChosen += AddRewardCardToDeck;
+            cardChoiceManager.BeginCardSelection();
+        }
+        else
+        {
+            BuildInitialDeck(); 
+        }
+
+        
+    }
+
+    private void StartGameWithChosenDeck(List<CardData> chosenDeck)
+    {
+        playerStartingDeck = chosenDeck;
         BuildInitialDeck();
+        turnManager.BeginFirstTurn();
+    }
+
+    private void AddRewardCardToDeck(CardData rewardData)
+    {
+        Card newCard = new Card(rewardData);
+        AddCardToDiscard(newCard);
+        
+        Debug.Log($"[GameManager] Kartu baru '{rewardData.Title}' telah ditambahkan ke deck pemain!");
     }
 
     private void BuildInitialDeck()

@@ -16,8 +16,9 @@ public class TurnManager : MonoBehaviour
 
     private void Start()
     {
-        DrawCardForNewTurn();
+        
     }
+
     private void OnEnable()
     {
         handManager.OnPlaysChanged += chanceUI.SetChanceUI;
@@ -28,6 +29,11 @@ public class TurnManager : MonoBehaviour
     {
         handManager.OnPlaysChanged -= chanceUI.SetChanceUI;
         handManager.OnPlaysExhausted -= HandleAllyTurn;
+    }
+
+    public void BeginFirstTurn()
+    {
+        DrawCardForNewTurn();
     }
 
     private void HandleAllyTurn()

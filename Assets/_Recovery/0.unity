@@ -376,7 +376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5337741322520270286, guid: 0adda552e1a1aad499e72997f141babd, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 606.6667
+      value: 586.6666
       objectReference: {fileID: 0}
     - target: {fileID: 5337741322520270286, guid: 0adda552e1a1aad499e72997f141babd, type: 3}
       propertyPath: m_SizeDelta.y
@@ -412,7 +412,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5337741322520270286, guid: 0adda552e1a1aad499e72997f141babd, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1616.6667
+      value: 1626.6665
       objectReference: {fileID: 0}
     - target: {fileID: 5337741322520270286, guid: 0adda552e1a1aad499e72997f141babd, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -564,7 +564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5337741322520270286, guid: 0adda552e1a1aad499e72997f141babd, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 606.6667
+      value: 586.6666
       objectReference: {fileID: 0}
     - target: {fileID: 5337741322520270286, guid: 0adda552e1a1aad499e72997f141babd, type: 3}
       propertyPath: m_SizeDelta.y
@@ -600,7 +600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5337741322520270286, guid: 0adda552e1a1aad499e72997f141babd, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 960
+      value: 959.99994
       objectReference: {fileID: 0}
     - target: {fileID: 5337741322520270286, guid: 0adda552e1a1aad499e72997f141babd, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -816,8 +816,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281019302
-  m_fontColor: {r: 0.6509434, g: 0.16887684, b: 0.16887684, a: 1}
+    rgba: 4284769502
+  m_fontColor: {r: 0.87058824, g: 0.39215687, b: 0.39215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -955,8 +955,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4185,17 +4185,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Choose
+  m_text: Choose A Card
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9a14a8a1184c5f14fbce3338ea4d7a35, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 1260715531048141648, guid: 9a14a8a1184c5f14fbce3338ea4d7a35, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4284703709
+  m_fontColor: {r: 0.8679245, g: 0.38892844, b: 0.38892844, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4254,7 +4254,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1642770394
@@ -4933,7 +4933,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5337741322520270286, guid: 0adda552e1a1aad499e72997f141babd, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 606.6667
+      value: 586.6666
       objectReference: {fileID: 0}
     - target: {fileID: 5337741322520270286, guid: 0adda552e1a1aad499e72997f141babd, type: 3}
       propertyPath: m_SizeDelta.y
@@ -4969,7 +4969,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5337741322520270286, guid: 0adda552e1a1aad499e72997f141babd, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 303.33334
+      value: 293.3333
       objectReference: {fileID: 0}
     - target: {fileID: 5337741322520270286, guid: 0adda552e1a1aad499e72997f141babd, type: 3}
       propertyPath: m_AnchoredPosition.y
