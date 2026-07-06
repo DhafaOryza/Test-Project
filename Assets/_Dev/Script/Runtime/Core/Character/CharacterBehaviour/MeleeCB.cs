@@ -1,6 +1,6 @@
 using System.Collections;
 using _Dev.Script.Runtime.Core.Character.Enemy;
-using _Dev.Script.Runtime.Core.Interface;
+using _Dev.Script.Runtime.Interface;
 using UnityEngine;
 
 namespace _Dev.Script.Runtime.Core.Character.CharacterBehaviour

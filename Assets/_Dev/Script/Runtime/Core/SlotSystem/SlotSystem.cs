@@ -32,11 +32,6 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
             CreatePaylines();
         }
 
-        private void Start()
-        {
-            
-        }
-
         public void Roll()
         {
             FillGridTest();
@@ -52,7 +47,7 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
         {
             _paylines = new List<Vector2Int[]>
             {
-                // bawah
+                //Atas
                 new[]
                 {
                     new Vector2Int(0,0),
@@ -68,7 +63,7 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
                     new Vector2Int(2,1)
                 },
 
-                // atas
+                //Bawah
                 new[]
                 {
                     new Vector2Int(0,2),
@@ -90,7 +85,31 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
                     new Vector2Int(2,0),
                     new Vector2Int(1,1),
                     new Vector2Int(0,2)
-                }
+                },
+                
+                //Vertical Kiri
+                new[]
+                {
+                new Vector2Int(0,0),
+                new Vector2Int(0,1),
+                new Vector2Int(0,2)
+                },
+                
+                //Vertical Tengah
+                new[]
+                {
+                    new Vector2Int(1,0),
+                    new Vector2Int(1,1),
+                    new Vector2Int(1,2)
+                },
+                
+                //Vertical Kanan
+                new[]
+                {
+                    new Vector2Int(2,0),
+                    new Vector2Int(2,1),
+                    new Vector2Int(2,2)
+                },
             };
         }
         
@@ -117,9 +136,9 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
             {
                 if(CheckLine(line))
                 {
-                    Debug.Log("WIN");
+                    int symbol = _grid.GetValue(line[0].x, line[0].y);
+                    Debug.Log($"WIN : {symbol}");
                     _winningLines.Add(line);
-
                 }
             }
         }
@@ -139,7 +158,7 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
         {
             string result = "";
 
-            for (int y = _grid.Height - 1; y >= 0; y--)
+            for (int y = 0; y < _grid.Height; y++)
             {
                 for (int x = 0; x < _grid.Width; x++)
                 {
@@ -154,7 +173,6 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
         
         private void OnDrawGizmos()
         {
-            //Grid
             if (_grid == null)
                 return;
 
@@ -164,46 +182,24 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
             {
                 for (int x = 0; x < _grid.Width; x++)
                 {
-                    Vector3 pos = new Vector3(x * size, y * size, 0);
+                    Vector3 pos = new Vector3(x * size, (_grid.Height - 1 - y) * size, 0);
 
                     Gizmos.color = Color.white;
-
                     Gizmos.DrawWireCube(pos, Vector3.one * 0.9f);
                 }
             }
-            
-            
-            // // Paylines
-            // if (_paylines == null)
-            //     return;
-            //
-            // Gizmos.color = Color.green;
-            //
-            // foreach(var line in _paylines)
-            // {
-            //     for(int i = 0; i < line.Length - 1; i++)
-            //     {
-            //         Vector3 a = new Vector3(line[i].x, line[i].y, 0);
-            //
-            //         Vector3 b = new Vector3(line[i+1].x, line[i+1].y, 0);
-            //
-            //         Gizmos.DrawLine(a,b);
-            //     }
-            // }
-            
-            foreach(var line in _winningLines)
+
+            foreach (var line in _winningLines)
             {
                 Gizmos.color = Color.yellow;
 
-                for(int i = 0; i < line.Length - 1; i++)
+                for (int i = 0; i < line.Length - 1; i++)
                 {
-                    Gizmos.DrawLine(
-                        new Vector3(line[i].x,line[i].y),
-                        new Vector3(line[i+1].x,line[i+1].y)
-                    );
+                    Vector3 a = new Vector3(line[i].x, _grid.Height - 1 - line[i].y);
+                    Vector3 b = new Vector3(line[i + 1].x, _grid.Height - 1 - line[i + 1].y);
+                    Gizmos.DrawLine(a, b);
                 }
             }
-            
         }
 
         private void SpinReels()

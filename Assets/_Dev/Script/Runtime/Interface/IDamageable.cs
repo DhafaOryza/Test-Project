@@ -1,4 +1,4 @@
-namespace _Dev.Script.Runtime.Core.Interface
+namespace _Dev.Script.Runtime.Interface
 {
     public interface IDamageable
     {
