@@ -15,10 +15,22 @@ namespace _Dev.Script.Runtime.Core.Character
             
         private int _currentHealth;
         
-        public int  CurrentHealth => _currentHealth;
-        public int  MaxHealth => _maxHealth;
-        
+        public int CurrentHealth => _currentHealth;
+        public int MaxHealth => _maxHealth;
+        public int Attack => _attack;
+        public int Defense => _defense;
+        public int Speed => _speed;
+
         public float Radius => _radius;
+
+        public CharacterStats(CharacterStats characterStats)
+        {
+            _maxHealth = characterStats.MaxHealth;
+            _attack = characterStats.Attack;
+            _defense = characterStats.Defense;
+            _speed = characterStats.Speed;
+            _radius = characterStats.Radius;
+        }
         
         public void ApplyModifier(int modifier)
         {

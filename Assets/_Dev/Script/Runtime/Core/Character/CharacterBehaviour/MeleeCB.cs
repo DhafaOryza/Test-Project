@@ -1,19 +1,20 @@
+using System.Collections;
 using _Dev.Script.Runtime.Core.Character.Enemy;
+using _Dev.Script.Runtime.Core.Interface;
 using UnityEngine;
 
 namespace _Dev.Script.Runtime.Core.Character.CharacterBehaviour
 {
     public class MeleeCB : CharacterBehaviour
     {
-        
-        public override void GetTarget()
+        public override IEnumerator Attack(CharacterController characterController)
         {
-            throw new System.NotImplementedException();
-        }
-        
-        public override void Attack(EnemyController enemy)
-        {
-            transform.position = Vector3.MoveTowards(_characterTransform.position, enemy.transform.position, Time.deltaTime * 10);
+            if (characterController.TryGetComponent(out IDamageable damageable))
+            {
+                damageable.TakeDamage(10);
+                Debug.Log("Kena damage");
+                yield return null;
+            }   
         }
         
     }

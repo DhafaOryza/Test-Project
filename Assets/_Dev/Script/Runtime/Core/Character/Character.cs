@@ -12,7 +12,7 @@ namespace _Dev.Script.Runtime.Core.Character
         
         public CharacterStats CharacterStats => _characterStats;
 
-        public void Initialize(CharacterStats characterStats)
+        public Character (CharacterStats characterStats)
         {
             _characterStats = characterStats;
         }

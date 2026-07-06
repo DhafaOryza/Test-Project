@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using _Dev.Script.Runtime.Core.Character.Enemy;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 
 namespace _Dev.Script.Runtime.Core.Character
 {
@@ -27,6 +26,11 @@ namespace _Dev.Script.Runtime.Core.Character
             
             StartCoroutine(Brain());
                 
+        }
+
+        public void Initialize(Character character)
+        {
+            
         }
 
         private void OnEnable()
@@ -74,6 +78,7 @@ namespace _Dev.Script.Runtime.Core.Character
                 }
                 else
                 {
+                    
                     _characterState = CharacterState.Attacking;
                 }
                 
