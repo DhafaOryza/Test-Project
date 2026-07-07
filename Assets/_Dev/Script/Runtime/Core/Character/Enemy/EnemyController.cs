@@ -1,3 +1,4 @@
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
@@ -10,7 +11,15 @@ namespace _Dev.Script.Runtime.Core.Character.Enemy
         
         protected override void FixedUpdate()
         {
-            transform.position = Vector3.MoveTowards(transform.position, baseTransform.position, 0.1f);
+            if (_characterState == CharacterState.Attacking) return;
+            if (_target == null)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, baseTransform.position, 0.1f);
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, 0.1f);
+            }
         }
     }
 }

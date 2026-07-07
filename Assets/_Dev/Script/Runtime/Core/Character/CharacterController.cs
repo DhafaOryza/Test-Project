@@ -13,12 +13,12 @@ namespace _Dev.Script.Runtime.Core.Character
         private CharacterDetection characterDetection;
         
         [SerializeReference]
-        private Character _character;
+        protected Character _character;
         
-        private CharacterState _characterState;
+        protected CharacterState _characterState;
         
-        private List<CharacterController> _targetInRange = new();
-        private CharacterController _target;
+        protected List<CharacterController> _targetInRange = new();
+        protected CharacterController _target;
         
         private void Start()
         {
@@ -51,7 +51,6 @@ namespace _Dev.Script.Runtime.Core.Character
         protected virtual void FixedUpdate()
         {
             if (_target == null) return;
-            if (_characterState != CharacterState.Chasing) return;
             transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, 0.1f);
         }
 
@@ -84,7 +83,7 @@ namespace _Dev.Script.Runtime.Core.Character
                     if (behaviour.IsReady(_character.CharacterData.CharacterStats.Speed))
                     {
                         behaviour.Trigger(_character.CharacterData.CharacterStats.Speed);
-                        StartCoroutine(behaviour.Attack(_target));
+                        StartCoroutine(behaviour.Attack(_target, _character.CharacterData.CharacterStats.Attack));
                     }
                     _characterState = CharacterState.Attacking;
                 }
@@ -93,7 +92,7 @@ namespace _Dev.Script.Runtime.Core.Character
             }
         }
 
-        private CharacterController FindTarget()
+        protected virtual CharacterController FindTarget()
         {
             CharacterController closest = null;
             float closestDistance = float.MaxValue;

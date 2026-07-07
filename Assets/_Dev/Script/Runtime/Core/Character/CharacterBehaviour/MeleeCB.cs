@@ -9,7 +9,7 @@ namespace _Dev.Script.Runtime.Core.Character.CharacterBehaviour
     [Serializable]
     public class MeleeCB : CharacterBehaviour
     {
-        public override IEnumerator Attack(CharacterController characterController)
+        public override IEnumerator Attack(CharacterController characterController, int damage)
         {
             if (characterController.TryGetComponent(out IDamageable damageable))
             {

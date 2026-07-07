@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 543d1524aa9f493cb322f05f616faaae, type: 3}
-  m_Name: Ranger
+  m_Name: 3. Archer
   m_EditorClassIdentifier: Assembly-CSharp::_Dev.Script.Runtime.Core.Character.CharacterDefSO
   _characterData:
     rid: -2

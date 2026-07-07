@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 543d1524aa9f493cb322f05f616faaae, type: 3}
-  m_Name: Guard
+  m_Name: 10. Elite Mages
   m_EditorClassIdentifier: Assembly-CSharp::_Dev.Script.Runtime.Core.Character.CharacterDefSO
   _characterData:
-    rid: 5550902204989440068
+    rid: 5550902204989440116
   _characterSprite: {fileID: 0}
   references:
     version: 2
     RefIds:
-    - rid: 5550902204989440068
+    - rid: 5550902204989440116
       type: {class: CharacterData, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
       data:
-        _nameCharacter: Guard
+        _nameCharacter: Elite Mage
         _characterStats:
-          rid: 5550902204989440071
+          rid: 5550902204989440117
         _characterBehaviour:
-          rid: 5550902204989440072
-    - rid: 5550902204989440071
+          rid: 5550902204989440118
+    - rid: 5550902204989440117
       type: {class: CharacterStats, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
       data:
-        _maxHealth: 140
-        _attack: 22
-        _defense: 18
-        _speed: 90
-        _radius: 1.5
-    - rid: 5550902204989440072
+        _maxHealth: 80
+        _attack: 40
+        _defense: 4
+        _speed: 85
+        _radius: 5
+    - rid: 5550902204989440118
       type: {class: MeleeCB, ns: _Dev.Script.Runtime.Core.Character.CharacterBehaviour, asm: Assembly-CSharp}
       data: 

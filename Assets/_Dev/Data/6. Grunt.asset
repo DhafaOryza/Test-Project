@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 543d1524aa9f493cb322f05f616faaae, type: 3}
-  m_Name: Spearman
+  m_Name: 6. Grunt
   m_EditorClassIdentifier: Assembly-CSharp::_Dev.Script.Runtime.Core.Character.CharacterDefSO
   _characterData:
-    rid: 5550902204989440082
+    rid: 5550902204989440105
   _characterSprite: {fileID: 0}
   references:
     version: 2
     RefIds:
-    - rid: 5550902204989440082
+    - rid: 5550902204989440105
       type: {class: CharacterData, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
       data:
-        _nameCharacter: Spearman
+        _nameCharacter: Grunt
         _characterStats:
-          rid: 5550902204989440083
+          rid: 5550902204989440106
         _characterBehaviour:
-          rid: 5550902204989440084
-    - rid: 5550902204989440083
+          rid: 5550902204989440107
+    - rid: 5550902204989440106
       type: {class: CharacterStats, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
       data:
         _maxHealth: 120
-        _attack: 24
-        _defense: 14
+        _attack: 18
+        _defense: 10
         _speed: 100
-        _radius: 3
-    - rid: 5550902204989440084
+        _radius: 1.5
+    - rid: 5550902204989440107
       type: {class: MeleeCB, ns: _Dev.Script.Runtime.Core.Character.CharacterBehaviour, asm: Assembly-CSharp}
       data: 

@@ -29,6 +29,6 @@ namespace _Dev.Script.Runtime.Core.Character.CharacterBehaviour
             Timer = 1f / attackSpeed;
         }
         
-        public abstract IEnumerator Attack(CharacterController characterController);
+        public abstract IEnumerator Attack(CharacterController characterController, int damage);
     }
 }
