@@ -15,7 +15,7 @@ namespace _Dev.Script.Runtime.Core.Spawner
         public EnemyController SpawnCharacterController(Character.Character character, Transform position)
         {
             EnemyController enemyController = Instantiate(_allyController, position.position, Quaternion.identity);
-            enemyController.Initialize(character);
+            enemyController.Initialize(character, baseTarget);
             return enemyController;
         }
     }

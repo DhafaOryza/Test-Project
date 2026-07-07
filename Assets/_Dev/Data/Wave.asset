@@ -12,7 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2aec753af5044b7bf043b551631f86a, type: 3}
   m_Name: Wave
   m_EditorClassIdentifier: Assembly-CSharp::_Dev.Script.Runtime.Core.Wave.WaveDefSO
-  waveData: []
+  waveData:
+  - rid: 5550902204989440133
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5550902204989440133
+      type: {class: WaveData, ns: _Dev.Script.Runtime.Core.Wave, asm: Assembly-CSharp}
+      data:
+        Enemies:
+        - Character: {fileID: 11400000, guid: 0a5e3e17cd84ec14bbdf0701ccc62279, type: 2}
+          Amount: 2
+        PreparationDuration: 15
+        SpawnInterval: 0.2

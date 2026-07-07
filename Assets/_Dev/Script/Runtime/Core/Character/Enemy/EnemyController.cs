@@ -2,25 +2,33 @@ using System.Collections;
 using _Dev.Script.Runtime.Enum;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _Dev.Script.Runtime.Core.Character.Enemy
 {
     public class EnemyController : CharacterController
     {
-        [SerializeField] 
-        private Transform baseTransform;
+        [FormerlySerializedAs("baseTransform")] [SerializeField] 
+        private Transform _baseTransform;
         
         protected override void FixedUpdate()
         {
             if (_characterState == CharacterState.Attacking) return;
             if (_target == null)
             {
-                transform.position = Vector3.MoveTowards(transform.position, baseTransform.position, 0.1f);
+                transform.position = Vector3.MoveTowards(transform.position, _baseTransform.position, 0.1f);
             }
             else
             {
                 transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, 0.1f);
             }
+        }
+
+        public override void Initialize(Character character, Transform baseTransform)
+        {
+            base.Initialize(character);
+            _baseTransform = baseTransform;
+            
         }
     }
 }

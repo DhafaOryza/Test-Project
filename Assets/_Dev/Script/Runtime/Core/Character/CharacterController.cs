@@ -30,7 +30,7 @@ namespace _Dev.Script.Runtime.Core.Character
                 
         }
 
-        public void Initialize(Character character)
+        public virtual void Initialize(Character character, Transform baseTransform = null)
         {
             _character = character;
         }
@@ -98,7 +98,7 @@ namespace _Dev.Script.Runtime.Core.Character
             }
         }
 
-        protected virtual CharacterController FindTarget()
+        private CharacterController FindTarget()
         {
             CharacterController closest = null;
             float closestDistance = float.MaxValue;

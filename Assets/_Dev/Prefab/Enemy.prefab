@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 5682400230417065529}
   - component: {fileID: 7631196679468526534}
   - component: {fileID: 3139335161662224727}
-  - component: {fileID: 565087375438024286}
-  m_Layer: 0
+  - component: {fileID: 1381105708959543903}
+  - component: {fileID: -4250080602930582819}
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -109,13 +110,40 @@ MonoBehaviour:
   characterDetection: {fileID: 1029432467437867512}
   _character:
     rid: -2
-  baseTransform: {fileID: 0}
+  _baseTransform: {fileID: 0}
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
---- !u!61 &565087375438024286
+--- !u!50 &1381105708959543903
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6522010910116653618}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!61 &-4250080602930582819
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,7 +173,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -172,7 +200,7 @@ GameObject:
   - component: {fileID: 4421514125187239456}
   - component: {fileID: 3171571051519273925}
   - component: {fileID: 1029432467437867512}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Detector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +252,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
