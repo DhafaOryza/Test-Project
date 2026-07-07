@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using _Dev.Script.Runtime.Core.Character.Enemy;
+using _Dev.Script.Runtime.Interface;
 using UnityEngine;
 
 namespace _Dev.Script.Runtime.Core.Character
 {
-    public class CharacterController : MonoBehaviour
+    public class CharacterController : MonoBehaviour, IDamageable
     {
         [SerializeField]
         private CharacterDetection characterDetection;
@@ -70,7 +71,7 @@ namespace _Dev.Script.Runtime.Core.Character
                 
                 float sqrDistance = (transform.position - _target.transform.position).sqrMagnitude;
 
-                float sqrRadius = _character.CharacterStats.Radius * _character.CharacterStats.Radius;
+                float sqrRadius = _character.CharacterData.CharacterStats.Radius * _character.CharacterData.CharacterStats.Radius;
                 
                 if (sqrDistance > sqrRadius)
                 {
@@ -126,7 +127,22 @@ namespace _Dev.Script.Runtime.Core.Character
         {
             if (_character == null) return;
             Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, _character.CharacterStats.Radius);
+            Gizmos.DrawWireSphere(transform.position, _character.CharacterData.CharacterStats.Radius);
+        }
+
+        public void TakeDamage(int damage)
+        {
+            _character.CharacterData.CharacterStats.TakeDamage(damage);
+            if (_character.CharacterData.CharacterStats.IsDead)
+            {
+                _characterState = CharacterState.Dead;
+                Die();
+            }
+        }
+
+        public void Die()
+        {
+            Destroy(gameObject);
         }
     }
 }

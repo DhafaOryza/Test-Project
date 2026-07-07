@@ -10,12 +10,14 @@ namespace _Dev.Script.Runtime.Core.Character
         [SerializeReference, Tooltip("The all stats of the character")]
         private CharacterStats _characterStats;
         [SerializeReference, Tooltip("The behaviour of the character ex. Melee, Range, etc.")]
-        private CharacterBehaviour.CharacterBehaviourx _characterBehaviour;
+        private CharacterBehaviour.CharacterBehaviour _characterBehaviour;
         
         public string NameCharacter => _nameCharacter;
         public CharacterStats CharacterStats => _characterStats;
-        public CharacterBehaviour.CharacterBehaviourx CharacterBehaviour => _characterBehaviour;
+        public CharacterBehaviour.CharacterBehaviour CharacterBehaviour => _characterBehaviour;
 
+        public CharacterData() {}
+        
         public CharacterData(CharacterData characterData)
         {
             _nameCharacter = characterData.NameCharacter;

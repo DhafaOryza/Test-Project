@@ -6,35 +6,73 @@ namespace _Dev.Script.Runtime.Core.Character
     [Serializable]
     public class CharacterStats
     {
+        [SerializeField] 
         private int _maxHealth;
+        [SerializeField] 
         private int _attack;
+        [SerializeField] 
         private int _defense;
+        [SerializeField] 
         private float _speed;
-        [SerializeField]
+        [SerializeField] 
         private float _radius;
-            
+
         private int _currentHealth;
-        
+
         public int CurrentHealth => _currentHealth;
         public int MaxHealth => _maxHealth;
         public int Attack => _attack;
         public int Defense => _defense;
-        public float Speed => 1f * (_speed/100f);
+
+        // 100 = normal speed
+        public float Speed => _speed / 100f;
 
         public float Radius => _radius;
 
-        public CharacterStats(CharacterStats characterStats)
+        public bool IsDead => _currentHealth <= 0;
+
+        public CharacterStats(){}
+
+        public CharacterStats(CharacterStats stats)
         {
-            _maxHealth = characterStats.MaxHealth;
-            _attack = characterStats.Attack;
-            _defense = characterStats.Defense;
-            _speed = characterStats.Speed;
-            _radius = characterStats.Radius;
+            _maxHealth = stats._maxHealth;
+            _attack = stats._attack;
+            _defense = stats._defense;
+            _speed = stats._speed;
+            _radius = stats._radius;
+
+            _currentHealth = _maxHealth;
         }
-        
-        public void ApplyModifier(int modifier)
+
+        public void Initialize()
         {
-            _currentHealth += modifier;
+            _currentHealth = _maxHealth;
+        }
+
+        public int TakeDamage(int incomingDamage)
+        {
+            int finalDamage = Mathf.Max(1, incomingDamage - _defense);
+
+            _currentHealth -= finalDamage;
+            _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
+
+            return finalDamage;
+        }
+
+        public void Heal(int amount)
+        {
+            _currentHealth += amount;
+            _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
+        }
+
+        public void ModifyMaxHealth(int amount)
+        {
+            _maxHealth += amount;
+
+            if (_maxHealth < 1)
+                _maxHealth = 1;
+
+            _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
         }
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace _Dev.Script.Runtime.Core.Character.Enemy
+namespace _Dev.Script.Runtime.Core.Character
 {
     public class CharacterDetection : MonoBehaviour
     {

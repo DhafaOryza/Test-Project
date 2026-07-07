@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 543d1524aa9f493cb322f05f616faaae, type: 3}
+  m_Name: Mage
+  m_EditorClassIdentifier: Assembly-CSharp::_Dev.Script.Runtime.Core.Character.CharacterDefSO
+  _characterData:
+    rid: 5550902204989440079
+  _characterSprite: {fileID: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: 5550902204989440079
+      type: {class: CharacterData, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
+      data:
+        _nameCharacter: 
+        _characterStats:
+          rid: 5550902204989440080
+        _characterBehaviour:
+          rid: 5550902204989440081
+    - rid: 5550902204989440080
+      type: {class: CharacterStats, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
+      data:
+        _maxHealth: 80
+        _attack: 40
+        _defense: 5
+        _speed: 85
+        _radius: 5
+    - rid: 5550902204989440081
+      type: {class: MeleeCB, ns: _Dev.Script.Runtime.Core.Character.CharacterBehaviour, asm: Assembly-CSharp}
+      data: 

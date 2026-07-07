@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using _Dev.Script.Runtime.Core.Character.Enemy;
 using _Dev.Script.Runtime.Interface;
@@ -5,7 +6,8 @@ using UnityEngine;
 
 namespace _Dev.Script.Runtime.Core.Character.CharacterBehaviour
 {
-    public class MeleeCB : CharacterBehaviourx
+    [Serializable]
+    public class MeleeCB : CharacterBehaviour
     {
         public override IEnumerator Attack(CharacterController characterController)
         {
