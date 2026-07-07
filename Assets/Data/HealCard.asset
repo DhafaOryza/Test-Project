@@ -21,4 +21,5 @@ MonoBehaviour:
   <Health>k__BackingField: 0
   <Effect>k__BackingField: Healing
   <EffectType>k__BackingField: 2
-  <EffectAmount>k__BackingField: 10
+  <EffectAmount>k__BackingField: 8
+  <Rarity>k__BackingField: 0

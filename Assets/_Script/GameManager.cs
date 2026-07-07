@@ -61,13 +61,15 @@ public class GameManager : MonoBehaviour
         AddCardToDiscard(newCard);
         
         //Debug.Log($"[GameManager] Kartu baru '{rewardData.Title}' telah ditambahkan ke deck pemain!");
-        /*
-        hapus comment ketika mau reset Turn/
-        
         if (handManager != null)
         {
             handManager.ResetRoundPlays();
-        }*/
+        }
+
+        for (int i = 0; i < 2; i++)
+        {
+            DrawCard();
+        }
     }
 
     private void BuildInitialDeck()

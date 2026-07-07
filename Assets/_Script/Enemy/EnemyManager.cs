@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
+using System.Collections;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -24,10 +25,10 @@ public class EnemyManager : MonoBehaviour
     [Tooltip("SEKARANG CUKUP 1 TITIK: Koordinat tempat tumpukan Deck/Draw Pile musuh berada")]
     [SerializeField] private Transform enemyDeckPoint;
     
-    [SerializeField] private Transform DefeatedEnemyPoint;  // Makam / Graveyard
+    [SerializeField] private Transform DefeatedEnemyPoint;
 
     [Header("Animation Settings")]
-    [SerializeField] private float moveDuration = 0.6f; // Dinaikkan dari 0.15 agar animasinya mulus terlihat!
+    [SerializeField] private float moveDuration = 0.6f;
     [SerializeField] private Vector3 stackOffset = new Vector3(0.1f, -0.1f, 0.1f);
 
     [Header("Tooltip UI")]
@@ -41,7 +42,8 @@ public class EnemyManager : MonoBehaviour
 
     public List<CardView> ActiveEnemies { get; private set; } = new List<CardView>();
     private List<CardView> graveyardCards = new List<CardView>();
-    private List<GameObject> deckDummyCards = new List<GameObject>(); // Menyimpan visual tumpukan deck
+    private List<GameObject> deckDummyCards = new List<GameObject>();
+    private Queue<CardData> enemyDeckQueue = new Queue<CardData>(); 
 
     public System.Action<CardView> OnEnemyDefeated;
 
@@ -61,9 +63,18 @@ public class EnemyManager : MonoBehaviour
     private void CalculateTotalEnemies()
     {
         totalEnemiesInPool = 0;
+        enemyDeckQueue.Clear();
+
         for (int i = currentLevelIndex; i < enemiesPerLevel.Count; i++)
         {
-            totalEnemiesInPool += enemiesPerLevel[i];
+            int count = enemiesPerLevel[i];
+            totalEnemiesInPool += count;
+
+            for (int j = 0; j < count ; j++)
+            {
+                CardData RandomMonster = possibleEnemies[Random.Range(0, possibleEnemies.Count)];
+                enemyDeckQueue.Enqueue(RandomMonster);
+            }
         }
     }
 
@@ -78,14 +89,21 @@ public class EnemyManager : MonoBehaviour
         {
             Vector3 pos = enemyDeckPoint.position + (stackOffset * i);
             GameObject dummy = Instantiate(cardPrefab, pos, enemyDeckPoint.rotation);
-            
-            // Matikan logic & canvas agar murni jadi pajangan dekorasi tumpukan deck
+        
             Destroy(dummy.GetComponent<CardView>());
             Collider2D col = dummy.GetComponent<Collider2D>();
             if (col != null) Destroy(col);
             
-            Canvas canvas = dummy.GetComponentInChildren<Canvas>();
-            if (canvas != null) canvas.gameObject.SetActive(false);
+            CardView view = dummy.GetComponent<CardView>();
+            if (i == 0 && enemyDeckQueue.Count > 0)
+            {
+                view.Setup(new Card(enemyDeckQueue.Peek()));
+            }
+
+            foreach (Transform child in dummy.transform)
+            {
+                child.gameObject.SetActive(i == 0);
+            }
 
             SpriteRenderer[] sprites = dummy.GetComponentsInChildren<SpriteRenderer>();
             foreach (var sr in sprites)
@@ -124,12 +142,14 @@ public class EnemyManager : MonoBehaviour
         {
             SpawnEnemyToSlot(i, levelIndex);
         }
+
+        UpdateDeckVisuals();
     }
 
     private void SpawnEnemyToSlot(int slotIndex, int levelIndex)
     {
-        CardData randomMonster = possibleEnemies[Random.Range(0, possibleEnemies.Count)];
-        Card enemyCard = new Card(randomMonster);
+        CardData nextMonster = enemyDeckQueue.Dequeue();
+        Card enemyCard = new Card(nextMonster);
 
         // Status Scaling
         float hpBonus = enemyCard.MaxHealth * (hpScalePerLevel * levelIndex);
@@ -138,7 +158,6 @@ public class EnemyManager : MonoBehaviour
         enemyCard.CurrentHealth = enemyCard.MaxHealth;
         enemyCard.Damage += Mathf.RoundToInt(dmgBonus);
 
-        // --- FIX ANIMASI: Semua musuh di-spawn dari titik tumpukan Deck yang sama ---
         GameObject g = Instantiate(cardPrefab, enemyDeckPoint.position, enemyDeckPoint.rotation);
         
         CardView view = g.GetComponent<CardView>();

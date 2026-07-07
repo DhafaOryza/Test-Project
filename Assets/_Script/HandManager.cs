@@ -87,6 +87,12 @@ public class HandManager : MonoBehaviour
 
         OnPlaysChanged?.Invoke(playsRemaining);
 
+        if (handCards.Count == 0 && playsRemaining > 0)
+        {
+            ForceEndTurn();
+            return;
+        }
+
         if (playsRemaining <= 0)
             OnPlaysExhausted?.Invoke();
     }
