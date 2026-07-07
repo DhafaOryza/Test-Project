@@ -37,6 +37,8 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
         
         private float CenterIndex => (SlotCount - 1) * 0.5f;
 
+        public event Action Finished;
+        
         public bool IsSpinning => _state != ReelState.Idle;
 
         private void Awake()
@@ -172,6 +174,8 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
                 pos.y = (CenterIndex - i) * spacing - _offset;
                 t.localPosition = pos;
             }
+            
+            Finished?.Invoke();
         }
     }
 }

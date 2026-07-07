@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using _Dev.Script.Runtime.Core.Character.Ally;
 using DG.Tweening;
 using LumineREx.Utils.Grid;
 using LumineREx.Utils.RNG;
@@ -25,11 +26,26 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
         private List<Vector2Int[]> _paylines;
         private List<Vector2Int[]> _winningLines = new();
 
+        private int reelsCounter = 0;
+        private List<int> listOfWinnners = new List<int>();
+
         private void Awake()
         {
             _grid = new Grid2D<int>(3, 3, 1);
             _rng = new RNG();
             CreatePaylines();
+        }
+
+        private void OnEnable()
+        {
+            foreach (var reel in _reels)
+                reel.Finished += FinishedRolling;
+        }
+
+        private void OnDisable()
+        {
+            foreach (var reel in _reels)    
+                reel.Finished -= FinishedRolling;
         }
 
         public void Roll()
@@ -138,6 +154,7 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
                 {
                     int symbol = _grid.GetValue(line[0].x, line[0].y);
                     Debug.Log($"WIN : {symbol}");
+                    listOfWinnners.Add(symbol);
                     _winningLines.Add(line);
                 }
             }
@@ -223,6 +240,21 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
                     _reels[x].Stop(result);
                 }
             });
+        }
+
+        private void FinishedRolling()
+        {
+            reelsCounter++;
+
+            if (reelsCounter <= 3)
+            {
+                foreach (var symbol in listOfWinnners)    
+                {
+                    AlliesManager.Instance.AddCharacter(symbol);
+                }
+                
+                reelsCounter = 0;
+            }
         }
     }
 }

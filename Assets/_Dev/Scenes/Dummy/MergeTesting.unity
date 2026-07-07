@@ -1746,7 +1746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Dev.Script.Runtime.Core.Coin.CoinManager
   _coinUI: {fileID: 88569148}
-  _coinAmount: 0
+  _coinAmount: 50000
 --- !u!4 &1880462154
 Transform:
   m_ObjectHideFlags: 0
