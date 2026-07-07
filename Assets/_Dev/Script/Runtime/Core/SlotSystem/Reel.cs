@@ -103,6 +103,8 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
 
                     transform.DOPunchPosition(Vector3.down * .1f, .15f);
                 }
+                
+                Finished?.Invoke();
             }
 
             ApplyPositions();
@@ -174,8 +176,6 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
                 pos.y = (CenterIndex - i) * spacing - _offset;
                 t.localPosition = pos;
             }
-            
-            Finished?.Invoke();
         }
     }
 }

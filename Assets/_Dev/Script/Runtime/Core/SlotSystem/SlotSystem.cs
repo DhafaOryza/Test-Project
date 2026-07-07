@@ -26,7 +26,9 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
         private List<Vector2Int[]> _paylines;
         private List<Vector2Int[]> _winningLines = new();
 
+        [SerializeField]
         private int reelsCounter = 0;
+        [SerializeField]
         private List<int> listOfWinnners = new List<int>();
 
         private void Awake()
@@ -38,14 +40,12 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
 
         private void OnEnable()
         {
-            foreach (var reel in _reels)
-                reel.Finished += FinishedRolling;
+            foreach (var reel in _reels) reel.Finished += FinishedRolling;
         }
 
         private void OnDisable()
         {
-            foreach (var reel in _reels)    
-                reel.Finished -= FinishedRolling;
+            foreach (var reel in _reels) reel.Finished -= FinishedRolling;
         }
 
         public void Roll()
@@ -246,7 +246,7 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
         {
             reelsCounter++;
 
-            if (reelsCounter <= 3)
+            if (reelsCounter >= 3)
             {
                 foreach (var symbol in listOfWinnners)    
                 {
@@ -254,6 +254,8 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
                 }
                 
                 reelsCounter = 0;
+                
+                Debug.Log("Kepanggil sekali");
             }
         }
     }
