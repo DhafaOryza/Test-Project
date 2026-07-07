@@ -74,4 +74,9 @@ public class LevelManager : MonoBehaviour
     {
         levelText.text = "Level " + currentLevel;
     }
+
+    public int GetCurrentLevel()
+    {
+        return currentLevel;
+    }
 }

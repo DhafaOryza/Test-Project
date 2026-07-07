@@ -5,6 +5,9 @@ public class GameTimer : MonoBehaviour
 {
     [Header("Timer Settings")]
     [SerializeField] private float timeLimitInMinutes = 10f;
+
+    [Header("Survive Panel")]
+    [SerializeField] private DeathPanelUI survivedPanel;
     
     [Header("UI Reference")]
     [SerializeField] private TextMeshProUGUI timerText;
@@ -12,18 +15,20 @@ public class GameTimer : MonoBehaviour
     private float currentTime = 0f;
     private float maxTimeInSeconds;
     private bool isGameActive = true;
+    private bool gameEnded = false;
 
     public float CurrentTime => currentTime;
     public bool IsGameActive => isGameActive;
 
     void Start()
     {
-        currentTime = timeLimitInMinutes * 60f; 
+        maxTimeInSeconds = timeLimitInMinutes * 60f;
+        currentTime = maxTimeInSeconds;
     }
 
     void Update()
     {
-        if (!isGameActive) return;
+        if (!isGameActive || gameEnded) return;
 
         currentTime -= Time.deltaTime;
 
@@ -32,6 +37,7 @@ public class GameTimer : MonoBehaviour
         if (currentTime <= 0)
         {
             currentTime = 0;
+            UpdateTimerUI();
             GameWon();
         }
     }
@@ -46,5 +52,11 @@ public class GameTimer : MonoBehaviour
     private void GameWon()
     {
         isGameActive = false;
+
+        float finalTime = maxTimeInSeconds;
+        int totalKills = ScoreManager.Instance.enemiesKilled;
+        int finalLevel = LevelManager.Instance.GetCurrentLevel();
+
+        survivedPanel.ShowSurvivePanel(finalTime, totalKills, finalLevel);
     }
 }

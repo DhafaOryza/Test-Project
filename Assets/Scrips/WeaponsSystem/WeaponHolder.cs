@@ -7,20 +7,26 @@ namespace TopDown.Combat
         [Header("Weapon List")]
         [SerializeField] private Guns[] weapons; 
 
-        [Header("Switch Weapon Effects")]
-        [SerializeField] private float cameraShakeDuration = 0.08f;
-        [SerializeField] private float cameraShakeIntensity = 0.1f;
+        [Header("Animation Settings")]
+        [SerializeField] private PlayerAnimation playerAnim;
+        [SerializeField] private RuntimeAnimatorController[] weaponAnimators;
 
         private int currentWeaponIndex = 0; 
         private bool isInputLocked = false; 
-
 
         public Guns Currentweapon => weapons[currentWeaponIndex];
         public int CurrentWeaponIndex => currentWeaponIndex;
         
         private void Start()
         {
-            EquipWeapon(0, false);
+            int selectedWeapon = 0;
+
+            if (WeaponSelectionManager.Instance != null)
+            {
+                selectedWeapon = WeaponSelectionManager.Instance.selectedWeaponIndex;
+            }
+            
+            EquipWeapon(selectedWeapon);
         }
 
         private void Update()
@@ -30,7 +36,7 @@ namespace TopDown.Combat
                 return;
             }
 
-            CheckWeaponSwitchInput();
+            RotateWeaponToMouse();
             CheckShootingInput();
 
             if (Input.GetKeyDown(KeyCode.R))
@@ -41,23 +47,13 @@ namespace TopDown.Combat
                 }
             }
         }
-
-        private void CheckWeaponSwitchInput()
+        private void RotateWeaponToMouse()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1)) 
-            {
-                EquipWeapon(0, true);
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                EquipWeapon(1, true);
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                EquipWeapon(2, true);
-            }
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 lookDir = (mousePos - transform.position).normalized;
+            float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
         }
-
         private void CheckShootingInput()
         {
             Guns currentWeapon = weapons[currentWeaponIndex];
@@ -81,7 +77,7 @@ namespace TopDown.Combat
             }
         }
 
-        private void EquipWeapon(int newWeaponIndex, bool playShakeEffect)
+        private void EquipWeapon(int newWeaponIndex)
         {
             if (newWeaponIndex < 0 || newWeaponIndex >= weapons.Length) 
             {
@@ -110,9 +106,10 @@ namespace TopDown.Combat
 
             currentWeaponIndex = newWeaponIndex;
 
-            if (playShakeEffect && CameraShake.Instance != null)
+            // untuk mengganti animasi player untuk setiap senjata
+            if (playerAnim != null && weaponAnimators.Length > newWeaponIndex)
             {
-                CameraShake.Instance.TriggerShake(cameraShakeDuration, cameraShakeIntensity);
+                playerAnim.ChangeWeaponAnimator(weaponAnimators[newWeaponIndex]);
             }
         }
     }

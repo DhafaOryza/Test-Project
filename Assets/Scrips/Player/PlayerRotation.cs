@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace TopDown.Movement
 {
-    public class PlayerRotation : Rotation
+    public class PlayerRotation : MonoBehaviour
     {
         [Header("References")]
         [SerializeField] private Transform cameraTarget;
@@ -25,14 +25,11 @@ namespace TopDown.Movement
         private void HandleMouseLook(Vector2 screenPos)
         {
             Vector3 worldPos = mainCamera.ScreenToWorldPoint(
-                new Vector3(screenPos.x, screenPos.y,
-                    -mainCamera.transform.position.z)
+                new Vector3(screenPos.x, screenPos.y, -mainCamera.transform.position.z)
             );
+            
             worldPos.z = 0f;
-
-            cameraTarget.position = Vector3.Lerp(
-                player.position, worldPos, 0.25f);
-            LookAt(worldPos);
+            cameraTarget.position = Vector3.Lerp(player.position, worldPos, 0.25f);
         }
     }
 }

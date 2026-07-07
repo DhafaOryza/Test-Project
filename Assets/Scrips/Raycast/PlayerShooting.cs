@@ -5,15 +5,13 @@ public class PlayerShooting : MonoBehaviour
 {
     [Header("Shooting Settings")]
     [SerializeField] private float weaponRange = 20f;
-    [SerializeField] private int damage = 1; 
 
     [Header("References")]
-    [SerializeField] private Transform firePoint; // Ujung senjata tempat peluru keluar
-    [SerializeField] private LineRenderer lineRenderer; // Visual peluru
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private LineRenderer lineRenderer;
 
     void Update()
     {
-        // Mengecek input klik kiri (Fire1) setiap frame
         if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
@@ -35,19 +33,16 @@ public class PlayerShooting : MonoBehaviour
         // 4. Proses visual dan logika tabrakan
         StartCoroutine(ShowShootEffect(direction, hit));
 
-        if (hit.collider != null) // Jika Raycast menabrak sesuatu
+        if (hit.collider != null)
         {
             if (hit.collider.CompareTag("Enemy"))
             {
-                // Pareto: Untuk sekarang kita buat musuhnya mati dalam 1x tembak.
-                // Nantinya kamu bisa ganti ini dengan script EnemyHealth kalau mau lebih kompleks.
                 Destroy(hit.collider.gameObject);
                 Debug.Log("Kena Musuh!");
             }
         }
     }
 
-    // Coroutine untuk membuat efek peluru kilat
     private IEnumerator ShowShootEffect(Vector2 direction, RaycastHit2D hit)
     {
         lineRenderer.enabled = true;
@@ -66,7 +61,6 @@ public class PlayerShooting : MonoBehaviour
             lineRenderer.SetPosition(1, (Vector2)firePoint.position + direction * weaponRange);
         }
 
-        // Tunggu sekian milidetik lalu matikan garisnya (memberi kesan peluru cepat)
         yield return new WaitForSeconds(0.05f); 
         lineRenderer.enabled = false;
     }

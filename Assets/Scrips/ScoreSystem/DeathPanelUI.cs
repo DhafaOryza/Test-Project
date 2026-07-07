@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class DeathPanelUI : MonoBehaviour
 {
     [Header("UI References")]
     public GameObject deathPanelObject;
+    public GameObject survivePanelObject;
+
     public TextMeshProUGUI timeText_Label;   public TextMeshProUGUI timeText_Score;
     public TextMeshProUGUI killsText_Label;  public TextMeshProUGUI killsText_Score;
     public TextMeshProUGUI levelText_Label;  public TextMeshProUGUI levelText_Score;
@@ -17,9 +20,24 @@ public class DeathPanelUI : MonoBehaviour
 
     public void ShowDeathPanel(float timeSurvived, int enemiesKilled, int levelEarned)
     {
-        deathPanelObject.SetActive(true);
-        Time.timeScale = 0f;
+        if (deathPanelObject != null) deathPanelObject.SetActive(true);
+        if (survivePanelObject != null) survivePanelObject.SetActive(false);
 
+        Time.timeScale = 0f;
+        CalculateAndShowScore(timeSurvived, enemiesKilled, levelEarned);
+    }
+
+    public void ShowSurvivePanel(float timeSurvived, int enemiesKilled, int levelEarned)
+    {
+        if (survivePanelObject != null) survivePanelObject.SetActive(true);
+        if (deathPanelObject != null) deathPanelObject.SetActive(false);
+
+        Time.timeScale = 0f;
+        CalculateAndShowScore(timeSurvived, enemiesKilled, levelEarned);
+    }
+
+    public void CalculateAndShowScore(float timeSurvived, int enemiesKilled, int levelEarned)
+    {
         // 1. melakukan kalkulasi dengan format (MM:SS)
         int minutes = Mathf.FloorToInt(timeSurvived / 60);
         int seconds = Mathf.FloorToInt(timeSurvived % 60);
@@ -44,11 +62,11 @@ public class DeathPanelUI : MonoBehaviour
     public void RetyGame()
     {
         Time.timeScale = 1f;
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void QuitGame()
     {
-        Application.Quit();
+        SceneManager.LoadScene("MainMenu");
     }
 }

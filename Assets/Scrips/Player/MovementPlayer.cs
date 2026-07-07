@@ -7,6 +7,8 @@ public class MovementPlayer : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Vector2 input;
 
+    public Vector2 MoveInput => input;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
