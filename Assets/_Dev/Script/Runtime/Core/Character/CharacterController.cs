@@ -51,6 +51,7 @@ namespace _Dev.Script.Runtime.Core.Character
         protected virtual void FixedUpdate()
         {
             if (_target == null) return;
+            if (_characterState != CharacterState.Chasing) return;
             transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, 0.1f);
         }
 
@@ -60,6 +61,10 @@ namespace _Dev.Script.Runtime.Core.Character
             
             while (true)
             {
+                var behaviour = _character.CharacterData.CharacterBehaviour;
+                
+                behaviour.Tick(Time.deltaTime);
+                
                 if (_target == null)
                 {
                     _characterState = CharacterState.Idle;
@@ -78,10 +83,10 @@ namespace _Dev.Script.Runtime.Core.Character
                 }
                 else
                 {
-                    var behaviour = _character.CharacterData.CharacterBehaviour;
                     
                     if (behaviour.IsReady(_character.CharacterData.CharacterStats.Speed))
                     {
+                        Debug.Log("Gebug");
                         behaviour.Trigger(_character.CharacterData.CharacterStats.Speed);
                         StartCoroutine(behaviour.Attack(_target, _character.CharacterData.CharacterStats.Attack));
                     }
