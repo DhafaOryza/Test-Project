@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 356c77ef13a579c499f950e00caba800, type: 3}
-  m_Name: Enemy_3
+  m_Name: DebuffCard
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  <Title>k__BackingField: MEdic
-  <Description>k__BackingField: ' Medic  MediC MedIc ! '
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 39482c0598ff1cb4cb593da4d53e48ca, type: 3}
+  <Title>k__BackingField: Debuff Card
+  <Description>k__BackingField: Make A Enemy total damage down 30%
+  <Sprite>k__BackingField: {fileID: -1032632885438329913, guid: 3fce1847324b90244b54430eb89f4d9e, type: 3}
   <Cost>k__BackingField: 0
-  <Type>k__BackingField: 4
-  <Damage>k__BackingField: 2
-  <Health>k__BackingField: 10
-  <Effect>k__BackingField: 
+  <Type>k__BackingField: 2
+  <Damage>k__BackingField: 1
+  <Health>k__BackingField: 0
+  <Effect>k__BackingField: AttackDown
   <EffectType>k__BackingField: 0
-  <EffectAmount>k__BackingField: 0
-  <Rarity>k__BackingField: 0
+  <EffectAmount>k__BackingField: 30
+  <Rarity>k__BackingField: 2

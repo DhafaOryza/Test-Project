@@ -42,6 +42,17 @@ public class HandManager : MonoBehaviour
         UpdateCardsInteractability();
     }
 
+    private void TriggerCardDraw(int amount)
+    {
+        if (gameManager != null)
+        {
+            for (int i = 0 ; i < amount ; i++)
+            {
+                gameManager.DrawCard();
+            }
+        }
+    }
+
     public void AddCardToHand(Card card)
     {
         if (handCards.Count >= maxHandSize)
@@ -55,6 +66,7 @@ public class HandManager : MonoBehaviour
         view.Setup(card);
         view.SetPlayerStats(playerStats);
         view.OnCardUsed += HandleCardUsed;
+        view.OnCardDrawTriggered += TriggerCardDraw;
         view.OnCardDiscarded += HandleCardDiscarded;
 
         if (allyManager != null)

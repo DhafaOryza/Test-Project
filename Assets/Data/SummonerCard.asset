@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 356c77ef13a579c499f950e00caba800, type: 3}
   m_Name: SummonerCard
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  <Title>k__BackingField: SummonedAllies
-  <Description>k__BackingField: WHY u sOn
+  <Title>k__BackingField: Ghost Allies
+  <Description>k__BackingField: Some Allies Card can Help u .
   <Sprite>k__BackingField: {fileID: -3104623863583183268, guid: 00985548db2742f4e97e5b581d37d2c6, type: 3}
   <Cost>k__BackingField: 1
   <Type>k__BackingField: 3

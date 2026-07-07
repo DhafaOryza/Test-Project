@@ -1,12 +1,12 @@
 public enum BuffEffectType
 {
     None,
-    DamageBoost,
+    //DamageBoost,
     HealthBoost,
     DrawExtraCard,
-    ReduceCost,
+    //ReduceCost,
     Shield,
-    Poison,
+    /*Poison,
     Burn,
-    Freeze
+    Freeze*/
 }

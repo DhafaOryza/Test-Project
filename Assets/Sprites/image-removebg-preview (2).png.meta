@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 18164b42d1eb2ba40ad28843523d7587
+guid: 70009d670fcee694ea5e28bf6d8a2717
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5597995755193609183
-    second: book2_0
+      213: -4355272409397247203
+    second: image-removebg-preview (2)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: book2_0
+      name: image-removebg-preview (2)_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 44
-        height: 54
+        x: 30
+        y: 4
+        width: 386
+        height: 357
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1245a85258cef42b0800000000000000
-      internalID: -5597995755193609183
+      spriteID: d1341d1a1d6fe83c0800000000000000
+      internalID: -4355272409397247203
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      book2_0: -5597995755193609183
+      image-removebg-preview (2)_0: -4355272409397247203
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

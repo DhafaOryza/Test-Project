@@ -15,6 +15,7 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     [SerializeField] private LayerMask dropZoneLayer;
     [SerializeField] private bool isInteractable = true;
     [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private BuffEffectType EffectType;
 
     public Card CardData => card;
     private Card card;
@@ -30,6 +31,7 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public System.Action<CardView> OnCardDiscarded; 
     public System.Action<CardView> OnCardDefeated; 
     public System.Action<CardView> OnCardSummoned;
+    public System.Action<int> OnCardDrawTriggered;
 
     private void Awake()
     {
@@ -47,7 +49,6 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             card.ResetHealth();
         }
         
-        // --- ANTI KOTAK PUTIH ---
         if (card.Sprite == null)
         {
             cardImage.color = new Color(1, 1, 1, 0); 
@@ -163,19 +164,55 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         switch (card.Type)
         {
             case CardType.Attack:
-            case CardType.Debuff:
                 if (zone.EnemyCardView != null && zone.EnemyCardView.CardData.IsAlive)
                 {
                     zone.EnemyCardView.ReceiveDamage(card.Damage);
                     effectApplied = true;
                 }
                 break;
-
-            case CardType.Buff:
-                playerStats?.Heal(card.EffectAmount);
-                effectApplied = true;
+            case CardType.Debuff:
+                if (zone.EnemyCardView != null && zone.EnemyCardView.CardData.IsAlive)
+                {
+                    if (card.Effect == "AttackDown")
+                    {
+                        zone.EnemyCardView.ReceiveAttackDebuff(card.EffectAmount);
+                        zone.EnemyCardView.ReceiveDamage(card.Damage);
+                        effectApplied = true; 
+                    }
+                    else
+                    {
+                        
+                    }
+                }
                 break;
 
+            case CardType.Buff:
+            if (card.EffectType == BuffEffectType.HealthBoost)
+                {
+                    if (playerStats != null && !playerStats.isHealthFull())
+                    {
+                        playerStats.Heal(card.EffectAmount);
+                        effectApplied = true;
+                    }
+                    else
+                    {
+                        effectApplied = false;
+                    }
+                }
+
+                else if (card.EffectType == BuffEffectType.Shield)
+                {
+                    playerStats?.AddShield(card.EffectAmount);
+                    effectApplied = true;
+                }
+
+                else if (card.EffectType == BuffEffectType.DrawExtraCard)
+                {
+                    OnCardDrawTriggered?.Invoke(card.EffectAmount);
+                    effectApplied = true;
+                }
+
+                break;
             case CardType.Summon:
                 effectApplied = true;
                 break;
@@ -292,7 +329,6 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         }
         else
         {
-            // --- FIX DOTWEEN UNTUK IMAGE CANVAS ---
             if (cardImage != null)
             {
                 cardImage.DOColor(Color.red, 0.15f).OnComplete(() => 
@@ -303,6 +339,32 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             
             transform.DOShakePosition(0.25f, strength: new Vector3(0.3f, 0.3f, 0),vibrato: 15).SetLink(gameObject);
         }
+    }
+
+    public void ReceiveAttackDebuff(int percentage)
+    {
+        int ReductionAmount = Mathf.RoundToInt(card.Damage * percentage / 100f);
+        card.Damage -= ReductionAmount;
+
+        if (card.Damage < 2)
+        {
+            card.Damage = 2;
+        }
+
+        if (damage != null)
+        {
+            damage.text = card.Damage.ToString();
+        }
+
+        if (card.Damage != null)
+        {
+            cardImage.DOColor(new Color(0.6f, 0.2f, 0.8f), 0.3f).OnComplete(() =>
+            {
+                cardImage.DOColor(Color.white, 0.3f);
+            });
+        }
+
+        transform.DOPunchScale(new Vector3(-0.1f, -0.1f, 0), 0.3f, 5).SetLink(gameObject);
     }
 
     private void ReturnToHand()

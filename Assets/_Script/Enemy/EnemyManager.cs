@@ -22,7 +22,7 @@ public class EnemyManager : MonoBehaviour
     [Tooltip("Titik slot di arena (Kiri, Tengah, Kanan)")]
     [SerializeField] private List<Transform> activeEnemyPoints;
     
-    [Tooltip("SEKARANG CUKUP 1 TITIK: Koordinat tempat tumpukan Deck/Draw Pile musuh berada")]
+    [Tooltip(" Koordinat tempat tumpukan Deck/Draw Pile musuh berada")]
     [SerializeField] private Transform enemyDeckPoint;
     
     [SerializeField] private Transform DefeatedEnemyPoint;
@@ -119,7 +119,7 @@ public class EnemyManager : MonoBehaviour
     {
         if (levelIndex >= enemiesPerLevel.Count)
         {
-            Debug.Log("🎉 SELAMAT! KAMU MENANG SEMUA LEVEL!");
+            //Debug.Log("🎉 SELAMAT! KAMU MENANG SEMUA LEVEL!");
             return;
         }
 
@@ -167,7 +167,6 @@ public class EnemyManager : MonoBehaviour
         Collider2D col = g.GetComponent<Collider2D>();
         if (col != null) col.enabled = false;
 
-        // Beri efek jeda antar kartu terbang (Cascade Delay) agar terlihat sangat mulus!
         Transform targetPoint = activeEnemyPoints[slotIndex];
         float cascadeDelay = slotIndex * 0.25f; 
 
