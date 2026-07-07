@@ -1,4 +1,4 @@
-namespace _Dev.Script.Runtime.Core.Character
+namespace _Dev.Script.Runtime.Enum
 {
     public enum CharacterState
     {

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using _Dev.Script.Runtime.Core.Character.Enemy;
+using _Dev.Script.Runtime.Enum;
 using _Dev.Script.Runtime.Interface;
 using UnityEngine;
 
