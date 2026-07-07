@@ -30,7 +30,7 @@ namespace _Dev.Script.Runtime.Core.Character
 
         public void Initialize(Character character)
         {
-            
+            _character = character;
         }
 
         private void OnEnable()
@@ -78,7 +78,13 @@ namespace _Dev.Script.Runtime.Core.Character
                 }
                 else
                 {
+                    var behaviour = _character.CharacterData.CharacterBehaviour;
                     
+                    if (behaviour.IsReady(_character.CharacterData.CharacterStats.Speed))
+                    {
+                        behaviour.Trigger(_character.CharacterData.CharacterStats.Speed);
+                        StartCoroutine(behaviour.Attack(_target));
+                    }
                     _characterState = CharacterState.Attacking;
                 }
                 

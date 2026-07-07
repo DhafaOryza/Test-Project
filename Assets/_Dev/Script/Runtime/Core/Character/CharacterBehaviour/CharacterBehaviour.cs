@@ -6,8 +6,28 @@ using UnityEngine;
 namespace _Dev.Script.Runtime.Core.Character.CharacterBehaviour
 {
     [System.Serializable]
-    public abstract class CharacterBehaviour : MonoBehaviour
+    public abstract class CharacterBehaviourx
     {
+        protected bool IsAttacking;
+
+        protected float Timer;
+
+        public bool IsReady(float attackSpeed)
+        {
+            return !IsAttacking &&
+                   Timer <= 0;
+        }
+
+        public void Tick(float dt)
+        {
+            Timer -= dt;
+        }
+
+        public void Trigger(float attackSpeed)
+        {
+            Timer = 1f / attackSpeed;
+        }
+        
         public abstract IEnumerator Attack(CharacterController characterController);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace _Dev.Script.Runtime.Core.Character.CharacterBehaviour
 {
-    public class MeleeCB : CharacterBehaviour
+    public class MeleeCB : CharacterBehaviourx
     {
         public override IEnumerator Attack(CharacterController characterController)
         {

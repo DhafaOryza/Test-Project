@@ -9,7 +9,7 @@ namespace _Dev.Script.Runtime.Core.Character
         private int _maxHealth;
         private int _attack;
         private int _defense;
-        private int _speed;
+        private float _speed;
         [SerializeField]
         private float _radius;
             
@@ -19,7 +19,7 @@ namespace _Dev.Script.Runtime.Core.Character
         public int MaxHealth => _maxHealth;
         public int Attack => _attack;
         public int Defense => _defense;
-        public int Speed => _speed;
+        public float Speed => 1f * (_speed/100f);
 
         public float Radius => _radius;
 
