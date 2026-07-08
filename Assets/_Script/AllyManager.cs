@@ -19,15 +19,14 @@ public class AllyManager : MonoBehaviour
         if (!activeAllies.Contains(allyCard))
         {
             activeAllies.Add(allyCard);
-            // Pasang pendengar: "Kabari aku kalau Ally ini mati"
             allyCard.OnCardDefeated += HandleAllyDefeated; 
-            Debug.Log($"[AllyManager] {allyCard.CardData.Title} resmi bergabung ke arena!");
+            //Debug.Log($"[AllyManager] {allyCard.CardData.Title} resmi bergabung ke arena!");
         }
     }
 
     private void HandleAllyDefeated(CardView deadAlly)
     {
-        Debug.Log($"[AllyManager] {deadAlly.CardData.Title} gugur dalam pertempuran!");
+        //Debug.Log($"[AllyManager] {deadAlly.CardData.Title} gugur dalam pertempuran!");
         
         // 1. Lepas pendaftaran dan hapus dari daftar pasukan
         deadAlly.OnCardDefeated -= HandleAllyDefeated;

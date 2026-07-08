@@ -11,19 +11,25 @@ public class GameManager : MonoBehaviour
     [SerializeField] private HandManager handManager;
     [SerializeField] private CardChoiceManager cardChoiceManager;
     [SerializeField] private TurnManager turnManager;
+    [SerializeField] private PlayerStats playerStats;
     
     [Header("UI System")]
-    [SerializeField] private PlayerStats playerStats;
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject CancelButton;
 
     [Header("Reshuffle Visuals (Animasi DOTween)")]
-    [SerializeField] private GameObject dummyCardPrefab; // Bisa diisi dengan CardPrefab biasa
+    [SerializeField] private GameObject dummyCardPrefab;
     [SerializeField] private Transform discardPointTransform; // Posisi tempat sampah
     [SerializeField] private Transform deckSpawnPointTransform; // Posisi deck awal
     [SerializeField] private DropZone discardDropZone; // DropZone discard untuk menghapus pajangan
 
+    [Header("Deck Showcase Settings (Game Over Custom)")]
+    [SerializeField] private Transform showcaseCenterPoint;
+    [SerializeField] private float maxSpreadWidth = 12f;
+
     private List<Card> drawPile = new();
     private List<Card> discardPile = new();
+    private List<GameObject> showcasedDummyCards = new List<GameObject>();
 
     public int DrawPileCount => drawPile.Count;
     public int DiscardPileCount => discardPile.Count;
@@ -32,7 +38,9 @@ public class GameManager : MonoBehaviour
     {
         handManager.OnCardSentToDiscardPile += HandleCardDiscarded;
         playerStats.OnPlayerDied += ShowGameOverPanel;
+
         if (gameOverPanel != null) gameOverPanel.SetActive(false);
+        if (CancelButton != null) CancelButton.SetActive(false);
 
         if (cardChoiceManager != null)
         {
@@ -90,7 +98,7 @@ public class GameManager : MonoBehaviour
     {
         if (handManager.IsHandFull)
         {
-            Debug.Log("[GameManager] Tangan sudah penuh, batal tarik kartu dari Deck.");
+            //Debug.Log("[GameManager] Tangan sudah penuh, batal tarik kartu dari Deck.");
             return;
         }
 
@@ -98,7 +106,7 @@ public class GameManager : MonoBehaviour
         {
             if (discardPile.Count == 0)
             {
-                Debug.Log("[GameManager] Peringatan! Draw Pile dan Discard Pile kosong!");
+                //Debug.Log("[GameManager] Peringatan! Draw Pile dan Discard Pile kosong!");
                 return;
             }
 
@@ -213,8 +221,97 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void ShowDeckViewer()
+    public void ShowDeckShowcase()
     {
-        Debug.Log("Menampilkan list kartu deck...");
+        if (gameOverPanel != null) gameOverPanel.SetActive(false);
+        if (CancelButton != null) CancelButton.SetActive(true);
+
+        List<CardView> activeHandCard = handManager != null ? handManager.GetHandCardViews() : new List<CardView>();
+
+        int TotalCardsCount = drawPile.Count + discardPile.Count + activeHandCard.Count;
+        if (TotalCardsCount == 0)
+        {
+            return;
+        }
+
+        float spacing = Mathf.Min(1.5f , maxSpreadWidth / Mathf.Max(1, TotalCardsCount));
+        float totalWidth = (TotalCardsCount - 1) * spacing;
+        float StartX = showcaseCenterPoint.position.x - (totalWidth / 2f);
+        int globalIndex = 0;
+
+        // 1. Seret visual kartu dari PLAYER DECK (Draw Pile)
+        foreach (var card in drawPile)
+        {
+            Vector3 startPos = deckSpawnPointTransform != null ? deckSpawnPointTransform.position : showcaseCenterPoint.position;
+            AnimateCardToLineup(card, startPos, StartX, spacing, globalIndex);
+            globalIndex++;
+        }
+
+        // 2. Seret visual kartu dari DISCARD PILE
+        foreach (var card in discardPile)
+        {
+            Vector3 startPos = discardPointTransform != null ? discardPointTransform.position : showcaseCenterPoint.position;
+            AnimateCardToLineup(card, startPos, StartX, spacing, globalIndex);
+            globalIndex++;
+        }
+
+        // 3. Seret visual kartu langsung dari TANGAN (Hand) pemain
+        foreach (var handCard in activeHandCard)
+        {
+            if (handCard != null)
+            {
+                handCard.gameObject.SetActive(false); 
+
+                Vector3 startPos = handCard.transform.position; // Titik asal dari mana dia dipegang
+                AnimateCardToLineup(handCard.CardData, startPos, StartX, spacing, globalIndex);
+                globalIndex++;
+            }
+        }
+    }
+
+    private void AnimateCardToLineup(Card cardToDisplay, Vector3 startPos, float startX, float spacing, int index)
+    {
+        GameObject dummy = Instantiate(dummyCardPrefab, startPos, Quaternion.identity);
+        CardView view = dummy.GetComponent<CardView>();
+        if (view != null)
+        {
+            view.Setup(cardToDisplay);
+            view.SetInteractable(false);
+        }
+
+        Vector3 targetPos = new Vector3(
+            startX + (index * spacing),
+            showcaseCenterPoint.position.y,
+            showcaseCenterPoint.position.z - (index * 0.01f)
+        );
+
+        float delay = index * 0.05f;
+        dummy.transform.DOMove(targetPos, 0.6f).SetEase(Ease.OutCubic).SetDelay(delay);
+        dummy.transform.DORotate(Vector3.zero, 0.6f).SetDelay(delay);
+
+        showcasedDummyCards.Add(dummy);
+    }
+
+    public void HideDeckShowcase()
+    {
+        if (gameOverPanel != null) gameOverPanel.SetActive(true);
+        if (CancelButton != null) CancelButton.SetActive(false);
+
+        foreach (var dummy in showcasedDummyCards)
+        {
+            if (dummy != null) Destroy(dummy);
+        }
+        showcasedDummyCards.Clear();
+
+        if (handManager != null)
+        {
+            foreach(var card in handManager.GetHandCardViews())
+            {
+                if (card != null)
+                {
+                    card.gameObject.SetActive(true);
+                }
+            }
+        }
     }
 }

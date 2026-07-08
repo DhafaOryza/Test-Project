@@ -15,7 +15,7 @@ MonoBehaviour:
   <Title>k__BackingField: Debuff Card
   <Description>k__BackingField: Make A Enemy total damage down 30%
   <Sprite>k__BackingField: {fileID: -1032632885438329913, guid: 3fce1847324b90244b54430eb89f4d9e, type: 3}
-  <Cost>k__BackingField: 0
+  <Cost>k__BackingField: 1
   <Type>k__BackingField: 2
   <Damage>k__BackingField: 1
   <Health>k__BackingField: 0

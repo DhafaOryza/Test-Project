@@ -32,6 +32,19 @@ public class HandManager : MonoBehaviour
         }
     }
 
+    public List<Card> GetAllCardsInHand()
+    {
+        List<Card> handData = new List<Card>();
+        foreach (var cardView in handCards)
+        {
+            if (cardView != null &&  cardView.CardData != null)
+            {
+                handData.Add(cardView.CardData);
+            }
+        }
+        return handData;
+    }
+
     private void OnEnable() => ResetRoundPlays();
 
     public void ResetRoundPlays()
@@ -130,7 +143,7 @@ public class HandManager : MonoBehaviour
     {
         if (playsRemaining <= 0)
         {
-            Debug.Log("[HandManager] ForceEndTurn dipanggil tapi playsRemaining sudah 0, diabaikan");
+            //Debug.Log("[HandManager] ForceEndTurn dipanggil tapi playsRemaining sudah 0, diabaikan");
             return;
         }
         playsRemaining = 0;
@@ -167,5 +180,10 @@ public class HandManager : MonoBehaviour
             // penting: update "rumah" card supaya drag-return akurat sesuai posisi terbaru di hand
             handCards[i].SetHomeTransform(splinePosition, rotation);
         }
+    }
+
+    public List<CardView> GetHandCardViews()
+    {
+        return handCards;
     }
 }

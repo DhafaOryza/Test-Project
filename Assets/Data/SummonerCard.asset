@@ -18,7 +18,7 @@ MonoBehaviour:
   <Cost>k__BackingField: 1
   <Type>k__BackingField: 3
   <Damage>k__BackingField: 1
-  <Health>k__BackingField: 1
+  <Health>k__BackingField: 3
   <Effect>k__BackingField: 
   <EffectType>k__BackingField: 0
   <EffectAmount>k__BackingField: 0

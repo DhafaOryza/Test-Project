@@ -213,6 +213,7 @@ public class EnemyManager : MonoBehaviour
             .SetLink(defeatedView.gameObject)
             .OnComplete(() => 
             {
+                
                 foreach (var graveCard in graveyardCards)
                 {
                     if (graveCard != defeatedView && graveCard != null)

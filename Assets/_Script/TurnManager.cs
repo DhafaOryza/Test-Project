@@ -86,7 +86,7 @@ public class TurnManager : MonoBehaviour
         // Jika sudah semua musuh menyerang, kembalikan giliran ke Player
         if (enemyManager.ActiveEnemies == null || index >= enemyManager.ActiveEnemies.Count)
         {
-            Debug.Log("[TurnManager] Semua Musuh selesai menyerang. Kembali ke giliran Player!");
+            //Debug.Log("[TurnManager] Semua Musuh selesai menyerang. Kembali ke giliran Player!");
             handManager.ResetRoundPlays();
             DrawCardForNewTurn();
             return;
@@ -102,11 +102,11 @@ public class TurnManager : MonoBehaviour
             if (RandomChoice < allyManager.ActiveAllies.Count)
             {
                 choosenTarget = allyManager.ActiveAllies[RandomChoice].transform;
-                Debug.Log($"[TurnManager] Musuh '{currentEnemy.CardData.Title}' menyerang Ally index ke-{RandomChoice}!");
+                //Debug.Log($"[TurnManager] Musuh '{currentEnemy.CardData.Title}' menyerang Ally index ke-{RandomChoice}!");
             }
             else
             {
-                Debug.Log($"[TurnManager] Musuh '{currentEnemy.CardData.Title}' menyerang Player!");
+                //Debug.Log($"[TurnManager] Musuh '{currentEnemy.CardData.Title}' menyerang Player!");
             }
         }
         
