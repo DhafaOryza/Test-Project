@@ -102,9 +102,8 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
                     _state = ReelState.Idle;
 
                     transform.DOPunchPosition(Vector3.down * .1f, .15f);
+                    Finished?.Invoke();
                 }
-                
-                Finished?.Invoke();
             }
 
             ApplyPositions();

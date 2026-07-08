@@ -50,6 +50,8 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
 
         public void Roll()
         {
+            
+            
             FillGridTest();
             Evaluate();
             PrintBoard();
@@ -147,6 +149,7 @@ namespace _Dev.Script.Runtime.Core.SlotSystem
         private void Evaluate()
         {
             _winningLines.Clear();
+            listOfWinnners.Clear();
             
             foreach(var line in _paylines)
             {
