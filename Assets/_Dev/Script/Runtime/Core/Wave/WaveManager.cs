@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using _Dev.Script.Runtime.Core.Character;
+using _Dev.Script.Runtime.Core.GameAction;
 using _Dev.Script.Runtime.Core.Spawner;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -24,18 +25,30 @@ namespace _Dev.Script.Runtime.Core.Wave
 
         public event Action OnWaveFinished;
 
-        public void StartWave()
+        private void OnEnable()
         {
-            StartCoroutine(SpawnRoutine());
+            ActionSystem.ActionSystem.AttachPerformer<BattlePhaseGA>(BattlePhasePerformer);
         }
 
-        IEnumerator SpawnRoutine()
+        private void OnDisable()
+        {
+            ActionSystem.ActionSystem.DetachPerformer<BattlePhaseGA>();
+        }
+
+
+        private IEnumerator BattlePhasePerformer(BattlePhaseGA battlePhaseGA)
+        {
+            yield return SpawnRoutine();
+        }
+
+        private IEnumerator SpawnRoutine()
         {
             foreach (var enemy in CurrentWave.Enemies)
             {
                 for (int i = 0; i < enemy.Amount; i++)
                 {
                     Spawn(enemy);
+                    
 
                     _enemiesAlive++;
 
@@ -48,10 +61,11 @@ namespace _Dev.Script.Runtime.Core.Wave
         {
             var point = spawnPoints[Random.Range(0, spawnPoints.Count)];
 
-            EnemySpawner.Instance.SpawnCharacterController(CreateCharacter(enemy.Character), point);
+            var enemyController = EnemySpawner.Instance.SpawnCharacterController(CreateCharacter(enemy.Character), point);
+            enemyController.OnDeathEvent += RegisterEnemyDeath;
         }
 
-        public void RegisterEnemyDeath()
+        private void RegisterEnemyDeath()
         {
             _enemiesAlive--;
 
@@ -60,7 +74,7 @@ namespace _Dev.Script.Runtime.Core.Wave
 
             _currentWave++;
 
-            OnWaveFinished?.Invoke();
+            ActionSystem.ActionSystem.Instance.Perform(new PreparationPhaseGA());
         }
 
         private Character.Character CreateCharacter(CharacterDefSO def)

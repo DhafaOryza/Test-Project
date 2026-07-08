@@ -21,6 +21,8 @@ namespace _Dev.Script.Runtime.Core.Character
         protected List<CharacterController> _targetInRange = new();
         protected CharacterController _target;
         
+        public event Action OnDeathEvent;
+        
         private void Start()
         {
             if (_character == null) return;
@@ -147,6 +149,7 @@ namespace _Dev.Script.Runtime.Core.Character
 
         public void Die()
         {
+            OnDeathEvent?.Invoke();
             Destroy(gameObject);
         }
     }

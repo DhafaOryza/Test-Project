@@ -1,7 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Dev.Script.Runtime.Core.ActionSystem;
+using _Dev.Script.Runtime.Core.GameAction;
 using _Dev.Script.Runtime.Core.Wave;
 using _Dev.Script.Runtime.Enum;
+using NUnit.Framework.Internal;
 using UnityEngine;
 
 namespace _Dev.Script.Runtime.GameManager
@@ -10,6 +14,8 @@ namespace _Dev.Script.Runtime.GameManager
     {
         [SerializeField]
         private WaveManager waveManager;
+        [SerializeField] 
+        private PreparationUI preparationUI;
 
         private GameState _state = GameState.Preparation;
         
@@ -19,11 +25,20 @@ namespace _Dev.Script.Runtime.GameManager
 
         Coroutine preparationRoutine;
 
-        void Start()
+        private void OnEnable()
         {
-            waveManager.OnWaveFinished += EnterPreparation;
+            ActionSystem.AttachPerformer<PreparationPhaseGA>(PreparationPhasePerformer);
+        }
 
+        private void OnDisable()
+        {
+            ActionSystem.DetachPerformer<PreparationPhaseGA>();
+        }
+
+        private IEnumerator PreparationPhasePerformer(PreparationPhaseGA preparationPhaseGA)
+        {
             EnterPreparation();
+            yield return null;
         }
 
         void EnterPreparation()
@@ -33,16 +48,20 @@ namespace _Dev.Script.Runtime.GameManager
             _playerReady = false;
 
             if(preparationRoutine != null) StopCoroutine(preparationRoutine);
-
+            
             preparationRoutine = StartCoroutine(PreparationRoutine());
+            preparationUI.Show();
         }
 
         private IEnumerator PreparationRoutine()
         {
             float timer = waveManager.CurrentWave.PreparationDuration;
+            float maxTime = timer;
 
             while (timer > 0)
             {
+                preparationUI.SetTimer(timer, maxTime);
+                
                 if (_playerReady)
                     break;
 
@@ -50,15 +69,17 @@ namespace _Dev.Script.Runtime.GameManager
 
                 yield return null;
             }
+            preparationUI.SetTimer(0, maxTime);
 
             EnterBattle();
         }
 
         private void EnterBattle()
         {
+            preparationUI.Hide();
             _state = GameState.Battle;
 
-            waveManager.StartWave();
+            ActionSystem.Instance.Perform(new BattlePhaseGA());
         }
 
         public void Ready()

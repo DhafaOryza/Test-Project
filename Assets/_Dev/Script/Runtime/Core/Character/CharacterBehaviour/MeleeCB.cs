@@ -13,7 +13,7 @@ namespace _Dev.Script.Runtime.Core.Character.CharacterBehaviour
         {
             if (characterController.TryGetComponent(out IDamageable damageable))
             {
-                // damageable.TakeDamage(10);
+                damageable.TakeDamage(damage);
                 Debug.Log("Kena damage");
                 yield return null;
             }   
