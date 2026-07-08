@@ -73,6 +73,12 @@ namespace _Dev.Script.Runtime.Core.Wave
                 return;
 
             _currentWave++;
+            
+            if (!HasNextWave())  
+            {
+                ActionSystem.ActionSystem.Instance.Perform(new ResolutionPhaseGA());
+                return;
+            }
 
             ActionSystem.ActionSystem.Instance.Perform(new PreparationPhaseGA());
         }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using _Dev.Script.Runtime.Core.Character.Enemy;
+using _Dev.Script.Runtime.Core.Health;
 using _Dev.Script.Runtime.Enum;
 using _Dev.Script.Runtime.Interface;
 using UnityEngine;
@@ -12,6 +13,9 @@ namespace _Dev.Script.Runtime.Core.Character
     {
         [SerializeField]
         private CharacterDetection characterDetection;
+        
+        [SerializeField]
+        private HealthBar healthBar;
         
         [SerializeReference]
         protected Character _character;
@@ -35,6 +39,7 @@ namespace _Dev.Script.Runtime.Core.Character
         public virtual void Initialize(Character character, Transform baseTransform = null)
         {
             _character = character;
+            healthBar.SetHealthBar(_character.CharacterData.CharacterStats.CurrentHealth, _character.CharacterData.CharacterStats.MaxHealth);
         }
 
         private void OnEnable()
@@ -140,6 +145,7 @@ namespace _Dev.Script.Runtime.Core.Character
         public void TakeDamage(int damage)
         {
             _character.CharacterData.CharacterStats.TakeDamage(damage);
+            healthBar.SetHealthBar(_character.CharacterData.CharacterStats.CurrentHealth, _character.CharacterData.CharacterStats.MaxHealth);
             if (_character.CharacterData.CharacterStats.IsDead)
             {
                 _characterState = CharacterState.Dead;
@@ -149,8 +155,12 @@ namespace _Dev.Script.Runtime.Core.Character
 
         public void Die()
         {
-            OnDeathEvent?.Invoke();
             Destroy(gameObject);
+        }
+
+        private void OnDestroy()
+        {
+            OnDeathEvent?.Invoke();
         }
     }
 }

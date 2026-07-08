@@ -15,8 +15,7 @@ namespace _Dev.Script.Runtime.Core.Character.CharacterBehaviour
 
         public bool IsReady(float attackSpeed)
         {
-            return !IsAttacking &&
-                   Timer <= 0;
+            return !IsAttacking && Timer <= 0;
         }
 
         public void Tick(float dt)

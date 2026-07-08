@@ -25,7 +25,7 @@ namespace _Dev.Script.Runtime.Core.Character
         public int Defense => _defense;
 
         // 100 = normal speed
-        public float Speed => _speed / 100f;
+        public float Speed => _speed;
 
         public float Radius => _radius;
 

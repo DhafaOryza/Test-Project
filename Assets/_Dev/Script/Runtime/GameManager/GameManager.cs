@@ -28,11 +28,13 @@ namespace _Dev.Script.Runtime.GameManager
         private void OnEnable()
         {
             ActionSystem.AttachPerformer<PreparationPhaseGA>(PreparationPhasePerformer);
+            ActionSystem.AttachPerformer<ResolutionPhaseGA>(ResolutionPhasePerformer);
         }
 
         private void OnDisable()
         {
             ActionSystem.DetachPerformer<PreparationPhaseGA>();
+            ActionSystem.DetachPerformer<ResolutionPhaseGA>();
         }
 
         private IEnumerator PreparationPhasePerformer(PreparationPhaseGA preparationPhaseGA)
@@ -41,6 +43,13 @@ namespace _Dev.Script.Runtime.GameManager
             yield return null;
         }
 
+        private IEnumerator ResolutionPhasePerformer(ResolutionPhaseGA preparationPhaseGA)
+        {
+            Debug.Log("Kelar wavenya");
+            yield return null;
+        }
+        
+        
         void EnterPreparation()
         {
             _state = GameState.Preparation;
