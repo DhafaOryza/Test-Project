@@ -1,3 +1,4 @@
+using _Dev.Script.Runtime.Core.GameAction;
 using LumineREx.Utils.Singleton;
 using UnityEngine;
 
@@ -26,6 +27,11 @@ namespace _Dev.Script.Runtime.Core.Health
         {
             _currentHealth -= amount;
             _healthUI.UpdateHealth(_currentHealth);
+
+            if (_currentHealth <= 0)
+            {
+                ActionSystem.ActionSystem.Instance.ForcePerform(new ResolutionPhaseGA());
+            }
         }
     }
 }

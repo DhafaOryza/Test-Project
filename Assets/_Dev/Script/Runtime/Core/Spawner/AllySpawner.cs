@@ -9,11 +9,14 @@ namespace _Dev.Script.Runtime.Core.Spawner
     {
         [SerializeField]
         private AllyController _allyController;
+        [SerializeField]
+        private Collider2D boundaryCollider;
         
         public AllyController SpawnCharacterController(Character.Character character, Transform position)
         {
             AllyController allyController = Instantiate(_allyController, position.position, Quaternion.identity);
             allyController.Initialize(character);
+            allyController.Draggle.SetBoundary(boundaryCollider);
             return allyController;
         }
     }

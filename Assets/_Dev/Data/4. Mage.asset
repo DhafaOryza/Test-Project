@@ -21,7 +21,7 @@ MonoBehaviour:
     - rid: 5550902204989440079
       type: {class: CharacterData, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
       data:
-        _nameCharacter: 
+        _nameCharacter: Mage
         _characterStats:
           rid: 5550902204989440080
         _characterBehaviour:

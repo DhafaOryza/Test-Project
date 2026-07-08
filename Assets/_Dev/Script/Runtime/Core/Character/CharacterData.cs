@@ -21,7 +21,7 @@ namespace _Dev.Script.Runtime.Core.Character
         public CharacterData(CharacterData characterData)
         {
             _nameCharacter = characterData.NameCharacter;
-            _characterStats = new  CharacterStats(characterData.CharacterStats);
+            _characterStats = new CharacterStats(characterData.CharacterStats);
             _characterBehaviour = characterData.CharacterBehaviour;
         }
     }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using LumineREx.Utils.Singleton;
+using UnityEngine;
 
 namespace _Dev.Script.Runtime.Core.ActionSystem
 {
@@ -65,6 +66,12 @@ namespace _Dev.Script.Runtime.Core.ActionSystem
         /// </para>
         /// </summary>
         public bool UseSorting { get; private set; } = true;
+        
+        private Coroutine _activeFlowCoroutine;
+
+        // If true, only actions matching _lockedActionType are allowed to be processed
+        private bool _isLocked = false;
+        private Type _lockedActionType = null;
 
         // -------------------------------------------------------------------------
         // Public API
@@ -85,11 +92,16 @@ namespace _Dev.Script.Runtime.Core.ActionSystem
         /// </param>
         public void Perform(GameAction action, Action onPerformFinished = null)
         {
+            if (_isLocked && action.GetType() != _lockedActionType)
+                return; 
+
             if (IsPerforming) return;
+
             IsPerforming = true;
-            StartCoroutine(Flow(action, () =>
+            _activeFlowCoroutine = StartCoroutine(Flow(action, () =>
             {
                 IsPerforming = false;
+                _activeFlowCoroutine = null;
                 onPerformFinished?.Invoke();
             }));
         }
@@ -138,6 +150,38 @@ namespace _Dev.Script.Runtime.Core.ActionSystem
             }
 
             _reactions.Add(gameAction);
+        }
+        
+        /// <summary>
+        /// "Emergency stop": forcibly halts the currently running flow (including all nested
+        /// reactions and any performer running inside it), discards whatever reactions are
+        /// still queued, then runs this action on its own. If lockToThisType is true, any
+        /// other action type will be rejected by Perform() until Unlock() is called.
+        /// </summary>
+        public void ForcePerform(GameAction action, bool lockToThisType = true)
+        {
+            if (_activeFlowCoroutine != null)
+            {
+                StopCoroutine(_activeFlowCoroutine);
+                _activeFlowCoroutine = null;
+            }
+
+            _reactions?.Clear();
+            _reactions = null;
+            IsPerforming = false;
+
+            if (lockToThisType)
+            {
+                _isLocked = true;
+                _lockedActionType = action.GetType();
+            }
+
+            IsPerforming = true;
+            _activeFlowCoroutine = StartCoroutine(Flow(action, () =>
+            {
+                IsPerforming = false;
+                _activeFlowCoroutine = null;
+            }));
         }
 
         // -------------------------------------------------------------------------
@@ -253,6 +297,13 @@ namespace _Dev.Script.Runtime.Core.ActionSystem
             PreSubs.Clear();
             PostSubs.Clear();
             Performer.Clear();
+        }
+        
+        /// <summary>Releases the lock, e.g. after a restart or returning to the main menu.</summary>
+        public void Unlock()
+        {
+            _isLocked = false;
+            _lockedActionType = null;
         }
 
         // -------------------------------------------------------------------------

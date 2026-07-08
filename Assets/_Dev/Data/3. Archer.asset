@@ -13,10 +13,26 @@ MonoBehaviour:
   m_Name: 3. Archer
   m_EditorClassIdentifier: Assembly-CSharp::_Dev.Script.Runtime.Core.Character.CharacterDefSO
   _characterData:
-    rid: -2
+    rid: 5550902229963636803
   _characterSprite: {fileID: 0}
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 5550902229963636803
+      type: {class: CharacterData, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
+      data:
+        _nameCharacter: Archer
+        _characterStats:
+          rid: 5550902229963636804
+        _characterBehaviour:
+          rid: -2
+    - rid: 5550902229963636804
+      type: {class: CharacterStats, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
+      data:
+        _maxHealth: 90
+        _attack: 28
+        _defense: 8
+        _speed: 110
+        _radius: 6

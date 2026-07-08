@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4421514125187239456}
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 4421514125187239456}
   - component: {fileID: 3171571051519273925}
   - component: {fileID: 1029432467437867512}
-  m_Layer: 7
+  m_Layer: 2
   m_Name: Detector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,11 +307,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1888269202330308640, guid: bae4cfbb4a67a8347969ed7a2d1b4e25, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1.005
+      value: 1.9
       objectReference: {fileID: 0}
     - target: {fileID: 1888269202330308640, guid: bae4cfbb4a67a8347969ed7a2d1b4e25, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0.1541
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 1888269202330308640, guid: bae4cfbb4a67a8347969ed7a2d1b4e25, type: 3}
       propertyPath: m_LocalPosition.x
@@ -364,6 +364,10 @@ PrefabInstance:
     - target: {fileID: 2905214655758703597, guid: bae4cfbb4a67a8347969ed7a2d1b4e25, type: 3}
       propertyPath: m_Name
       value: HealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786006569805927562, guid: bae4cfbb4a67a8347969ed7a2d1b4e25, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
