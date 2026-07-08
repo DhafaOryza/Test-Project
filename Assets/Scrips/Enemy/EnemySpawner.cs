@@ -51,6 +51,7 @@ public class EnemySpawner : MonoBehaviour
         CheckDifficultyIncrease();
         CheckEnemyUnlocks();
 
+        // menghitung dari belakang dari 10:00 ke 0
         spawnTimer -= Time.deltaTime;
         if (spawnTimer <= 0f)
         {
@@ -84,6 +85,7 @@ public class EnemySpawner : MonoBehaviour
         {
             lastDifficultyTier = currentTier;
 
+            // mengunakan Matf.Max agar interval tidak lebih kecil dari 0.5
             currentSpawnInterval = Mathf.Max(minimumSpawnInterval, currentSpawnInterval - intervalReductionPerTier);
 
             Debug.Log("Difficulty increased! Spawn interval is now: " + currentSpawnInterval + "s");
@@ -92,6 +94,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnOneEnemy()
     {
+        // cek enemy yang sudah di Unlock untuk di spawn.
         if (enemyPrefabs.Length == 0 || player == null) return;
 
         GameObject enemyToSpawn = enemyPrefabs[Random.Range(0, availableEnemyCount)];
@@ -102,9 +105,11 @@ public class EnemySpawner : MonoBehaviour
 
     private Vector2 GetRandomPositionAroundPlayer()
     {
+        // menentukan jarak radius untuk spwan
         float randomAngle = Random.Range(0f, 360f);
         float randomDistance = Random.Range(minSpawnRadius, maxSpawnRadius);
 
+        // mengubah polar (sudut + jarak) menjadi koordinat kartesius (x, y)
         float radians = randomAngle * Mathf.Deg2Rad;
         Vector2 offset = new Vector2(Mathf.Cos(radians), Mathf.Sin(radians)) * randomDistance;
 

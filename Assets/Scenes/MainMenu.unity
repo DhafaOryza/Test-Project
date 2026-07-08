@@ -233,7 +233,7 @@ PrefabInstance:
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 958515496}
+      objectReference: {fileID: 1999076240}
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -248,7 +248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectWeapon
+      value: OnWeaponSelected
       objectReference: {fileID: 0}
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -256,7 +256,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: WeaponSelectionManager, Assembly-CSharp
+      value: WeaponSelectionUI, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -720,7 +720,7 @@ PrefabInstance:
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 958515496}
+      objectReference: {fileID: 1999076240}
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -735,7 +735,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectWeapon
+      value: OnWeaponSelected
       objectReference: {fileID: 0}
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -743,7 +743,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: WeaponSelectionManager, Assembly-CSharp
+      value: WeaponSelectionUI, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -1606,18 +1606,18 @@ PrefabInstance:
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 958515496}
+      objectReference: {fileID: 1999076240}
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartGame
+      value: OnPlayButtonClicked
       objectReference: {fileID: 0}
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: WeaponSelectionManager, Assembly-CSharp
+      value: WeaponSelectionUI, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1911,7 +1911,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: QuitGame
+      value: OnQuitButtonClicked
       objectReference: {fileID: 0}
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -2518,7 +2518,7 @@ PrefabInstance:
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 958515496}
+      objectReference: {fileID: 1999076240}
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -2533,7 +2533,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectWeapon
+      value: OnWeaponSelected
       objectReference: {fileID: 0}
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -2541,7 +2541,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: WeaponSelectionManager, Assembly-CSharp
+      value: WeaponSelectionUI, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6412223884923792577, guid: 50bb3cc5c75ff0d8e9172ef9049b07e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName

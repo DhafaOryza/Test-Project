@@ -46,8 +46,19 @@ public class WeaponSelectionUI : MonoBehaviour
             reloadTimeText.text = $"ReloadTime: {data.reloadTime.ToString("F1")}";
     }
 
-    public void QuitGame()
+    public void OnWeaponSelected(int index)
     {
-        Application.Quit();
+        WeaponSelectionManager.Instance.SelectWeapon(index);
+        ShowWeaponStats(index);
+    }
+
+    public void OnPlayButtonClicked()
+    {
+        WeaponSelectionManager.Instance.StartGame();
+    }
+
+    public void OnQuitButtonClicked()
+    {
+        WeaponSelectionManager.Instance.QuitGame();
     }
 }

@@ -5,7 +5,7 @@ public class PlayerAnimation : MonoBehaviour
     private Animator animator;
     private MovementPlayer movement;
 
-    void Start()
+    void Awake()
     {
         animator = GetComponent<Animator>();
         movement = GetComponent<MovementPlayer>();
@@ -13,15 +13,20 @@ public class PlayerAnimation : MonoBehaviour
 
     void Update()
     {
+        HandleAnimatorParameters();
+    }
+
+    private void HandleAnimatorParameters()
+    {
+        // mengambil variabel MoveInput pada movementPlayer
         Vector2 moveInput = movement.MoveInput;
 
+        // melakukan pengecekan kode  jika panjang magnitude MoveInput lebih dari 0.1 maka animasi akan di putar
         if (moveInput.magnitude > 0.1f)
         {
-            Vector3 localMove = transform.InverseTransformDirection(new Vector3(moveInput.x, moveInput.y, 0));
-
-            animator.SetFloat("moveX", localMove.x);
-            animator.SetFloat("moveY", localMove.y);
             animator.SetBool("isMoving", true);
+            animator.SetFloat("moveX", moveInput.x);
+            animator.SetFloat("moveY", moveInput.y);
         }
         else
         {

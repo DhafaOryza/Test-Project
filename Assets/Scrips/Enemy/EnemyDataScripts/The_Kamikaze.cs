@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class The_Kamikaze : MonoBehaviour
@@ -5,7 +6,10 @@ public class The_Kamikaze : MonoBehaviour
     [Header("Kamikaze Settings")]
     [SerializeField] private float explosionRadius = 2f;
     [SerializeField] private float explosionDamageToEnemies = 5f;
-    [SerializeField] private bool isExploding = false;
+    [SerializeField] private float timeExplode = 1.5f;
+    private bool isCountingDown = false;
+
+    private bool hasExploded = false;
 
     private EnemyStatus status;
     private Transform playerTarget;
@@ -13,7 +17,6 @@ public class The_Kamikaze : MonoBehaviour
     private void Awake()
     {
         status = GetComponent<EnemyStatus>();
-
         if (status != null)
         {
             // Mendaftarkan fungsi Explode saat musuh ini mati (karena ditembak atau nabrak player)
@@ -32,27 +35,35 @@ public class The_Kamikaze : MonoBehaviour
 
     private void Update()
     {
-        if (playerTarget == null || isExploding || status == null) return;
+        if (playerTarget == null || isCountingDown || status == null) return;
 
+        // menghitung jarak dari player dengan Vector2.Distance
         float distanceToPlayer = Vector2.Distance(transform.position, playerTarget.position);
 
         if (distanceToPlayer <= explosionRadius)
         {
-            // Cukup panggil Die(). Otomatis akan memicu Explode() berkat fungsi di Awake()
-            status.Die(); 
+            // waktu beberapa detik sebelum meledak
+            isCountingDown = true;
+            StartCoroutine(ExplodeCountdown());
         }
+    }
+
+    private IEnumerator ExplodeCountdown()
+    {
+        yield return new WaitForSeconds(timeExplode);
+        status.Die();
     }
 
     private void Explode()
     {
-        if (isExploding) return; 
-        isExploding = true; 
+        if (hasExploded) return;
+        hasExploded = true;
 
         Collider2D[] objectsInBlastRadius = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
 
         foreach (Collider2D obj in objectsInBlastRadius)
         {
-            // Melukai Player
+            // ledakan bisa Melukai Player
             if (obj.CompareTag("Player"))
             {
                 PlayerHealth playerHealth = obj.GetComponent<PlayerHealth>();
@@ -62,9 +73,8 @@ public class The_Kamikaze : MonoBehaviour
                 }
             }
 
-            // Melukai Musuh Lain
+            // dan ledakan juga bisa Melukai Musuh Lain
             EnemyStatus otherEnemy = obj.GetComponent<EnemyStatus>();
-
             if (otherEnemy != null && otherEnemy != this.status)
             {
                 otherEnemy.TakeDamage(explosionDamageToEnemies, transform.position);

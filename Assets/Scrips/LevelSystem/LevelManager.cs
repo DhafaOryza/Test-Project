@@ -40,11 +40,7 @@ public class LevelManager : MonoBehaviour
     {
         if (displayedFillAmount != targetFillAmount)
         {
-            displayedFillAmount = Mathf.MoveTowards(
-                displayedFillAmount,
-                targetFillAmount,
-                fillSpeed * Time.deltaTime
-            );
+            displayedFillAmount = Mathf.MoveTowards(displayedFillAmount,targetFillAmount,fillSpeed * Time.deltaTime);
 
             levelFillBar.fillAmount = displayedFillAmount;
         }

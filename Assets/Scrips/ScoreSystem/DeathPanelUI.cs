@@ -59,14 +59,9 @@ public class DeathPanelUI : MonoBehaviour
         totalText_Score.text = totalPoints.ToString();
     }
 
-    public void RetyGame()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
     public void QuitGame()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
 }

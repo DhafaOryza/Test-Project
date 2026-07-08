@@ -21,6 +21,7 @@ public class The_Splitter : MonoBehaviour
             Rigidbody2D rb = miniEnemy.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
+                // AddForce untuk pemaksaan terpental
                 rb.AddForce(randomOffset.normalized * scatterForce, ForceMode2D.Impulse);
             }
         }

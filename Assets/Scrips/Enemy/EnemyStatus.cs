@@ -43,7 +43,7 @@ public class EnemyStatus : MonoBehaviour
 
     public void TakeDamage(float damageAmount, Vector3 hitPoint)
     {
-        //Jika musuh sudah mati ATAU sedang dalam masa Spawn Protection, abaikan tembakan!
+        //Jika enemy sudah mati atau sedang dalam masa Spawn Protection, abaikan tembakan!
         if (isDead || isInvulnerable) return; 
 
         currentHealth -= damageAmount;

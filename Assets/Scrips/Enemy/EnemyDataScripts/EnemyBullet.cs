@@ -27,6 +27,7 @@ public class EnemyBullet : MonoBehaviour
             }
             Destroy(gameObject);
         }
+        
         // jika peluru mengenai tembok/penghalang maka akan menghilang.
         else if (collision.CompareTag("Obstacle"))
         {

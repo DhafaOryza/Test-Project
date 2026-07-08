@@ -23,6 +23,7 @@ public class The_Shooter : MonoBehaviour
     {
         if (playerTarget == null || status == null) return;
         
+        // menghijung jarak player
         float distanceToPlayer = Vector2.Distance(transform.position, playerTarget.position);
 
         if (distanceToPlayer > stopDistance)
@@ -49,7 +50,7 @@ public class The_Shooter : MonoBehaviour
         // untuk meluncukan pleuru di posisi ShootPoint
         GameObject bullet = Instantiate(enemyBulletPrefab, shootPoint.position, Quaternion.identity);
 
-        // mendorong peluru
+        // menghitung untuk mendorong peluru
         bullet.GetComponent<Rigidbody2D>().linearVelocity = direction * 8f;
 
         // menghubungkan dengan fungsi damage

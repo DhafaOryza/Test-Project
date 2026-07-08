@@ -15,7 +15,7 @@ MonoBehaviour:
   pelletCount: 3
   spreadAngle: 20
   magazineSize: 5
-  fireRate: 0.8
+  fireRate: 2
   reloadTime: 2
   range: 10
   damage: 1

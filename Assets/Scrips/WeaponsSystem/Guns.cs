@@ -61,7 +61,7 @@ namespace TopDown.Combat
         {
             isReloading = true;
 
-            float actualReloadTime = data.reloadTime + PlayerStats.Instance.reloadMultiplier;
+            float actualReloadTime = data.reloadTime * PlayerStats.Instance.reloadMultiplier;
 
             yield return new WaitForSeconds(actualReloadTime);
             currentAmmo = data.magazineSize;
@@ -72,7 +72,7 @@ namespace TopDown.Combat
         {
             canShoot = false;
 
-            float actualFireRate = data.fireRate + PlayerStats.Instance.fireRateMultiplier;
+            float actualFireRate = data.fireRate * PlayerStats.Instance.fireRateMultiplier;
 
             yield return new WaitForSeconds(actualFireRate);
             canShoot = true;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: The_Kamikaze
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   enemyName: The_Kamikaze
-  maxHealth: 1
+  maxHealth: 2
   speed: 2.2
   damage: 2
   attackCooldown: 0

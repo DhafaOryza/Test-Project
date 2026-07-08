@@ -55,7 +55,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void Heal(float healthAmount)
     {
-        currentHealth -= healthAmount;
+        currentHealth += healthAmount;
 
         if (currentHealth > maxHealth)
         {

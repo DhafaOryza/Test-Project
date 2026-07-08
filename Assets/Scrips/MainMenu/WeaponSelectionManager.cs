@@ -23,6 +23,7 @@ public class WeaponSelectionManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
     public void SelectWeapon(int weaponIndex)
     {
         selectedWeaponIndex = weaponIndex;
@@ -32,5 +33,9 @@ public class WeaponSelectionManager : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene(gameplaySceneName);
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

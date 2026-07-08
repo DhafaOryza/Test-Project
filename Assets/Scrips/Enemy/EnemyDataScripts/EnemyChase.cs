@@ -14,6 +14,7 @@ public class EnemyChase : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         status = GetComponent<EnemyStatus>();
         
+        // enemy mengejar object yang memiliki tag "Player"
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
         {
@@ -25,6 +26,7 @@ public class EnemyChase : MonoBehaviour
     {
         if (playerTarget != null)
         {
+            // 
             Vector2 direction = (playerTarget.position - transform.position).normalized;
             rb.linearVelocity = direction * status.data.speed;
         }
@@ -40,11 +42,13 @@ public class EnemyChase : MonoBehaviour
         {
             if (Time.time >= nextAttackTime)
             {
+                // jika terkena seranagn player health akan berkurang
                 PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
                 
                 if (playerHealth != null)
                 {
-                    playerHealth.TakeDamage(status.data.attackCooldown);
+                    // mengambil damage dan menunggu cooldown penyerangan
+                    playerHealth.TakeDamage(status.data.damage);
                     nextAttackTime = Time.time + status.data.attackCooldown;
                 }
             }

@@ -3,7 +3,6 @@ using UnityEngine;
 public class Background : MonoBehaviour
 {
     [Header("Pengaturan Kecepatan")]
-    [Tooltip("Ubah angka ini agar pergeseran lantai pas dengan kecepatan lari Player")]
     [SerializeField] private float scrollSpeed = 0.5f;
 
     private Material mat;
@@ -17,6 +16,7 @@ public class Background : MonoBehaviour
 
     void Update()
     {
+        // menghitung offset dari camera pada x dan y kemudian di kalikan dengan scroll speed
         Vector2 Offset = new Vector2(cam.position.x, cam.position.y) * scrollSpeed;
         mat.mainTextureOffset = Offset;
     }

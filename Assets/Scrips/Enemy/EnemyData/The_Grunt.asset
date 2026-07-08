@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: The_Grunt
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   enemyName: The_Grunt
-  maxHealth: 3
+  maxHealth: 2
   speed: 2
   damage: 1
   attackCooldown: 2

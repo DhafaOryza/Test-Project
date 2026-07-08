@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   pelletCount: 1
   spreadAngle: 5
-  magazineSize: 25
-  fireRate: 0.1
+  magazineSize: 30
+  fireRate: 1
   reloadTime: 2
   range: 15
   damage: 0.5
