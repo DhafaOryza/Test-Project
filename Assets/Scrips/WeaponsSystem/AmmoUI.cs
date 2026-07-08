@@ -25,11 +25,6 @@ namespace TopDown.UI
         private void FindWeaponHolder()
         {
             weaponHolder = Object.FindAnyObjectByType<WeaponHolder>();
-
-            if (weaponHolder == null)
-            {
-                Debug.LogWarning("AmmoUI: WeaponHolder is not found in the scene yet!");
-            }
         }
 
         private void Update()

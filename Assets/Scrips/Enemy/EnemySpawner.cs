@@ -85,7 +85,7 @@ public class EnemySpawner : MonoBehaviour
         {
             lastDifficultyTier = currentTier;
 
-            // mengunakan Matf.Max agar interval tidak lebih kecil dari 0.5
+            // mengunakan Mathf.Max agar interval tidak lebih kecil dari 0.5
             currentSpawnInterval = Mathf.Max(minimumSpawnInterval, currentSpawnInterval - intervalReductionPerTier);
 
             Debug.Log("Difficulty increased! Spawn interval is now: " + currentSpawnInterval + "s");
