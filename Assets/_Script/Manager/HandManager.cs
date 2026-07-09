@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.Splines;
 using System.Collections.Generic;
 using DG.Tweening;
-using Unity.XR.OpenVR;
 
 public class HandManager : MonoBehaviour
 {
@@ -11,9 +10,9 @@ public class HandManager : MonoBehaviour
     [SerializeField] private GameObject cardPrefab; 
     [SerializeField] private SplineContainer splineContainer;
     [SerializeField] private Transform spawnpoint;
-    [SerializeField] private PlayerStats playerStats;
+    /*[SerializeField] private PlayerStats playerStats;
     [SerializeField] private GameManager gameManager;
-    [SerializeField] private AllyManager allyManager;
+    [SerializeField] private AllyManager allyManager;*/
 
     private List<CardView> handCards = new();
     private int playsRemaining;

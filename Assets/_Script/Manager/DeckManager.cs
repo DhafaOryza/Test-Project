@@ -3,15 +3,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 
-public class GameManager : MonoBehaviour
+public class DeckManager : MonoBehaviour
 {
     [Header("Deck System")]
     [Tooltip("Isi list ini dengan kartu yang dipilih player di awal game")]
     [SerializeField] private List<CardData> playerStartingDeck; 
-    [SerializeField] private HandManager handManager;
+    /*[SerializeField] private HandManager handManager;
     [SerializeField] private CardChoiceManager cardChoiceManager;
     [SerializeField] private TurnManager turnManager;
-    [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private PlayerStats playerStats;*/
     
     [Header("UI System")]
     [SerializeField] private GameObject gameOverPanel;
@@ -34,19 +34,19 @@ public class GameManager : MonoBehaviour
     public int DrawPileCount => drawPile.Count;
     public int DiscardPileCount => discardPile.Count;
 
-    void Start()
+    public void Initialize()
     {
-        handManager.OnCardSentToDiscardPile += HandleCardDiscarded;
-        playerStats.OnPlayerDied += ShowGameOverPanel;
+        GameManager.Instance.handManager.OnCardSentToDiscardPile += HandleCardDiscarded;
+        GameManager.Instance.playerStats.OnPlayerDied += ShowGameOverPanel;
 
         if (gameOverPanel != null) gameOverPanel.SetActive(false);
         if (CancelButton != null) CancelButton.SetActive(false);
 
-        if (cardChoiceManager != null)
+        if ( GameManager.Instance.cardChoiceManager != null)
         {
-            cardChoiceManager.OnDeckReady += StartGameWithChosenDeck;
-            cardChoiceManager.OnRewardCardChosen += AddRewardCardToDeck;
-            cardChoiceManager.BeginCardSelection();
+            GameManager.Instance.cardChoiceManager.OnDeckReady += StartGameWithChosenDeck;
+            GameManager.Instance.cardChoiceManager.OnRewardCardChosen += AddRewardCardToDeck;
+            GameManager.Instance.cardChoiceManager.BeginCardSelection();
         }
         else
         {
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
     {
         playerStartingDeck = chosenDeck;
         BuildInitialDeck();
-        turnManager.BeginFirstTurn();
+        GameManager.Instance.turnManager.BeginFirstTurn();
     }
 
     private void AddRewardCardToDeck(CardData rewardData)
@@ -69,9 +69,9 @@ public class GameManager : MonoBehaviour
         AddCardToDiscard(newCard);
         
         //Debug.Log($"[GameManager] Kartu baru '{rewardData.Title}' telah ditambahkan ke deck pemain!");
-        if (handManager != null)
+        if (GameManager.Instance.handManager != null)
         {
-            handManager.ResetRoundPlays();
+            GameManager.Instance.handManager.ResetRoundPlays();
         }
 
         for (int i = 0; i < 2; i++)
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
 
     public void DrawCard()
     {
-        if (handManager.IsHandFull)
+        if (GameManager.Instance.handManager.IsHandFull)
         {
             //Debug.Log("[GameManager] Tangan sudah penuh, batal tarik kartu dari Deck.");
             return;
@@ -136,14 +136,14 @@ public class GameManager : MonoBehaviour
 
     private void ExecuteDraw()
     {
-        if (handManager.IsHandFull)
+        if (GameManager.Instance.handManager.IsHandFull)
         {
             return;
         }
 
         Card drawnCard = drawPile[0];
         drawPile.RemoveAt(0);
-        handManager.AddCardToHand(drawnCard);
+        GameManager.Instance.handManager.AddCardToHand(drawnCard);
     }
 
     private float PlayReshuffleAnimation(int discardedCount)
@@ -226,7 +226,7 @@ public class GameManager : MonoBehaviour
         if (gameOverPanel != null) gameOverPanel.SetActive(false);
         if (CancelButton != null) CancelButton.SetActive(true);
 
-        List<CardView> activeHandCard = handManager != null ? handManager.GetHandCardViews() : new List<CardView>();
+        List<CardView> activeHandCard = GameManager.Instance.handManager != null ? GameManager.Instance.handManager.GetHandCardViews() : new List<CardView>();
 
         int TotalCardsCount = drawPile.Count + discardPile.Count + activeHandCard.Count;
         if (TotalCardsCount == 0)
@@ -303,9 +303,9 @@ public class GameManager : MonoBehaviour
         }
         showcasedDummyCards.Clear();
 
-        if (handManager != null)
+        if (GameManager.Instance.handManager != null)
         {
-            foreach(var card in handManager.GetHandCardViews())
+            foreach(var card in GameManager.Instance.handManager.GetHandCardViews())
             {
                 if (card != null)
                 {
