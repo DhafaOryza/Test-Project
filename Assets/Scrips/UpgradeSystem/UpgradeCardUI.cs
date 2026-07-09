@@ -26,6 +26,6 @@ public class UpgradeCardUI : MonoBehaviour
 
     private void SelectThisUpgrade()
     {
-        UpgradeManager.Instance.ApplyUpgrade(assignedUpgrade);
+        GameManager.Instance.upgradeManager.ApplyUpgrade(assignedUpgrade);
     }
 }

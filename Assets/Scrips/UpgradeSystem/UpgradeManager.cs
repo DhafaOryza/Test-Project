@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
 {
-    public static UpgradeManager Instance;
-
     [Header("UI References")]
     [SerializeField] private GameObject upgradePanel;
     [SerializeField] private Transform cardContainer;
@@ -14,9 +12,12 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private int choicesCount = 3;
     [SerializeField] private List<UpgradeData> allUpgrades;
 
-    private void Awake()
+    public void Initialize()
     {
-        if (Instance == null) Instance = this;
+        if (upgradePanel != null)
+        {
+            upgradePanel.SetActive(false);
+        }
     }
 
     public void TriggerLevelUp()

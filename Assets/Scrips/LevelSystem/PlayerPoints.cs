@@ -8,9 +8,9 @@ public class PlayerPoints : MonoBehaviour
     {
         CurrentPoints += amount;
 
-        if (LevelManager.Instance != null)
+        if (GameManager.Instance.levelManager != null)
         {
-            LevelManager.Instance.AddPoints(amount);
+            GameManager.Instance.levelManager.AddPoints(amount);
         }
         Debug.Log("Point : " + CurrentPoints);
     }

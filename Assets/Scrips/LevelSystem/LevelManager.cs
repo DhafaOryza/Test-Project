@@ -4,9 +4,6 @@ using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
-
-    public static LevelManager Instance;
-
     [Header("UI References")]
     [SerializeField] private Image levelFillBar;
     [SerializeField] private TMP_Text levelText;
@@ -21,14 +18,17 @@ public class LevelManager : MonoBehaviour
     private float targetFillAmount = 0f;
     private float displayedFillAmount = 0f;
 
-    private void Awake()
+    public void Initialize()
     {
-        if (Instance != null && Instance != this)
+        currentLevel = 1;
+        currentPoints = 0;
+        targetFillAmount = 0f;
+        displayedFillAmount = 0f;
+
+        if (levelFillBar != null)
         {
-            Destroy(gameObject);
-            return;
+            levelFillBar.fillAmount = 0f;
         }
-        Instance = this;
     }
 
     private void Start()
@@ -56,9 +56,9 @@ public class LevelManager : MonoBehaviour
             currentLevel++;
             UpdateLevelText();
         
-            if (UpgradeManager.Instance != null)
+            if (GameManager.Instance.upgradeManager != null)
             {
-                UpgradeManager.Instance.TriggerLevelUp();
+                GameManager.Instance.upgradeManager.TriggerLevelUp();
             }
 
         }

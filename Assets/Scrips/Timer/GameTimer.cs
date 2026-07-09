@@ -55,7 +55,7 @@ public class GameTimer : MonoBehaviour
 
         float finalTime = maxTimeInSeconds;
         int totalKills = ScoreManager.Instance.enemiesKilled;
-        int finalLevel = LevelManager.Instance.GetCurrentLevel();
+        int finalLevel = GameManager.Instance.levelManager.GetCurrentLevel();
 
         survivedPanel.ShowSurvivePanel(finalTime, totalKills, finalLevel);
     }
