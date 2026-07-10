@@ -2,21 +2,22 @@ using UnityEngine;
 using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
-using System.Collections;
 
 public class EnemyManager : MonoBehaviour
 {
     [Header("Prefabs & Data")]
     [SerializeField] private GameObject cardPrefab;
     [SerializeField] private List<CardData> possibleEnemies;
-    [SerializeField] private PlayerStats playerStats;
-    [SerializeField] private CardChoiceManager cardChoiceManager;
 
     [Header("Level / Wave System")]
     [Tooltip("Atur jumlah musuh per level. Contoh: 1, 2, 3")]
     [SerializeField] private List<int> enemiesPerLevel = new List<int>() { 1, 2, 3 };
     [SerializeField] private float hpScalePerLevel = 0.3f;
     [SerializeField] private float damageScalePerLevel = 0.2f;
+
+    [Header("Pooling System")]
+    [SerializeField] private PoolIdSO enemyCardPoolId;
+    [SerializeField] private PoolIdSO dummyCardPoolId;
 
     [Header("Positions (Titik Koordinat)")]
     [Tooltip("Titik slot di arena (Kiri, Tengah, Kanan)")]
@@ -52,9 +53,13 @@ public class EnemyManager : MonoBehaviour
     public int CardsLeft => totalEnemiesInPool + enemiesLeftInCurrentWave; 
     public int CurrentLevel => currentLevelIndex + 1; 
 
-    void Start()
+    public void Initialize()
     {
-        // Hitung total seluruh musuh di game untuk menggambar ketebalan visual deck awal
+        currentLevelIndex = 0;
+        enemiesDefeatedCount = 0;
+        ActiveEnemies.Clear();
+        graveyardCards.Clear();
+
         CalculateTotalEnemies();
         UpdateDeckVisuals();
         StartWave(currentLevelIndex);
@@ -81,21 +86,38 @@ public class EnemyManager : MonoBehaviour
     // Mengupdate ketebalan visual tumpukan kartu deck musuh
     private void UpdateDeckVisuals()
     {
-        foreach (var dummy in deckDummyCards) if (dummy != null) Destroy(dummy);
+        foreach (var dummy in deckDummyCards)
+        {
+            if (dummy != null)
+            {
+                GameManager.Instance.poolManager.Despawn(dummyCardPoolId , dummy);
+            }
+        }
         deckDummyCards.Clear();
+
+        if (enemyDeckPoint == null)
+        {
+            Debug.LogError("🚨 [EnemyManager] Titik koordinat 'Enemy Deck Point' kosong di Inspector!");
+            return;
+        }
 
         int dummyCount = Mathf.Min(totalEnemiesInPool, 4);
         for (int i = 0; i < dummyCount; i++)
         {
             Vector3 pos = enemyDeckPoint.position + (stackOffset * i);
-            GameObject dummy = Instantiate(cardPrefab, pos, enemyDeckPoint.rotation);
-        
-            Destroy(dummy.GetComponent<CardView>());
+            GameObject dummy = GameManager.Instance.poolManager.Spawn(dummyCardPoolId, pos, enemyDeckPoint.rotation);
+            
+            if (dummy == null)
+            {
+                Debug.LogError($"🚨 [EnemyManager] Gagal Spawn Dummy Card ke-{i}! Pastikan: 1. Kolom DummyCardPoolId di Inspector EnemyManager sudah diisi. 2. PoolData_DummyCard sudah terdaftar di Catalog. 3. Prefab di PoolData_DummyCard tidak kosong.");
+                continue; 
+            }
+            
             Collider2D col = dummy.GetComponent<Collider2D>();
-            if (col != null) Destroy(col);
+            if (col != null) col.enabled = false;
             
             CardView view = dummy.GetComponent<CardView>();
-            if (i == 0 && enemyDeckQueue.Count > 0)
+            if (i == 0 && enemyDeckQueue.Count > 0 && view != null)
             {
                 view.Setup(new Card(enemyDeckQueue.Peek()));
             }
@@ -158,7 +180,7 @@ public class EnemyManager : MonoBehaviour
         enemyCard.CurrentHealth = enemyCard.MaxHealth;
         enemyCard.Damage += Mathf.RoundToInt(dmgBonus);
 
-        GameObject g = Instantiate(cardPrefab, enemyDeckPoint.position, enemyDeckPoint.rotation);
+        GameObject g = GameManager.Instance.poolManager.Spawn(enemyCardPoolId, enemyDeckPoint.position, enemyDeckPoint.rotation);
         
         CardView view = g.GetComponent<CardView>();
         view.Setup(enemyCard);
@@ -227,11 +249,13 @@ public class EnemyManager : MonoBehaviour
                 }
                 
                 // Batasi penumpukan di scene (opsional, untuk mencegah lag)
-                if (graveyardCards.Count > 4)
+                if (graveyardCards.Count > 6)
                 {
                     CardView oldest = graveyardCards[0];
                     graveyardCards.RemoveAt(0);
-                    if (oldest != null) Destroy(oldest.gameObject);
+                    if (oldest != null) {
+                        GameManager.Instance.poolManager.Despawn(enemyCardPoolId , oldest.gameObject);
+                    }
                 }
             });
 
@@ -240,7 +264,7 @@ public class EnemyManager : MonoBehaviour
         if (enemiesLeftInCurrentWave <= 0)
         {
             Debug.Log($"Level {currentLevelIndex + 1} Clear!");
-            if (cardChoiceManager != null) cardChoiceManager.BeginRewardSelection();
+            if (GameManager.Instance.cardChoiceManager != null) GameManager.Instance.cardChoiceManager.BeginRewardSelection();
 
             currentLevelIndex++;
 

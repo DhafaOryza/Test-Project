@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public TurnManager turnManager;
     public EnemyManager enemyManager;
     public PlayerStats playerStats;
+    public PoolManager poolManager;
 
     private bool hasInitialized = false;
 
@@ -44,8 +45,22 @@ public class GameManager : MonoBehaviour
         if (hasInitialized) return;
         hasInitialized = true;
 
+        if (poolManager == null) poolManager = Object.FindFirstObjectByType<PoolManager>();
         if (deckManager == null) deckManager = Object.FindFirstObjectByType<DeckManager>();
+        if (handManager == null) handManager = Object.FindFirstObjectByType<HandManager>();
+        if (allyManager == null) allyManager = Object.FindFirstObjectByType<AllyManager>();
+        if (turnManager == null) turnManager = Object.FindFirstObjectByType<TurnManager>();
+        if (cardChoiceManager == null) cardChoiceManager = Object.FindFirstObjectByType<CardChoiceManager>();
+        if (playerStats == null) playerStats = Object.FindFirstObjectByType<PlayerStats>();
+        if (enemyManager == null) enemyManager = Object.FindFirstObjectByType<EnemyManager>();
 
+
+        if (poolManager != null) poolManager.Initialize();
+        if (enemyManager != null) enemyManager.Initialize();
+        if (handManager != null) handManager.Initialize();
+        if (allyManager != null) allyManager.Initialize();
+        if (turnManager != null) turnManager.Initialize();
+        if (cardChoiceManager != null) cardChoiceManager.Initialize();
         if (deckManager != null) deckManager.Initialize();
 
 

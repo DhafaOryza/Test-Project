@@ -5,7 +5,6 @@ using DG.Tweening;
 public class AllyManager : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private GameManager gameManager; // Untuk setor data kartu mati
     [SerializeField] private DropZone discardDropZone; // Tempat visual numpuk saat mati
 
     private List<CardView> activeAllies = new List<CardView>();
@@ -14,6 +13,11 @@ public class AllyManager : MonoBehaviour
     public List<CardView> ActiveAllies => activeAllies;
 
     // Fungsi ini dipanggil otomatis saat kartu Summon diletakkan di meja
+
+    public void Initialize()
+    {
+        activeAllies.Clear();
+    }
     public void RegisterAlly(CardView allyCard)
     {
         if (!activeAllies.Contains(allyCard))
@@ -33,9 +37,9 @@ public class AllyManager : MonoBehaviour
         activeAllies.Remove(deadAlly);
 
         // 2. Setor datanya ke GameManager agar bisa di-reshuffle nantinya
-        if (gameManager != null)
+        if (GameManager.Instance.deckManager != null)
         {
-            gameManager.AddCardToDiscard(deadAlly.CardData);
+            GameManager.Instance.deckManager.AddCardToDiscard(deadAlly.CardData);
         }
 
         // 3. Animasi visual membuang Ally yang mati ke tumpukan Discard

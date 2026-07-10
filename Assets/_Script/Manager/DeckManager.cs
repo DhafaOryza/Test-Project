@@ -8,10 +8,9 @@ public class DeckManager : MonoBehaviour
     [Header("Deck System")]
     [Tooltip("Isi list ini dengan kartu yang dipilih player di awal game")]
     [SerializeField] private List<CardData> playerStartingDeck; 
-    /*[SerializeField] private HandManager handManager;
-    [SerializeField] private CardChoiceManager cardChoiceManager;
-    [SerializeField] private TurnManager turnManager;
-    [SerializeField] private PlayerStats playerStats;*/
+
+    [Header("Pooling System")]
+    [SerializeField] private PoolIdSO dummyCardPoolId;
     
     [Header("UI System")]
     [SerializeField] private GameObject gameOverPanel;
@@ -164,18 +163,23 @@ public class DeckManager : MonoBehaviour
         int dummyCount = Mathf.Min(discardedCount, 5); 
         for (int i = 0; i < dummyCount; i++)
         {
-            GameObject dummy = Instantiate(dummyCardPrefab, discardPointTransform.position, discardPointTransform.rotation);
+            GameObject dummy = GameManager.Instance.poolManager.Spawn(dummyCardPoolId, discardPointTransform.position, discardPointTransform.rotation);
 
             Canvas dummyCanvas = dummy.GetComponentInChildren<Canvas>();
             if (dummyCanvas != null)
             {
                 dummyCanvas.enabled = false;
             }
+
+            CardView view = dummy.GetComponent<CardView>();
+            if (view != null)
+            {
+                view.SetInteractable(false);
+            }
             
-            // Hapus komponen interaksi agar murni menjadi pajangan mati
-            Destroy(dummy.GetComponent<CardView>());
+        
             Collider2D col = dummy.GetComponent<Collider2D>();
-            if (col != null) Destroy(col);
+            if (col != null) col.enabled = false;
 
             
             float delay = i * 0.15f; 
@@ -185,7 +189,7 @@ public class DeckManager : MonoBehaviour
             dummy.transform.DOMove(deckSpawnPointTransform.position, 0.4f)
                 .SetDelay(delay)
                 .SetEase(Ease.InOutQuad)
-                .OnComplete(() => Destroy(dummy)); 
+                .OnComplete(() => GameManager.Instance.poolManager.Despawn(dummyCardPoolId, dummy)); 
                 
             
             dummy.transform.DORotate(new Vector3(0, 0, 180), 0.4f, RotateMode.FastBeyond360).SetDelay(delay);
@@ -271,7 +275,7 @@ public class DeckManager : MonoBehaviour
 
     private void AnimateCardToLineup(Card cardToDisplay, Vector3 startPos, float startX, float spacing, int index)
     {
-        GameObject dummy = Instantiate(dummyCardPrefab, startPos, Quaternion.identity);
+        GameObject dummy = GameManager.Instance.poolManager.Spawn(dummyCardPoolId, startPos, Quaternion.identity);
         CardView view = dummy.GetComponent<CardView>();
         if (view != null)
         {
@@ -299,7 +303,10 @@ public class DeckManager : MonoBehaviour
 
         foreach (var dummy in showcasedDummyCards)
         {
-            if (dummy != null) Destroy(dummy);
+            if (dummy != null)
+            {
+                GameManager.Instance.poolManager.Despawn(dummyCardPoolId, dummy);
+            }
         }
         showcasedDummyCards.Clear();
 

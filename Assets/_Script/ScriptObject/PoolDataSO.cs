@@ -5,6 +5,6 @@ public class PoolDataSO : ScriptableObject
 {
     public PoolIdSO poolId;
     public GameObject prefab;
-    public int initialsize = 10;
-    public bool CanExpanded = true;
+    public int initialSize = 10;
+    public bool isExpandable = true;
 }

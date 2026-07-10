@@ -26,6 +26,11 @@ public class CardChoiceManager : MonoBehaviour
     public System.Action<CardData> OnRewardCardChosen;
     private bool isDraftingInitialDeck = true;
 
+    public void Initialize()
+    {
+        
+    }
+
     public void BeginCardSelection()
     {
         isDraftingInitialDeck = true;

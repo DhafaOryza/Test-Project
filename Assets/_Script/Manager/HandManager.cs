@@ -5,14 +5,13 @@ using DG.Tweening;
 
 public class HandManager : MonoBehaviour
 {
+    [Header("Pooling System")]
+    [SerializeField] private PoolIdSO playerCardPoolId;
+
     [SerializeField] private int maxHandSize;
     [SerializeField] private int maxPlaysPerRound = 3;
-    [SerializeField] private GameObject cardPrefab; 
     [SerializeField] private SplineContainer splineContainer;
     [SerializeField] private Transform spawnpoint;
-    /*[SerializeField] private PlayerStats playerStats;
-    [SerializeField] private GameManager gameManager;
-    [SerializeField] private AllyManager allyManager;*/
 
     private List<CardView> handCards = new();
     private int playsRemaining;
@@ -31,6 +30,13 @@ public class HandManager : MonoBehaviour
         }
     }
 
+    public void Initialize()
+    {
+        handCards.Clear();
+
+        ResetRoundPlays();
+    }
+
     public List<Card> GetAllCardsInHand()
     {
         List<Card> handData = new List<Card>();
@@ -44,7 +50,6 @@ public class HandManager : MonoBehaviour
         return handData;
     }
 
-    private void OnEnable() => ResetRoundPlays();
 
     public void ResetRoundPlays()
     {
@@ -56,11 +61,11 @@ public class HandManager : MonoBehaviour
 
     private void TriggerCardDraw(int amount)
     {
-        if (gameManager != null)
+        if (GameManager.Instance.deckManager != null)
         {
             for (int i = 0 ; i < amount ; i++)
             {
-                gameManager.DrawCard();
+                GameManager.Instance.deckManager.DrawCard();
             }
         }
     }
@@ -73,17 +78,17 @@ public class HandManager : MonoBehaviour
             return;
         }
 
-        GameObject g = Instantiate(cardPrefab, spawnpoint.position, spawnpoint.rotation);
+        GameObject g = GameManager.Instance.poolManager.Spawn(playerCardPoolId, spawnpoint.position, spawnpoint.rotation);
         CardView view = g.GetComponent<CardView>();
         view.Setup(card);
-        view.SetPlayerStats(playerStats);
+        view.SetPlayerStats(GameManager.Instance.playerStats);
         view.OnCardUsed += HandleCardUsed;
         view.OnCardDrawTriggered += TriggerCardDraw;
         view.OnCardDiscarded += HandleCardDiscarded;
 
-        if (allyManager != null)
+        if (GameManager.Instance.allyManager != null)
         {
-            view.OnCardSummoned += allyManager.RegisterAlly;
+            view.OnCardSummoned += GameManager.Instance.allyManager.RegisterAlly;
         }
 
         view.SetInteractable(playsRemaining > 0);

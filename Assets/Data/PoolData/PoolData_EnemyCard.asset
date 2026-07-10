@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac1e08486f5015e4bb25eb229d59ccc4, type: 3}
+  m_Name: PoolData_EnemyCard
+  m_EditorClassIdentifier: Assembly-CSharp::PoolDataSO
+  poolId: {fileID: 11400000, guid: 5ffa4ad79274f4de798657becbf1cd9a, type: 2}
+  prefab: {fileID: 635088034058363121, guid: 58c29f9e47c49ee4e8c4608c849eb448, type: 3}
+  initialSize: 10
+  isExpandable: 1

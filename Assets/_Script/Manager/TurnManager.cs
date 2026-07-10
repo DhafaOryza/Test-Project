@@ -2,27 +2,23 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
-    [Header("Managers")]
-    [SerializeField] private AllyManager allyManager;
-    [SerializeField] private HandManager handManager;
-    [SerializeField] private EnemyManager enemyManager;
-    [SerializeField] private GameManager gameManager;
+    
 
     [SerializeField] private ChanceUI chanceUI;
     [SerializeField] private float delayBeforeTurnTranstition = 1f;
     [SerializeField] private int cardsPerTurn = 3;
     [SerializeField] private PlayerStats playerStats;
 
-    private void OnEnable()
+    public void Initialize()
     {
-        handManager.OnPlaysChanged += chanceUI.SetChanceUI;
-        handManager.OnPlaysExhausted += HandleAllyTurn;
+        GameManager.Instance.handManager.OnPlaysChanged += chanceUI.SetChanceUI;
+        GameManager.Instance.handManager.OnPlaysExhausted += HandleAllyTurn;
     }
 
     private void OnDisable()
     {
-        handManager.OnPlaysChanged -= chanceUI.SetChanceUI;
-        handManager.OnPlaysExhausted -= HandleAllyTurn;
+        GameManager.Instance.handManager.OnPlaysChanged -= chanceUI.SetChanceUI;
+        GameManager.Instance.handManager.OnPlaysExhausted -= HandleAllyTurn;
     }
 
     public void BeginFirstTurn()
@@ -37,7 +33,7 @@ public class TurnManager : MonoBehaviour
 
     private void ExecuteAllyTurn()
     {
-        if (allyManager == null || allyManager.ActiveAllies.Count == 0)
+        if (GameManager.Instance.allyManager == null || GameManager.Instance.allyManager.ActiveAllies.Count == 0)
         {
             Debug.Log("[TurnManager] Tidak ada Ally di arena. Langsung ke giliran Musuh!");
             ExecuteEnemyTurn();
@@ -50,20 +46,20 @@ public class TurnManager : MonoBehaviour
 
     private void PlayAllyAttack(int index)
     {
-        if (index >= allyManager.ActiveAllies.Count)
+        if (index >= GameManager.Instance.allyManager.ActiveAllies.Count)
         {
             Debug.Log("[TurnManager] Semua Ally selesai menyerang. Sekarang giliran Musuh!");
             ExecuteEnemyTurn();
             return;
         }
 
-        CardView currentAlly = allyManager.ActiveAllies[index];
+        CardView currentAlly = GameManager.Instance.allyManager.ActiveAllies[index];
         // Pilih target musuh pertama yang masih hidup
-        Transform enemyTarget = enemyManager.ActiveEnemies.Count > 0 ? enemyManager.ActiveEnemies[0].transform : null;
+        Transform enemyTarget = GameManager.Instance.enemyManager.ActiveEnemies.Count > 0 ? GameManager.Instance.enemyManager.ActiveEnemies[0].transform : null;
 
         if (currentAlly != null && enemyTarget != null)
         {
-            allyManager.AllyAttackTarget(currentAlly, enemyTarget, () =>
+            GameManager.Instance.allyManager.AllyAttackTarget(currentAlly, enemyTarget, () =>
             {
                 PlayAllyAttack(index + 1);
             });
@@ -84,24 +80,24 @@ public class TurnManager : MonoBehaviour
     private void PlayEnemyAttack(int index)
     {
         // Jika sudah semua musuh menyerang, kembalikan giliran ke Player
-        if (enemyManager.ActiveEnemies == null || index >= enemyManager.ActiveEnemies.Count)
+        if (GameManager.Instance.enemyManager.ActiveEnemies == null || index >= GameManager.Instance.enemyManager.ActiveEnemies.Count)
         {
             //Debug.Log("[TurnManager] Semua Musuh selesai menyerang. Kembali ke giliran Player!");
-            handManager.ResetRoundPlays();
+            GameManager.Instance.handManager.ResetRoundPlays();
             DrawCardForNewTurn();
             return;
         }
 
-        CardView currentEnemy = enemyManager.ActiveEnemies[index];
+        CardView currentEnemy = GameManager.Instance.enemyManager.ActiveEnemies[index];
         Transform choosenTarget = playerStats.transform;
 
         // Logika Random Target
-        if (allyManager != null && allyManager.ActiveAllies.Count > 0)
+        if (GameManager.Instance.allyManager != null && GameManager.Instance.allyManager.ActiveAllies.Count > 0)
         {
-            int RandomChoice = Random.Range(0, allyManager.ActiveAllies.Count + 1);
-            if (RandomChoice < allyManager.ActiveAllies.Count)
+            int RandomChoice = Random.Range(0, GameManager.Instance.allyManager.ActiveAllies.Count + 1);
+            if (RandomChoice < GameManager.Instance.allyManager.ActiveAllies.Count)
             {
-                choosenTarget = allyManager.ActiveAllies[RandomChoice].transform;
+                choosenTarget = GameManager.Instance.allyManager.ActiveAllies[RandomChoice].transform;
                 //Debug.Log($"[TurnManager] Musuh '{currentEnemy.CardData.Title}' menyerang Ally index ke-{RandomChoice}!");
             }
             else
@@ -111,7 +107,7 @@ public class TurnManager : MonoBehaviour
         }
         
         // Eksekusi serangan musuh ini, lalu panggil diri sendiri (index + 1)
-        enemyManager.EnemyAttackTarget(currentEnemy, choosenTarget, () =>
+        GameManager.Instance.enemyManager.EnemyAttackTarget(currentEnemy, choosenTarget, () =>
         {
             PlayEnemyAttack(index + 1);
         });
@@ -121,12 +117,12 @@ public class TurnManager : MonoBehaviour
     {
         for (int i = 0; i < cardsPerTurn; i++)
         {
-            gameManager.DrawCard();
+            GameManager.Instance.deckManager.DrawCard();
         }
     }
 
     public void EndTurnButtonPressed()
     {
-        handManager.ForceEndTurn();
+        GameManager.Instance.handManager.ForceEndTurn();
     }
 }

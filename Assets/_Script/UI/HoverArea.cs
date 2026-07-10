@@ -29,10 +29,10 @@ public class HoverArea : MonoBehaviour
                 message = $"Musuh Dikalahkan: {enemyManager.DefeatedCount}";
                 break;
             case HoverZoneType.PlayerDeck:
-                if (gameManager != null) message = $"Sisa Deck: {gameManager.DrawPileCount}";
+                if (gameManager != null) message = $"Sisa Deck: {GameManager.Instance.deckManager.DrawPileCount}";
                 break;
             case HoverZoneType.PlayerGraveyard:
-                if (gameManager != null) message = $"Tumpukan Discard: {gameManager.DiscardPileCount}";
+                if (gameManager != null) message = $"Tumpukan Discard: {GameManager.Instance.deckManager.DiscardPileCount}";
                 break;
         }
 

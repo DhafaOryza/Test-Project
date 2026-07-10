@@ -226,7 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HoverArea
   zoneType: 0
   enemyManager: {fileID: 1579083261}
-  gameManager: {fileID: 1358755558}
+  gameManager: {fileID: 0}
 --- !u!61 &3985632
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1167,7 +1167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HoverArea
   zoneType: 1
   enemyManager: {fileID: 1579083261}
-  gameManager: {fileID: 1358755558}
+  gameManager: {fileID: 0}
 --- !u!61 &405422871
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1347,6 +1347,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 427037901}
   m_CullTransparentMesh: 1
+--- !u!1 &430377780
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 430377781}
+  - component: {fileID: 430377782}
+  m_Layer: 0
+  m_Name: PoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &430377781
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430377780}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 471391181}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &430377782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430377780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d52b07680131beacbaf5f839bfd1399, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PoolManager
+  catalogs:
+  - {fileID: 11400000, guid: 8db16611da1a5d8b095f9f2157d63242, type: 2}
 --- !u!1 &461735685
 GameObject:
   m_ObjectHideFlags: 0
@@ -1403,6 +1449,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 471391181}
+  - component: {fileID: 471391182}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1430,8 +1477,29 @@ Transform:
   - {fileID: 1754106885}
   - {fileID: 1593500095}
   - {fileID: 1532406697}
+  - {fileID: 430377781}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &471391182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471391180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d5072925b4217d4ba408ecd9bd3c0a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  deckManager: {fileID: 1358755558}
+  cardChoiceManager: {fileID: 1532406698}
+  allyManager: {fileID: 1593500096}
+  handManager: {fileID: 1558884274}
+  turnManager: {fileID: 1754106886}
+  enemyManager: {fileID: 1579083261}
+  playerStats: {fileID: 403989678}
+  poolManager: {fileID: 430377782}
 --- !u!1 &471844963
 GameObject:
   m_ObjectHideFlags: 0
@@ -1861,7 +1929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HoverArea
   zoneType: 2
   enemyManager: {fileID: 1579083261}
-  gameManager: {fileID: 1358755558}
+  gameManager: {fileID: 0}
 --- !u!61 &578123045
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3659,10 +3727,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   playerStartingDeck: []
-  handManager: {fileID: 1558884274}
-  cardChoiceManager: {fileID: 1532406698}
-  turnManager: {fileID: 1754106886}
-  playerStats: {fileID: 403989678}
+  dummyCardPoolId: {fileID: 11400000, guid: 47354d56b2f92034c960b4d300e59b0b, type: 2}
   gameOverPanel: {fileID: 1073815532}
   CancelButton: {fileID: 427037901}
   dummyCardPrefab: {fileID: 635088034058363121, guid: c6440f98b63a41a4d874415202ae8d1f, type: 3}
@@ -4143,7 +4208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HoverArea
   zoneType: 3
   enemyManager: {fileID: 1579083261}
-  gameManager: {fileID: 1358755558}
+  gameManager: {fileID: 0}
 --- !u!1 &1520343276
 GameObject:
   m_ObjectHideFlags: 0
@@ -4274,14 +4339,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0e3cee94f04d2a49b61d2e6558fb0a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandManager
+  playerCardPoolId: {fileID: 11400000, guid: 265b6de4f1025b797ac4bfa75fae9084, type: 2}
   maxHandSize: 5
   maxPlaysPerRound: 3
-  cardPrefab: {fileID: 635088034058363121, guid: c6440f98b63a41a4d874415202ae8d1f, type: 3}
   splineContainer: {fileID: 1697072507}
   spawnpoint: {fileID: 578123043}
-  playerStats: {fileID: 403989678}
-  gameManager: {fileID: 1358755558}
-  allyManager: {fileID: 1593500096}
 --- !u!4 &1558884275
 Transform:
   m_ObjectHideFlags: 0
@@ -4330,11 +4392,11 @@ MonoBehaviour:
   possibleEnemies:
   - {fileID: 11400000, guid: 286f039df1fbf4f409056803fbe9c9d3, type: 2}
   - {fileID: 11400000, guid: 794d7ff17bc53cad990da27ac6cc3180, type: 2}
-  playerStats: {fileID: 403989678}
-  cardChoiceManager: {fileID: 1532406698}
   enemiesPerLevel: 01000000010000000100000002000000030000000100000002000000020000000200000003000000
   hpScalePerLevel: 0.25
   damageScalePerLevel: 0.18
+  enemyCardPoolId: {fileID: 11400000, guid: 5ffa4ad79274f4de798657becbf1cd9a, type: 2}
+  dummyCardPoolId: {fileID: 11400000, guid: 47354d56b2f92034c960b4d300e59b0b, type: 2}
   activeEnemyPoints:
   - {fileID: 554324865}
   - {fileID: 1378074160}
@@ -4404,7 +4466,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d947fcec67431afc80e5fb8268853ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AllyManager
-  gameManager: {fileID: 1358755558}
   discardDropZone: {fileID: 1518183757}
 --- !u!1 &1616781292
 GameObject:
@@ -4941,10 +5002,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5c31d79f4a810441ad562a2dbe0af01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TurnManager
-  allyManager: {fileID: 1593500096}
-  handManager: {fileID: 1558884274}
-  enemyManager: {fileID: 1579083261}
-  gameManager: {fileID: 1358755558}
   chanceUI: {fileID: 1996578198}
   delayBeforeTurnTranstition: 1
   cardsPerTurn: 2
