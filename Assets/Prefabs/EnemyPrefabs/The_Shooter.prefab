@@ -14,8 +14,6 @@ GameObject:
   - component: {fileID: 6295552423975772668}
   - component: {fileID: 8720420289782292947}
   - component: {fileID: 2716497963260122826}
-  - component: {fileID: 1523372405661514735}
-  - component: {fileID: 1050150241943691850}
   m_Layer: 7
   m_Name: The_Shooter
   m_TagString: Untagged
@@ -195,39 +193,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d780152bd277dae209cbbe7688e14084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::The_Shooter
+  data: {fileID: 11400000, guid: 262e42b667f63b2c398e4f4f0c06d13c, type: 2}
+  pointPrefab: {fileID: 4351417618176587388, guid: f3446d67b0751f03d9177e14b3cd2cf6, type: 3}
+  spawnProtectionDuration: 0.5
   enemyBulletPrefab: {fileID: 6252961568714336821, guid: e80ac061e202dca3ba36de5af4dcdd5d, type: 3}
   shootPoint: {fileID: 7120084639028816672}
   stopDistance: 5
---- !u!114 &1523372405661514735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 411420845899900135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3946714ecf2a57236a9dee61535fbf0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyStatus
-  data: {fileID: 11400000, guid: 262e42b667f63b2c398e4f4f0c06d13c, type: 2}
-  pointPrefab: {fileID: 4351417618176587388, guid: f3446d67b0751f03d9177e14b3cd2cf6, type: 3}
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &1050150241943691850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 411420845899900135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 737b482bb81de758faafe85f1d90ba60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyChase
-  rb: {fileID: 6295552423975772668}
 --- !u!1 &8507532809677848685
 GameObject:
   m_ObjectHideFlags: 0

@@ -1803,7 +1803,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   poolManager: {fileID: 0}
   upgradeManager: {fileID: 992257910}
-  levelManager: {fileID: 0}
+  levelManager: {fileID: 1754724028}
+  weaponHolder: {fileID: 462618457}
+  scoreManager: {fileID: 1062747869}
+  playerStats: {fileID: 1040833428}
+  movementPlayer: {fileID: 1040833423}
+  playerAnimation: {fileID: 1040833429}
+  playerHealth: {fileID: 1040833424}
+  cameraFollow: {fileID: 1926513639}
+  playerRotation: {fileID: 1040833425}
+  gameTimer: {fileID: 1278765210}
 --- !u!1 &452671334
 GameObject:
   m_ObjectHideFlags: 0
@@ -2358,7 +2367,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1040833422}
@@ -4225,6 +4234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ccef5b87838749687af2986fdf1fab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
+  playerTransform: {fileID: 0}
   enemyPrefabs:
   - {fileID: 8237688302899350328, guid: 17751f97a9f6a7fc1aaf6683dc0e05c3, type: 3}
   - {fileID: 8677620098753660861, guid: d4b026e79ae04fae981654133e84fa9a, type: 3}
@@ -4449,7 +4459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af10674a1b5a96659b98b9ce462c4525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  maxHealth: 3
+  maxHealth: 5
   currentHealth: 3
   armor: 0
   magnetRadiusMultiplier: 1
@@ -4479,7 +4489,7 @@ Animator:
   m_GameObject: {fileID: 1040833418}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0d1c0ebbdc4b3aa9cbdf85c95b90f2f0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -7319,7 +7329,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b155d2d116071c99a73e6763110c6ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
-  target: {fileID: 1916275202}
   followSpeed: 8
 --- !u!1 &1927431785
 GameObject:

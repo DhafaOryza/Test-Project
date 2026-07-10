@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 3669699668358238284}
   - component: {fileID: 3211443472406522925}
   - component: {fileID: 7214249520331787144}
-  - component: {fileID: 7703797562703205029}
-  - component: {fileID: 1132395604770291064}
+  - component: {fileID: 5636381337633702527}
   m_Layer: 7
   m_Name: The_Grunt
   m_TagString: Untagged
@@ -31,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 8237688302899350328}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.2508712, y: 1.1240077, z: 0}
   m_LocalScale: {x: 7, y: 7, z: 7}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -181,7 +180,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.08
---- !u!114 &7703797562703205029
+--- !u!114 &5636381337633702527
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,24 +189,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8237688302899350328}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 737b482bb81de758faafe85f1d90ba60, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e486e723565858c0bcb6519c0f17a9e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::The_Grunt
-  rb: {fileID: 3211443472406522925}
---- !u!114 &1132395604770291064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8237688302899350328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3946714ecf2a57236a9dee61535fbf0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyStatus
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyMelee
   data: {fileID: 11400000, guid: 8870a9266c7304c00a2fac464c8ab5c8, type: 2}
   pointPrefab: {fileID: 4351417618176587388, guid: f3446d67b0751f03d9177e14b3cd2cf6, type: 3}
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
+  spawnProtectionDuration: 0.5

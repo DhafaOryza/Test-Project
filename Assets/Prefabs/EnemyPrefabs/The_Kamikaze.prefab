@@ -105,8 +105,6 @@ GameObject:
   - component: {fileID: 3123421253568922891}
   - component: {fileID: 7726052480082245900}
   - component: {fileID: 4079272584188231432}
-  - component: {fileID: 4794644446372881788}
-  - component: {fileID: 5871456888353571062}
   m_Layer: 7
   m_Name: The_Kamikaze
   m_TagString: Untagged
@@ -286,37 +284,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e18153bcb9ee7fcc8a6d5f282f0a756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::The_Kamikaze
-  explosionRadius: 2
-  explosionDamageToEnemies: 5
-  isExploding: 0
---- !u!114 &4794644446372881788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8677620098753660861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3946714ecf2a57236a9dee61535fbf0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyStatus
   data: {fileID: 11400000, guid: b19f2dbf9a5d5cc1a92f2d82de41c929, type: 2}
   pointPrefab: {fileID: 4351417618176587388, guid: f3446d67b0751f03d9177e14b3cd2cf6, type: 3}
   spawnProtectionDuration: 0.5
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &5871456888353571062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8677620098753660861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 737b482bb81de758faafe85f1d90ba60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyChase
-  rb: {fileID: 3123421253568922891}
+  explosionRadius: 2
+  explosionDamageToEnemies: 5
+  timeExplode: 1.5

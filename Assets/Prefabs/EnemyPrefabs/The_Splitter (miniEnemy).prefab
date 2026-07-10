@@ -14,8 +14,6 @@ GameObject:
   - component: {fileID: 7094773766174741833}
   - component: {fileID: 4986274758844446377}
   - component: {fileID: 5100335518251449580}
-  - component: {fileID: 4881103226938708326}
-  - component: {fileID: 8373169352774108066}
   m_Layer: 7
   m_Name: The_Splitter (miniEnemy)
   m_TagString: Untagged
@@ -194,36 +192,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06545e981357674128d16b14beb3bb0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::The_Splitter
+  data: {fileID: 11400000, guid: fcc87bc12a0955faf8a8bc7b61f2d7da, type: 2}
+  pointPrefab: {fileID: 0}
+  spawnProtectionDuration: 0.5
   miniEnemyPrefab: {fileID: 0}
-  splitAmmount: 2
+  splitAmount: 2
   scatterForce: 3
---- !u!114 &4881103226938708326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 614559110812866716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3946714ecf2a57236a9dee61535fbf0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyStatus
-  data: {fileID: 11400000, guid: 97c6f57fa870c0caca2d36f2dfb9e4a4, type: 2}
-  pointPrefab: {fileID: 4351417618176587388, guid: f3446d67b0751f03d9177e14b3cd2cf6, type: 3}
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &8373169352774108066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 614559110812866716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 737b482bb81de758faafe85f1d90ba60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyChase
-  rb: {fileID: 7094773766174741833}
