@@ -389,7 +389,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff124f1d84a5408e8f1fa068baf61f40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Dev.Script.Runtime.Core.Spawner.AllySpawner
-  _allyController: {fileID: 5845172100695345398, guid: cde8700abda27794ba947bb5f452633d, type: 3}
   boundaryCollider: {fileID: 1505234107}
 --- !u!1 &244399145
 GameObject:
@@ -435,13 +434,113 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f4266d8572435fbb057090dcaa8749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Dev.Script.Runtime.Core.Character.Ally.AlliesManager
-  _characterDefs:
-  - {fileID: 11400000, guid: 1da6dca64ed41744b989b3c952a7d7a4, type: 2}
-  - {fileID: 11400000, guid: f64d3d1d2d079834c852b5b0215f41e7, type: 2}
-  - {fileID: 11400000, guid: a8f4733e57c9efe44a8ca05e3a21d79b, type: 2}
-  - {fileID: 11400000, guid: 7424b0433af0b03469ed4a6f20ec7e74, type: 2}
-  - {fileID: 11400000, guid: 643cae30ad3947943acd348b8f0d817a, type: 2}
-  spawnPoint: {fileID: 2067396480}
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: c6033cf3233b7ec41ba13021f2555d7b, type: 2}
+    - {fileID: 11400000, guid: 1da6dca64ed41744b989b3c952a7d7a4, type: 2}
+    - {fileID: 11400000, guid: 5174a6ce23963ec47aef8b985b2ba59e, type: 2}
+    - {fileID: 11400000, guid: f64d3d1d2d079834c852b5b0215f41e7, type: 2}
+    - {fileID: 11400000, guid: 9a6cd6dbe8f32164ba77cfbccf434b58, type: 2}
+    - {fileID: 11400000, guid: a8f4733e57c9efe44a8ca05e3a21d79b, type: 2}
+    - {fileID: 11400000, guid: a6970eaa61e52a3418fe010ce3bfbd82, type: 2}
+    - {fileID: 11400000, guid: 7424b0433af0b03469ed4a6f20ec7e74, type: 2}
+    - {fileID: 11400000, guid: 22923d868f62ea749ac1762e1cd9e7ce, type: 2}
+    - {fileID: 11400000, guid: 643cae30ad3947943acd348b8f0d817a, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _characterDefs
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[_01_Scripts.Runtime.PoolingSystem.PoolIdSO,
+        Assembly-CSharp],[_01_Scripts.Runtime.Core.Character.CharacterDefSO, Assembly-CSharp]],
+        mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[_01_Scripts.Runtime.PoolingSystem.PoolIdSO,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 0
+    - Name: $v
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 2
+    - Name: $v
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 4
+    - Name: $v
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 6
+    - Name: $v
+      Entry: 10
+      Data: 7
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 8
+    - Name: $v
+      Entry: 10
+      Data: 9
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  _allyRewards:
+  - {fileID: 11400000, guid: c6033cf3233b7ec41ba13021f2555d7b, type: 2}
+  - {fileID: 11400000, guid: 5174a6ce23963ec47aef8b985b2ba59e, type: 2}
+  - {fileID: 11400000, guid: 9a6cd6dbe8f32164ba77cfbccf434b58, type: 2}
+  - {fileID: 11400000, guid: a6970eaa61e52a3418fe010ce3bfbd82, type: 2}
+  - {fileID: 11400000, guid: 22923d868f62ea749ac1762e1cd9e7ce, type: 2}
+  _spawnPoint: {fileID: 2067396480}
 --- !u!1 &287561347
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,7 +585,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f49e6ce91a794333ba63e27ec562122b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Dev.Script.Runtime.Core.Spawner.EnemySpawner
-  _allyController: {fileID: 3139335161662224727, guid: d5f9781e1c7bb78499858ef9dde20bc9, type: 3}
   baseTarget: {fileID: 425325529}
 --- !u!1 &350502453
 GameObject:
@@ -952,6 +1050,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 554487111}
+  - component: {fileID: 554487112}
   m_Layer: 0
   m_Name: ---System
   m_TagString: Untagged
@@ -972,14 +1071,36 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 350502454}
+  - {fileID: 1047564148}
+  - {fileID: 1540732835}
+  - {fileID: 1880462154}
   - {fileID: 244399146}
   - {fileID: 1684047448}
   - {fileID: 698144947}
-  - {fileID: 350502454}
   - {fileID: 607155861}
-  - {fileID: 1540732835}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &554487112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554487110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e15168fbd5db4c55926b1da5a071b938, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_01_Scripts.Runtime.GameManager.GameManager
+  _actionSystem: {fileID: 350502455}
+  _poolManager: {fileID: 1047564147}
+  _healthManager: {fileID: 1540732836}
+  _coinManager: {fileID: 1880462153}
+  _alliesManager: {fileID: 244399147}
+  _waveManager: {fileID: 1684047447}
+  _allySpawner: {fileID: 205650822}
+  _enemySpawner: {fileID: 287561349}
 --- !u!1 &568126828
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,8 +1264,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e15168fbd5db4c55926b1da5a071b938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Dev.Script.Runtime.GameManager.GameManager
-  waveManager: {fileID: 1684047447}
-  preparationUI: {fileID: 1306294436}
+  _actionSystem: {fileID: 0}
+  _poolManager: {fileID: 0}
+  _healthManager: {fileID: 0}
+  _coinManager: {fileID: 0}
+  _alliesManager: {fileID: 0}
+  _waveManager: {fileID: 0}
+  _allySpawner: {fileID: 0}
+  _enemySpawner: {fileID: 0}
 --- !u!1 &766846475
 GameObject:
   m_ObjectHideFlags: 0
@@ -1455,9 +1582,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 244399147}
-        m_TargetAssemblyTypeName: _Dev.Script.Runtime.Core.Character.Ally.AlliesManager,
+        m_TargetAssemblyTypeName: _01_Scripts.Runtime.Core.Character.Ally.AlliesManager,
           Assembly-CSharp
-        m_MethodName: AddCharacter
+        m_MethodName: AddCharacterTest
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1505,6 +1632,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987799771}
   m_CullTransparentMesh: 1
+--- !u!1 &1047564146
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1047564148}
+  - component: {fileID: 1047564147}
+  m_Layer: 0
+  m_Name: PoolingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1047564147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047564146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fc4f5e7125646f3a9d0939162d2137b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_01_Scripts.Runtime.PoolingSystem.PoolManager
+  catalogs:
+  - {fileID: 11400000, guid: 849c2fd48e7d5274ab9c14ff9531101a, type: 2}
+--- !u!4 &1047564148
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047564146}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 554487111}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1205861150
 GameObject:
   m_ObjectHideFlags: 0
@@ -2279,7 +2452,7 @@ GameObject:
   - component: {fileID: 1880462154}
   - component: {fileID: 1880462153}
   m_Layer: 0
-  m_Name: System
+  m_Name: CoinManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2307,12 +2480,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1880462152}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 959.3139, y: 538.93475, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 554487111}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1918126333
 GameObject:
@@ -2642,7 +2815,6 @@ SceneRoots:
   - {fileID: 481434358}
   - {fileID: 2127467378}
   - {fileID: 1786941513}
-  - {fileID: 1880462154}
   - {fileID: 2067396480}
   - {fileID: 1505234109}
   - {fileID: 554487111}

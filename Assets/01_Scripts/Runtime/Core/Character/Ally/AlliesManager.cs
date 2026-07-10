@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using _01_Scripts.Runtime.Core.Spawner;
 using _01_Scripts.Runtime.PoolingSystem;
-using UnityEngine;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace _01_Scripts.Runtime.Core.Character.Ally
 {
@@ -10,34 +10,65 @@ namespace _01_Scripts.Runtime.Core.Character.Ally
     {
         [Header("Data")]
         [SerializeField]
-        private Dictionary<PoolIdSO, CharacterDefSO> _characterDefs = new Dictionary<PoolIdSO, CharacterDefSO>();
-        
+        private List<PoolIdSO> _allyRewards = new();
+
+        [SerializeField]
+        private Dictionary<PoolIdSO, CharacterDefSO> _characterDefs = new();
+
         [Header("References")]
         [SerializeField]
-        private Transform spawnPoint;
-        
-        private readonly List<Character> _allies = new List<Character>();
-        
-        public void AddCharacter(int number)
+        private Transform _spawnPoint;
+
+        private readonly List<Character> _allies = new();
+
+        public IReadOnlyList<Character> Allies => _allies;
+
+        public void AddCharacterTest(int rewardIndex)
         {
-            // Character character = GetCharacter(number);
-            // if (character == null) return;
-            //
-            // _allies.Add(character);
-            // AllyController allyController = AllySpawner.Instance.SpawnCharacterController(character, spawnPoint);
+            AddCharacter(rewardIndex);
+        }
+        
+        public bool AddCharacter(int rewardIndex)
+        {
+            if (!TryGetPoolId(rewardIndex, out PoolIdSO poolId))
+                return false;
+
+            if (!TryCreateCharacter(poolId, out Character character))
+                return false;
+
+            _allies.Add(character);
+
+            GameManager.GameManager.Instance.AllySpawner.SpawnCharacterController(character, poolId, _spawnPoint);
+
+            return true;
         }
 
-        // public Character GetCharacter(int number)
-        // {
-        //     switch (number) 
-        //     {
-        //         case 1: return new Character(_characterDefs[0].GetCharacterDataInstance());
-        //         case 2: return new Character(_characterDefs[1].GetCharacterDataInstance());
-        //         case 3: return new Character(_characterDefs[2].GetCharacterDataInstance());
-        //         case 4: return new Character(_characterDefs[3].GetCharacterDataInstance());
-        //         case 5: return new Character(_characterDefs[4].GetCharacterDataInstance());
-        //         default: return null;
-        //     }
-        // }
+        private bool TryGetPoolId(int rewardIndex, out PoolIdSO poolId)
+        {
+            poolId = null;
+
+            if (rewardIndex < 0 || rewardIndex >= _allyRewards.Count)
+            {
+                Debug.LogWarning($"Reward index {rewardIndex} is invalid.");
+                return false;
+            }
+
+            poolId = _allyRewards[rewardIndex];
+            return true;
+        }
+
+        private bool TryCreateCharacter(PoolIdSO poolId, out Character character)
+        {
+            character = null;
+
+            if (!_characterDefs.TryGetValue(poolId, out CharacterDefSO characterDef))
+            {
+                Debug.LogWarning($"CharacterDef for '{poolId.name}' not found.");
+                return false;
+            }
+
+            character = new Character(characterDef.GetCharacterDataInstance());
+            return true;
+        }
     }
 }

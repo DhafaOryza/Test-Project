@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: CharacterPool_001
   m_EditorClassIdentifier: Assembly-CSharp::_01_Scripts.Runtime.PoolingSystem.PoolDataSO
   poolId: {fileID: 11400000, guid: c6033cf3233b7ec41ba13021f2555d7b, type: 2}
-  prefab: {fileID: 8194236511990052039, guid: cde8700abda27794ba947bb5f452633d, type: 3}
-  initialSize: 10
+  prefab: {fileID: 8319595255401424245, guid: 69b02508173c17649932fdb3527ef695, type: 3}
+  initialSize: 6
   isExpandable: 1

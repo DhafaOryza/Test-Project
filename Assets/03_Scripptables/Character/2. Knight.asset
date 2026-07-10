@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Dev.Script.Runtime.Core.Character.CharacterDefSO
   _characterData:
     rid: 5550902204989440073
-  _characterSprite: {fileID: 0}
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 5550902204989440073
       type: {class: CharacterData, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
       data:
@@ -36,4 +37,3 @@ MonoBehaviour:
         _radius: 1.5
     - rid: 5550902204989440075
       type: {class: MeleeCB, ns: _Dev.Script.Runtime.Core.Character.CharacterBehaviour, asm: Assembly-CSharp}
-      data: 

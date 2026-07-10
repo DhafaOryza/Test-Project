@@ -13,27 +13,26 @@ MonoBehaviour:
   m_Name: 1. Guard
   m_EditorClassIdentifier: Assembly-CSharp::_Dev.Script.Runtime.Core.Character.CharacterDefSO
   _characterData:
-    rid: 5550902204989440068
-  _characterSprite: {fileID: 0}
+    rid: 5550902273051459675
   references:
     version: 2
     RefIds:
-    - rid: 5550902204989440068
-      type: {class: CharacterData, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
+    - rid: 5550902273051459675
+      type: {class: CharacterData, ns: _01_Scripts.Runtime.Core.Character, asm: Assembly-CSharp}
       data:
         _nameCharacter: Guard
         _characterStats:
-          rid: 5550902204989440071
+          rid: 5550902273051459690
         _characterBehaviour:
-          rid: 5550902204989440072
-    - rid: 5550902204989440071
-      type: {class: CharacterStats, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
-      data:
-        _maxHealth: 140
-        _attack: 22
-        _defense: 18
-        _speed: 90
-        _radius: 1.5
-    - rid: 5550902204989440072
-      type: {class: MeleeCB, ns: _Dev.Script.Runtime.Core.Character.CharacterBehaviour, asm: Assembly-CSharp}
+          rid: 5550902273051459676
+    - rid: 5550902273051459676
+      type: {class: MeleeCB, ns: _01_Scripts.Runtime.Core.Character.CharacterBehaviour, asm: Assembly-CSharp}
       data: 
+    - rid: 5550902273051459690
+      type: {class: CharacterStats, ns: _01_Scripts.Runtime.Core.Character, asm: Assembly-CSharp}
+      data:
+        _maxHealth: 300
+        _attack: 35
+        _defense: 20
+        _speed: 100
+        _radius: 1.5

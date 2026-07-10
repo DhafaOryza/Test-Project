@@ -8,11 +8,6 @@ namespace _01_Scripts.Runtime.Core.Character
         [SerializeReference]
         private CharacterData _characterData;
         
-        [SerializeField]
-        private Sprite _characterSprite;
-        
-        public Sprite CharacterSprite => _characterSprite;
-        
         public CharacterData GetCharacterDataInstance()
         {
             return new CharacterData(_characterData); 

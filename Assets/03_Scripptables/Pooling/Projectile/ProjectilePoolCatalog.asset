@@ -10,12 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b59b99978f545198529e04128c1ae78, type: 3}
-  m_Name: CharacterPoolCatalog
+  m_Name: ProjectilePoolCatalog
   m_EditorClassIdentifier: Assembly-CSharp::_01_Scripts.Runtime.PoolingSystem.PoolCatalogSO
-  categoryName: New Category
-  pools:
-  - {fileID: 11400000, guid: c7d4d480c3058144f990e5cd3326c810, type: 2}
-  - {fileID: 11400000, guid: 3751e9f0d32058e498279e116e99e1ab, type: 2}
-  - {fileID: 11400000, guid: 6a589700dfbc42c4d9a1c2e884a1f8ba, type: 2}
-  - {fileID: 11400000, guid: bd943ae1f47e43a4ba8f9f030ef0be90, type: 2}
-  - {fileID: 11400000, guid: 6b83c18745d8004429e05778ee7c38e1, type: 2}
+  categoryName: Projectile Category
+  pools: []

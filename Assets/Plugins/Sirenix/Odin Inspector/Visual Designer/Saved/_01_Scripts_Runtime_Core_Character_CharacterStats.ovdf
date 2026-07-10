@@ -1,0 +1,22 @@
+OVDF v1.1
+_01_Scripts.Runtime.Core.Character.CharacterStats, Assembly-CSharp
+
+# _maxHealth
++ [UnityEngine.RangeAttribute]
+	max = 300
+
+# _attack
++ [UnityEngine.RangeAttribute]
+	max = 100
+
+# _defense
++ [UnityEngine.RangeAttribute]
+	max = 100
+
+# _speed
++ [UnityEngine.RangeAttribute]
+	max = 150
+
+# _radius
++ [UnityEngine.RangeAttribute]
+	max = 10

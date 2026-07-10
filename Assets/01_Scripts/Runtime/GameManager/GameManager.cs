@@ -3,6 +3,8 @@ using _01_Scripts.Runtime.Core.ActionSystem;
 using _01_Scripts.Runtime.Core.Character.Ally;
 using _01_Scripts.Runtime.Core.Coin;
 using _01_Scripts.Runtime.Core.Health;
+using _01_Scripts.Runtime.Core.Spawner;
+using _01_Scripts.Runtime.Core.Wave;
 using _01_Scripts.Runtime.PoolingSystem;
 using LumineREx.Utils.Singleton;
 using UnityEngine;
@@ -24,6 +26,12 @@ namespace _01_Scripts.Runtime.GameManager
         private CoinManager _coinManager;
         [SerializeField]
         private AlliesManager _alliesManager;
+        [SerializeField]
+        private WaveManager _waveManager;
+        [SerializeField]
+        private AllySpawner _allySpawner;
+        [SerializeField] 
+        private EnemySpawner _enemySpawner;
         
         
         //Property
@@ -32,6 +40,9 @@ namespace _01_Scripts.Runtime.GameManager
         public HealthManager HealthManager => _healthManager;
         public CoinManager CoinManager => _coinManager;
         public AlliesManager AlliesManager => _alliesManager;
+        public WaveManager WaveManager => _waveManager;
+        public AllySpawner AllySpawner => _allySpawner;
+        public EnemySpawner EnemySpawner => _enemySpawner;
         
         
         private bool _hasInitialized = false;

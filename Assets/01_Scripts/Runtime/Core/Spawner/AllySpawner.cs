@@ -1,23 +1,22 @@
 using _01_Scripts.Runtime.Core.Character.Ally;
+using _01_Scripts.Runtime.PoolingSystem;
 using LumineREx.Utils.Singleton;
 using UnityEngine;
 using CharacterController = _01_Scripts.Runtime.Core.Character.CharacterController;
 
 namespace _01_Scripts.Runtime.Core.Spawner
 {
-    public class AllySpawner : Singleton<AllySpawner>
+    public class AllySpawner : MonoBehaviour
     {
-        [SerializeField]
-        private AllyController _allyController;
         [SerializeField]
         private Collider2D boundaryCollider;
         
-        public AllyController SpawnCharacterController(Character.Character character, Transform position)
+        public AllyController SpawnCharacterController(Character.Character character, PoolIdSO poolIdSo, Transform position)
         {
-            AllyController allyController = Instantiate(_allyController, position.position, Quaternion.identity);
+            AllyController allyController = GameManager.GameManager.Instance.PoolManager.Spawn<AllyController>(poolIdSo, position.position, Quaternion.identity);
             allyController.Initialize(character);
             allyController.Draggle.SetBoundary(boundaryCollider);
             return allyController;
         }
-    }
+    }   
 }

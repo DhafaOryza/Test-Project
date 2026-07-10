@@ -96,7 +96,7 @@ namespace _01_Scripts.Runtime.Core.Character
                     {
                         Debug.Log("Gebug");
                         behaviour.Trigger(_character.CharacterData.CharacterStats.Speed);
-                        StartCoroutine(behaviour.Attack(_target, _character.CharacterData.CharacterStats.Attack));
+                        StartCoroutine(behaviour.Attack(this, _target, _character.CharacterData.CharacterStats.Attack));
                     }
                     _characterState = CharacterState.Attacking;
                 }

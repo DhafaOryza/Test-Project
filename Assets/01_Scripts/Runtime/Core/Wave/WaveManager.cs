@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using _01_Scripts.Runtime.Core.Character;
 using _01_Scripts.Runtime.Core.GameAction;
-using _01_Scripts.Runtime.Core.Spawner;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -59,7 +58,7 @@ namespace _01_Scripts.Runtime.Core.Wave
         {
             var point = spawnPoints[Random.Range(0, spawnPoints.Count)];
 
-            var enemyController = EnemySpawner.Instance.SpawnCharacterController(CreateCharacter(enemy.Character), point);
+            var enemyController = GameManager.GameManager.Instance.EnemySpawner.SpawnCharacterController(CreateCharacter(enemy.Character), enemy.poolIdSo,point);
             enemyController.OnDeathEvent += RegisterEnemyDeath;
         }
 
