@@ -1,5 +1,6 @@
 using System;
 using _01_Scripts.Runtime.Core.ActionSystem;
+using _01_Scripts.Runtime.Core.Character.Ally;
 using _01_Scripts.Runtime.Core.Coin;
 using _01_Scripts.Runtime.Core.Health;
 using _01_Scripts.Runtime.PoolingSystem;
@@ -21,6 +22,8 @@ namespace _01_Scripts.Runtime.GameManager
         private HealthManager _healthManager;
         [SerializeField]
         private CoinManager _coinManager;
+        [SerializeField]
+        private AlliesManager _alliesManager;
         
         
         //Property
@@ -28,6 +31,7 @@ namespace _01_Scripts.Runtime.GameManager
         public PoolManager PoolManager => _poolManager;
         public HealthManager HealthManager => _healthManager;
         public CoinManager CoinManager => _coinManager;
+        public AlliesManager AlliesManager => _alliesManager;
         
         
         private bool _hasInitialized = false;

@@ -252,7 +252,7 @@ namespace _01_Scripts.Runtime.Core.SlotSystem
             {
                 foreach (var symbol in listOfWinnners)    
                 {
-                    AlliesManager.Instance.AddCharacter(symbol);
+                    GameManager.GameManager.Instance.AlliesManager.AddCharacter(symbol);
                 }
                 
                 reelsCounter = 0;

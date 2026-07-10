@@ -76,6 +76,34 @@ namespace _01_Scripts.Runtime.PoolingSystem
             return obj;
         }
 
+        public T Spawn<T>(PoolIdSO poolId, Vector3 position, Quaternion rotation, Transform parent = null) where T : Component
+        {
+            if (poolId == null)
+            {
+                Debug.LogWarning("[PoolManager] Spawn called with poolId=NULL.");
+                return null;
+            }
+
+            if (!_poolDictionary.ContainsKey(poolId))
+            {
+                Debug.LogWarning($"[PoolManager] Pool '{poolId.name}' NOT registered. " +
+                                 "Possible causes: PoolDataSO has prefab=null, or the pool was never registered in any catalog. " +
+                                 "Spawn skipped — encounter may appear empty.");
+                return null;
+            }
+            
+            GameObject obj = Spawn(poolId, position, rotation, parent);
+
+            if (obj == null)
+                return null;
+
+            if (obj.TryGetComponent(out T component))
+                return component;
+
+            Debug.LogError($"{obj.name} doesn't have component {typeof(T).Name}");
+            return null;
+        }
+
         public GameObject Spawn(PoolIdSO poolId, Vector3 position, Quaternion rotation, Transform parent = null)
         {
             if (poolId == null)
