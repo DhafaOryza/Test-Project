@@ -97,7 +97,7 @@ public class EnemyManager : MonoBehaviour
 
         if (enemyDeckPoint == null)
         {
-            Debug.LogError("🚨 [EnemyManager] Titik koordinat 'Enemy Deck Point' kosong di Inspector!");
+            //Debug.LogError("🚨 [EnemyManager] Titik koordinat 'Enemy Deck Point' kosong di Inspector!");
             return;
         }
 
@@ -108,9 +108,25 @@ public class EnemyManager : MonoBehaviour
             GameObject dummy = GameManager.Instance.poolManager.Spawn(dummyCardPoolId, pos, enemyDeckPoint.rotation);
             
             if (dummy == null)
-            {
-                Debug.LogError($"🚨 [EnemyManager] Gagal Spawn Dummy Card ke-{i}! Pastikan: 1. Kolom DummyCardPoolId di Inspector EnemyManager sudah diisi. 2. PoolData_DummyCard sudah terdaftar di Catalog. 3. Prefab di PoolData_DummyCard tidak kosong.");
+            {                
                 continue; 
+            }
+
+            foreach (Transform child in dummy.transform)
+            {
+                if (child != null)
+                {
+                    child.gameObject.SetActive(true);
+                }
+            }
+
+            Canvas canvas = dummy.GetComponentInChildren<Canvas>(true);
+            if (canvas != null)
+            {
+                canvas.enabled = true;
+                canvas.gameObject.SetActive(true);
+                canvas.overrideSorting = false;
+                //canvas.sortingOrder = 0;
             }
             
             Collider2D col = dummy.GetComponent<Collider2D>();
@@ -158,7 +174,7 @@ public class EnemyManager : MonoBehaviour
 
         ActiveEnemies.Clear();
 
-        Debug.Log($"[EnemyManager] Level {levelIndex + 1} Dimulai! Memunculkan {enemyCountToSpawn} musuh.");
+        //Debug.Log($"[EnemyManager] Level {levelIndex + 1} Dimulai! Memunculkan {enemyCountToSpawn} musuh.");
 
         for (int i = 0; i < enemyCountToSpawn; i++)
         {
@@ -181,6 +197,23 @@ public class EnemyManager : MonoBehaviour
         enemyCard.Damage += Mathf.RoundToInt(dmgBonus);
 
         GameObject g = GameManager.Instance.poolManager.Spawn(enemyCardPoolId, enemyDeckPoint.position, enemyDeckPoint.rotation);
+
+        foreach (Transform child in g.transform)
+        {
+            if (child != null)
+            {
+                child.gameObject.SetActive(true);
+            }
+        }
+
+        Canvas canvas = g.GetComponentInChildren<Canvas>(true);
+        if (canvas != null)
+        {
+            canvas.enabled = true;
+            canvas.gameObject.SetActive(true);
+            canvas.overrideSorting = false;
+            canvas.sortingOrder = 0;
+        }
         
         CardView view = g.GetComponent<CardView>();
         view.Setup(enemyCard);

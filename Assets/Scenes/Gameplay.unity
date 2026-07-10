@@ -225,8 +225,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HoverArea
   zoneType: 0
-  enemyManager: {fileID: 1579083261}
-  gameManager: {fileID: 0}
 --- !u!61 &3985632
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -324,7 +322,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74bdfaee44ecf0a448180d9c4d7b6eb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStatusUI
-  playerStats: {fileID: 403989678}
   healthText: {fileID: 234297946}
   healthFillImage: {fileID: 102954810}
   shieldText: {fileID: 989107493}
@@ -1166,8 +1163,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HoverArea
   zoneType: 1
-  enemyManager: {fileID: 1579083261}
-  gameManager: {fileID: 0}
 --- !u!61 &405422871
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1500,6 +1495,7 @@ MonoBehaviour:
   enemyManager: {fileID: 1579083261}
   playerStats: {fileID: 403989678}
   poolManager: {fileID: 430377782}
+  playerStatusUI: {fileID: 0}
 --- !u!1 &471844963
 GameObject:
   m_ObjectHideFlags: 0
@@ -1928,8 +1924,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HoverArea
   zoneType: 2
-  enemyManager: {fileID: 1579083261}
-  gameManager: {fileID: 0}
 --- !u!61 &578123045
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3730,7 +3724,7 @@ MonoBehaviour:
   dummyCardPoolId: {fileID: 11400000, guid: 47354d56b2f92034c960b4d300e59b0b, type: 2}
   gameOverPanel: {fileID: 1073815532}
   CancelButton: {fileID: 427037901}
-  dummyCardPrefab: {fileID: 635088034058363121, guid: c6440f98b63a41a4d874415202ae8d1f, type: 3}
+  dummyCardPrefab: {fileID: 1786354776413065738, guid: 146fdc6d1b77b864c8ca8ee090338e35, type: 3}
   discardPointTransform: {fileID: 1518183755}
   deckSpawnPointTransform: {fileID: 578123043}
   discardDropZone: {fileID: 1518183757}
@@ -4207,8 +4201,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HoverArea
   zoneType: 3
-  enemyManager: {fileID: 1579083261}
-  gameManager: {fileID: 0}
 --- !u!1 &1520343276
 GameObject:
   m_ObjectHideFlags: 0
@@ -4467,6 +4459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AllyManager
   discardDropZone: {fileID: 1518183757}
+  playerCardPoolId: {fileID: 11400000, guid: 265b6de4f1025b797ac4bfa75fae9084, type: 2}
 --- !u!1 &1616781292
 GameObject:
   m_ObjectHideFlags: 0
@@ -5005,7 +4998,6 @@ MonoBehaviour:
   chanceUI: {fileID: 1996578198}
   delayBeforeTurnTranstition: 1
   cardsPerTurn: 2
-  playerStats: {fileID: 403989678}
 --- !u!1 &1836649570
 GameObject:
   m_ObjectHideFlags: 0

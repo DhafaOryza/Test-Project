@@ -7,7 +7,6 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private ChanceUI chanceUI;
     [SerializeField] private float delayBeforeTurnTranstition = 1f;
     [SerializeField] private int cardsPerTurn = 3;
-    [SerializeField] private PlayerStats playerStats;
 
     public void Initialize()
     {
@@ -89,7 +88,7 @@ public class TurnManager : MonoBehaviour
         }
 
         CardView currentEnemy = GameManager.Instance.enemyManager.ActiveEnemies[index];
-        Transform choosenTarget = playerStats.transform;
+        Transform choosenTarget = GameManager.Instance.playerStats.transform;
 
         // Logika Random Target
         if (GameManager.Instance.allyManager != null && GameManager.Instance.allyManager.ActiveAllies.Count > 0)

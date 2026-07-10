@@ -7,6 +7,9 @@ public class AllyManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private DropZone discardDropZone; // Tempat visual numpuk saat mati
 
+    [Header("Pooling System")]
+    [SerializeField] private PoolIdSO playerCardPoolId;
+
     private List<CardView> activeAllies = new List<CardView>();
 
     // Membuka akses list ini agar nanti bisa dibaca oleh TurnManager
@@ -30,7 +33,25 @@ public class AllyManager : MonoBehaviour
 
     private void HandleAllyDefeated(CardView deadAlly)
     {
-        //Debug.Log($"[AllyManager] {deadAlly.CardData.Title} gugur dalam pertempuran!");
+        deadAlly.OnCardDefeated -= HandleAllyDefeated;
+        activeAllies.Remove(deadAlly);
+
+        if (deadAlly.CardData == null || deadAlly.CardData.Type == CardType.Enemy) return;
+
+        if (GameManager.Instance.deckManager != null)
+        {
+            GameManager.Instance.deckManager.AddCardToDiscard(deadAlly.CardData);
+            GameManager.Instance.deckManager.SpawnDiscardVisual(deadAlly.CardData, deadAlly.transform.position);
+        }
+
+        if (GameManager.Instance.poolManager != null)
+        {
+            GameManager.Instance.poolManager.Despawn(playerCardPoolId, deadAlly.gameObject);
+        }
+        ///
+        ///  Tidak Temp Code => kadang ngebug
+        /// 
+        /*Debug.Log($"[AllyManager] {deadAlly.CardData.Title} gugur dalam pertempuran!");
         
         // 1. Lepas pendaftaran dan hapus dari daftar pasukan
         deadAlly.OnCardDefeated -= HandleAllyDefeated;
@@ -51,16 +72,18 @@ public class AllyManager : MonoBehaviour
 
             discardDropZone.DiscardedVisuals.Add(deadAlly);
 
-            // Matikan canvas agar numpuknya rapi (seperti trik kita sebelumnya)
             Canvas canvas = deadAlly.GetComponentInChildren<Canvas>();
             if (canvas != null) canvas.gameObject.SetActive(false);
 
             if (discardDropZone.DiscardedVisuals.Count > 3)
             {
                 CardView oldest = discardDropZone.DiscardedVisuals[0];
-                if (oldest != null) Destroy(oldest.gameObject);
                 discardDropZone.DiscardedVisuals.RemoveAt(0);
-            }
+
+                if (oldest != null) 
+                {
+                   GameManager.Instance.poolManager.Despawn(playerCardPoolId, oldest.gameObject);
+                }
 
             int stackIndex = discardDropZone.DiscardedVisuals.Count - 1;
             Vector3 offset = new Vector3(0.05f * stackIndex, 0.05f * stackIndex, -0.1f * stackIndex);
@@ -74,11 +97,11 @@ public class AllyManager : MonoBehaviour
         }
         else
         {
-            Destroy(deadAlly.gameObject);
+            GameManager.Instance.poolManager.Despawn(playerCardPoolId, deadAlly.gameObject);
         }
+        }*/
     }
 
-    // Fungsi Serangan Ally (Sistemnya 100% sama dengan serangan EnemyManager)
     public void AllyAttackTarget(CardView allyCard, Transform targetTransform, System.Action onComplete = null)
     {
         if (allyCard == null || targetTransform == null)

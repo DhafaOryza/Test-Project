@@ -4,8 +4,6 @@ using TMPro;
 
 public class PlayerStatusUI : MonoBehaviour
 {
-    [SerializeField] private PlayerStats playerStats;
-
     [Header ("Statistik Player")]
     [SerializeField] private TMP_Text healthText;
     [SerializeField] private Image healthFillImage;
@@ -14,24 +12,30 @@ public class PlayerStatusUI : MonoBehaviour
 
 
 
-    private void OnEnable()
+    public void Initialize()
     {
-        playerStats.OnHealthChanged += UpdateHealthUI;
+        GameManager.Instance.playerStats.OnHealthChanged += UpdateHealthUI;
+        GameManager.Instance.playerStats.OnShieldChanged += UpdateShieldUI;
 
-        playerStats.OnShieldChanged += UpdateShieldUI;
+        UpdateHealthUI(GameManager.Instance.playerStats.CurrentHealth, GameManager.Instance.playerStats.MaxHealth);
+        UpdateShieldUI(GameManager.Instance.playerStats.CurrentShield, GameManager.Instance.playerStats.MaxShield);
+
     }
 
     private void OnDisable()
     {
-        playerStats.OnHealthChanged -= UpdateHealthUI;
+        if (GameManager.Instance != null && GameManager.Instance.playerStats != null)
+        {
+            GameManager.Instance.playerStats.OnHealthChanged -= UpdateHealthUI;
+            GameManager.Instance.playerStats.OnShieldChanged -= UpdateShieldUI; 
+        }
 
-         playerStats.OnShieldChanged -= UpdateShieldUI;
     }
 
     private void Start()
     {
-        UpdateHealthUI(playerStats.CurrentHealth, playerStats.MaxHealth);
-        UpdateShieldUI(playerStats.CurrentShield, playerStats.MaxShield);
+        UpdateHealthUI(GameManager.Instance.playerStats.CurrentHealth, GameManager.Instance.playerStats.MaxHealth);
+        UpdateShieldUI(GameManager.Instance.playerStats.CurrentShield, GameManager.Instance.playerStats.MaxShield);
     }
 
     private void UpdateHealthUI(int current, int max)

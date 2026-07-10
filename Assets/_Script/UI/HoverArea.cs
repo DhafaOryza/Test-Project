@@ -10,38 +10,35 @@ public enum HoverZoneType {
 public class HoverArea : MonoBehaviour
 {
     [SerializeField] private HoverZoneType zoneType;
-    
-    [Header("References")]
-    [SerializeField] private EnemyManager enemyManager; 
-    [SerializeField] private GameManager gameManager; 
+     
 
     private void OnMouseEnter()
     {
-        if (enemyManager == null) return;
+        if (GameManager.Instance.enemyManager == null) return;
 
         string message = "";
         switch (zoneType)
         {
             case HoverZoneType.EnemyDeck:
-                message = $"Sisa Deck Musuh: {enemyManager.CardsLeft}";
+                message = $"Sisa Deck Musuh: {GameManager.Instance.enemyManager.CardsLeft}";
                 break;
             case HoverZoneType.EnemyGraveyard:
-                message = $"Musuh Dikalahkan: {enemyManager.DefeatedCount}";
+                message = $"Musuh Dikalahkan: {GameManager.Instance.enemyManager.DefeatedCount}";
                 break;
             case HoverZoneType.PlayerDeck:
-                if (gameManager != null) message = $"Sisa Deck: {GameManager.Instance.deckManager.DrawPileCount}";
+                if (GameManager.Instance.deckManager != null) message = $"Sisa Deck: {GameManager.Instance.deckManager.DrawPileCount}";
                 break;
             case HoverZoneType.PlayerGraveyard:
-                if (gameManager != null) message = $"Tumpukan Discard: {GameManager.Instance.deckManager.DiscardPileCount}";
+                if (GameManager.Instance.deckManager != null) message = $"Tumpukan Discard: {GameManager.Instance.deckManager.DiscardPileCount}";
                 break;
         }
 
-        enemyManager.ShowTooltip(message);
+        GameManager.Instance.enemyManager.ShowTooltip(message);
     }
 
     private void OnMouseExit()
     {
-        if (enemyManager == null) return;
-        enemyManager.HideTooltip();
+        if (GameManager.Instance.enemyManager == null) return;
+        GameManager.Instance.enemyManager.HideTooltip();
     }
 }

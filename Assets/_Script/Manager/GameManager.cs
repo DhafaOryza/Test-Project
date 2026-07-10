@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public EnemyManager enemyManager;
     public PlayerStats playerStats;
     public PoolManager poolManager;
+    public PlayerStatusUI playerStatusUI;
 
     private bool hasInitialized = false;
 
@@ -51,8 +52,9 @@ public class GameManager : MonoBehaviour
         if (allyManager == null) allyManager = Object.FindFirstObjectByType<AllyManager>();
         if (turnManager == null) turnManager = Object.FindFirstObjectByType<TurnManager>();
         if (cardChoiceManager == null) cardChoiceManager = Object.FindFirstObjectByType<CardChoiceManager>();
-        if (playerStats == null) playerStats = Object.FindFirstObjectByType<PlayerStats>();
         if (enemyManager == null) enemyManager = Object.FindFirstObjectByType<EnemyManager>();
+        if (playerStats == null) playerStats = Object.FindFirstObjectByType<PlayerStats>();
+        if (playerStatusUI == null) playerStatusUI = Object.FindFirstObjectByType<PlayerStatusUI>();
 
 
         if (poolManager != null) poolManager.Initialize();
@@ -62,6 +64,8 @@ public class GameManager : MonoBehaviour
         if (turnManager != null) turnManager.Initialize();
         if (cardChoiceManager != null) cardChoiceManager.Initialize();
         if (deckManager != null) deckManager.Initialize();
+        if (playerStats != null) playerStats.Initialize();
+        if (playerStatusUI != null) playerStatusUI.Initialize();
 
 
     }

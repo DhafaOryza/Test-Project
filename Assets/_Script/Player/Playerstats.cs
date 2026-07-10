@@ -14,10 +14,13 @@ public class PlayerStats : MonoBehaviour
     public System.Action<int , int> OnShieldChanged;
     public System.Action OnPlayerDied;
 
-    private void Awake()
+    public void Initialize()
     {
         CurrentHealth = maxHealth;
         CurrentShield = 0;
+
+        OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
+        OnShieldChanged?.Invoke(CurrentShield, maxShield);
     }
 
     public bool isHealthFull()

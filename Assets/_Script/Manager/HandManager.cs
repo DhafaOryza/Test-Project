@@ -72,6 +72,8 @@ public class HandManager : MonoBehaviour
 
     public void AddCardToHand(Card card)
     {
+        if (card == null || card.Type == CardType.Enemy) return;
+        
         if (handCards.Count >= maxHandSize)
         {
             Debug.Log($"[HandManager] Gagal tambah '{card.Title}' — hand sudah penuh ({handCards.Count}/{maxHandSize})");
@@ -79,21 +81,42 @@ public class HandManager : MonoBehaviour
         }
 
         GameObject g = GameManager.Instance.poolManager.Spawn(playerCardPoolId, spawnpoint.position, spawnpoint.rotation);
+
+        foreach (Transform child in g.transform)
+        {
+            if (child != null)
+            {
+                child.gameObject.SetActive(true);
+            }
+        }
+        Canvas canvas = g.GetComponentInChildren<Canvas>(true);
+        if (canvas != null)
+        {
+            canvas.gameObject.SetActive(true);
+            canvas.enabled = true;
+            canvas.overrideSorting = false;
+        }
         CardView view = g.GetComponent<CardView>();
         view.Setup(card);
         view.SetPlayerStats(GameManager.Instance.playerStats);
+
+        view.OnCardUsed -= HandleCardUsed;
         view.OnCardUsed += HandleCardUsed;
+
+        view.OnCardDrawTriggered -= TriggerCardDraw;
         view.OnCardDrawTriggered += TriggerCardDraw;
+
+        view.OnCardDiscarded -= HandleCardDiscarded;
         view.OnCardDiscarded += HandleCardDiscarded;
 
         if (GameManager.Instance.allyManager != null)
         {
+            view.OnCardSummoned -= GameManager.Instance.allyManager.RegisterAlly;
             view.OnCardSummoned += GameManager.Instance.allyManager.RegisterAlly;
         }
 
         view.SetInteractable(playsRemaining > 0);
         handCards.Add(view);
-        //Debug.Log($"[HandManager] '{card.Title}' ditambahkan. Total hand sekarang: {handCards.Count}/{maxHandSize}");
         UpdateCardPositions();
     }
 
@@ -104,12 +127,16 @@ public class HandManager : MonoBehaviour
         bool removed = handCards.Remove(view);
 
         if (view.CardData.Type != CardType.Summon)
-        {
-            //gameManager.AddCardToDiscard(view.CardData);
+        {  
             OnCardSentToDiscardPile?.Invoke(view.CardData);
-        }
 
-        //Debug.Log($"[HandManager] Card dipakai/discard, removed dari list: {removed}. Sisa hand: {handCards.Count}/{maxHandSize}, sisa chance: {playsRemaining}");
+            if (GameManager.Instance.deckManager != null)
+            {
+                GameManager.Instance.deckManager.SpawnDiscardVisual(view.CardData, view.transform.position);
+            }
+
+            GameManager.Instance.poolManager.Despawn(playerCardPoolId, view.gameObject);
+        }
 
         UpdateCardPositions();
         UpdateCardsInteractability();

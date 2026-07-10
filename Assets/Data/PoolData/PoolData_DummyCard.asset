@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PoolData_DummyCard
   m_EditorClassIdentifier: Assembly-CSharp::PoolDataSO
   poolId: {fileID: 11400000, guid: 47354d56b2f92034c960b4d300e59b0b, type: 2}
-  prefab: {fileID: 6122024983609214433, guid: 0adda552e1a1aad499e72997f141babd, type: 3}
+  prefab: {fileID: 1786354776413065738, guid: 146fdc6d1b77b864c8ca8ee090338e35, type: 3}
   initialSize: 15
   isExpandable: 1

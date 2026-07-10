@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using Unity.VisualScripting;
 
 public class DeckManager : MonoBehaviour
 {
@@ -130,6 +131,11 @@ public class DeckManager : MonoBehaviour
 
     public void AddCardToDiscard(Card discardedCard)
     {
+        if(discardedCard == null || discardedCard.Type == CardType.Enemy)
+        {
+            Debug.LogWarning("[DeckManager] Mencegah kartu Enemy masuk ke Discard Pile!");
+            return;
+        }
         discardPile.Add(discardedCard);
     }
 
@@ -154,18 +160,19 @@ public class DeckManager : MonoBehaviour
             foreach (var cardVisual in discardDropZone.DiscardedVisuals)
             {
                 if (cardVisual != null)
-                Destroy(cardVisual.gameObject);
+                {
+                    GameManager.Instance.poolManager.Despawn(dummyCardPoolId, cardVisual.gameObject);
+                }
             }
             discardDropZone.DiscardedVisuals.Clear();
         }
-
         // ilusi 3 kartu beterbangan dari Discard ke Deck
         int dummyCount = Mathf.Min(discardedCount, 5); 
         for (int i = 0; i < dummyCount; i++)
         {
             GameObject dummy = GameManager.Instance.poolManager.Spawn(dummyCardPoolId, discardPointTransform.position, discardPointTransform.rotation);
 
-            Canvas dummyCanvas = dummy.GetComponentInChildren<Canvas>();
+            Canvas dummyCanvas = dummy.GetComponentInChildren<Canvas>(true);
             if (dummyCanvas != null)
             {
                 dummyCanvas.enabled = false;
@@ -197,6 +204,90 @@ public class DeckManager : MonoBehaviour
         }
 
         return totalDuration + 0.1f;
+    }
+
+    public void SpawnDiscardVisual(Card cardData, Vector3 startPos)
+    {
+        GameObject dummy = GameManager.Instance.poolManager.Spawn(dummyCardPoolId, startPos, Quaternion.identity);
+
+        foreach (Transform child in dummy.transform)
+        {
+            if (child != null)
+            {
+                child.gameObject.SetActive(true);
+            }
+        }
+        Canvas canvas = dummy.GetComponentInChildren<Canvas>(true);
+        if (canvas != null)
+        {
+            canvas.gameObject.SetActive(true);
+            canvas.enabled = true;
+            canvas.overrideSorting = false;
+        }
+
+        CardView view = dummy.GetComponent<CardView>();
+        if (view != null)
+        {
+            view.Setup(cardData);
+            view.SetInteractable(false);
+        }
+
+        Collider2D col = dummy.GetComponent<Collider2D>();
+        if (col != null)
+        {
+            col.enabled = false;
+        }
+
+        if (discardDropZone != null)
+        {
+            discardDropZone.DiscardedVisuals.Add(view);
+
+            if (discardDropZone.DiscardedVisuals.Count > 3)
+            {
+                CardView oldest = discardDropZone.DiscardedVisuals[0];
+                discardDropZone.DiscardedVisuals.RemoveAt(0);
+
+                if (oldest != null)
+                {
+                    GameManager.Instance.poolManager.Despawn(dummyCardPoolId, oldest.gameObject);
+                }
+            }
+
+            int stackIndex = discardDropZone.DiscardedVisuals.Count - 1;
+            Vector3 offset = new Vector3(0.05f * stackIndex, 0.05f * stackIndex, -0.1f * stackIndex);
+            Vector3 targetPos = discardDropZone.transform.position + offset;
+
+            SpriteRenderer[] sprites = dummy.GetComponentsInChildren<SpriteRenderer>();
+            foreach(var sr in sprites) sr.sortingOrder = stackIndex;
+
+            if (canvas != null)
+            {
+                bool isTopCard = stackIndex == discardDropZone.DiscardedVisuals.Count - 1;
+                canvas.gameObject.SetActive(isTopCard);
+                canvas.enabled = isTopCard;    
+
+                if (isTopCard)
+                {
+                    canvas.overrideSorting = true;
+                    canvas.sortingOrder = stackIndex + 1;
+                }
+                
+            }
+
+            dummy.transform.DOMove(targetPos, 0.3f).SetEase(Ease.InOutQuad);
+            dummy.transform.DOLocalRotateQuaternion(discardDropZone.transform.rotation, 0.3f);
+
+            if (discardDropZone.DiscardedVisuals.Count > 1)
+            {
+                CardView previousTopCard = discardDropZone.DiscardedVisuals[discardDropZone.DiscardedVisuals.Count - 2];
+                Canvas prevCanvas = previousTopCard.GetComponentInChildren<Canvas>(true);
+                if (prevCanvas != null)
+                {
+                    prevCanvas.gameObject.SetActive(false);
+                    prevCanvas.enabled = false;
+                }
+            }
+        }
     }
 
     private void HandleCardDiscarded(Card discardedCard)
@@ -231,56 +322,85 @@ public class DeckManager : MonoBehaviour
         if (CancelButton != null) CancelButton.SetActive(true);
 
         List<CardView> activeHandCard = GameManager.Instance.handManager != null ? GameManager.Instance.handManager.GetHandCardViews() : new List<CardView>();
+        List<Card> allPlayerCards = new List<Card>();
+        allPlayerCards.AddRange(drawPile);
+        allPlayerCards.AddRange(discardPile);
 
-        int TotalCardsCount = drawPile.Count + discardPile.Count + activeHandCard.Count;
-        if (TotalCardsCount == 0)
-        {
-            return;
-        }
-
-        float spacing = Mathf.Min(1.5f , maxSpreadWidth / Mathf.Max(1, TotalCardsCount));
-        float totalWidth = (TotalCardsCount - 1) * spacing;
-        float StartX = showcaseCenterPoint.position.x - (totalWidth / 2f);
-        int globalIndex = 0;
-
-        // 1. Seret visual kartu dari PLAYER DECK (Draw Pile)
-        foreach (var card in drawPile)
-        {
-            Vector3 startPos = deckSpawnPointTransform != null ? deckSpawnPointTransform.position : showcaseCenterPoint.position;
-            AnimateCardToLineup(card, startPos, StartX, spacing, globalIndex);
-            globalIndex++;
-        }
-
-        // 2. Seret visual kartu dari DISCARD PILE
-        foreach (var card in discardPile)
-        {
-            Vector3 startPos = discardPointTransform != null ? discardPointTransform.position : showcaseCenterPoint.position;
-            AnimateCardToLineup(card, startPos, StartX, spacing, globalIndex);
-            globalIndex++;
-        }
-
-        // 3. Seret visual kartu langsung dari TANGAN (Hand) pemain
         foreach (var handCard in activeHandCard)
         {
-            if (handCard != null)
+            if (handCard != null && handCard.CardData != null)
             {
-                handCard.gameObject.SetActive(false); 
-
-                Vector3 startPos = handCard.transform.position; // Titik asal dari mana dia dipegang
-                AnimateCardToLineup(handCard.CardData, startPos, StartX, spacing, globalIndex);
-                globalIndex++;
+                handCard.gameObject.SetActive(false);
+                allPlayerCards.Add(handCard.CardData);
             }
+        }
+
+        if (allPlayerCards.Count == 0) return;
+
+        Dictionary<string, (Card data, int count)> groupedCards = new Dictionary<string, (Card, int)>();
+
+        foreach (Card c in allPlayerCards)
+        {
+            if (groupedCards.ContainsKey(c.Title))
+            {
+                var existing = groupedCards[c.Title];
+                groupedCards[c.Title] = (existing.data , existing.count + 1);
+
+            }
+            else
+            {
+                groupedCards.Add(c.Title, (c , 1));
+            }
+        }
+
+        int uniqueCardCount = groupedCards.Count;
+        float spacing = Mathf.Min(1.5f , maxSpreadWidth / Mathf.Max(1, uniqueCardCount));
+        float totalWidth = (uniqueCardCount - 1) * spacing;
+        float StartX = showcaseCenterPoint.position.x - (totalWidth / 2f);
+
+        int globalIndex = 0;
+
+        
+        foreach (var kvp in groupedCards)
+        {
+            Card cardData = kvp.Value.data;
+            int stackCount = kvp.Value.count;
+
+            // Titik awal terbang dari tengah layar agar menyebar elegan
+            Vector3 startPos = showcaseCenterPoint.position; 
+            
+            AnimateGroupedCardToLineup(cardData, stackCount, startPos, StartX, spacing, globalIndex);
+            globalIndex++;
         }
     }
 
-    private void AnimateCardToLineup(Card cardToDisplay, Vector3 startPos, float startX, float spacing, int index)
+    private void AnimateGroupedCardToLineup(Card cardToDisplay, int stackCount, Vector3 startPos, float startX, float spacing, int index)
     {
         GameObject dummy = GameManager.Instance.poolManager.Spawn(dummyCardPoolId, startPos, Quaternion.identity);
+        
+        foreach (Transform child in dummy.transform)
+        {
+            if (child != null)
+            {
+                child.gameObject.SetActive(true);
+            }
+        }
+        Canvas canvas = dummy.GetComponentInChildren<Canvas>(true);
+        if (canvas != null)
+        {
+            canvas.enabled = true;
+            canvas.gameObject.SetActive(true);
+            canvas.overrideSorting = false;
+            canvas.sortingOrder = 0;
+        }
+
         CardView view = dummy.GetComponent<CardView>();
         if (view != null)
         {
             view.Setup(cardToDisplay);
             view.SetInteractable(false);
+            
+            view.SetStackCount(stackCount);
         }
 
         Vector3 targetPos = new Vector3(

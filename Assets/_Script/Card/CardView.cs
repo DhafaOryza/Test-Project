@@ -14,7 +14,6 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     [SerializeField] private TMP_Text healthText;
     [SerializeField] private LayerMask dropZoneLayer;
     [SerializeField] private bool isInteractable = true;
-    [SerializeField] private PlayerStats playerStats;
     [SerializeField] private BuffEffectType EffectType;
 
     public Card CardData => card;
@@ -63,7 +62,8 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         title.text = card.Title;
         description.text = card.Description;
         damage.text = card.Damage.ToString();
-        if (cost != null) cost.text = card.Cost.ToString();
+
+        if (cost != null) cost.gameObject.SetActive(false);
 
         bool showsHealth = card.Type == CardType.Enemy || card.Type == CardType.Summon;
         if (healthText != null)
@@ -74,7 +74,7 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     }
 
     public void SetInteractable(bool value) => isInteractable = value;
-    public void SetPlayerStats(PlayerStats stats) => playerStats = stats;
+    public void SetPlayerStats(PlayerStats stats) => GameManager.Instance.playerStats = stats;
 
     public void SetHomeTransform(Vector3 position, Quaternion rotation)
     {
@@ -154,7 +154,6 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         if (zone.ZoneType == DropZoneType.DiscardArea)
         {
-            ExecuteDiscardVisual(zone);
             OnCardUsed?.Invoke(this);
             return;
         }
@@ -189,9 +188,9 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             case CardType.Buff:
             if (card.EffectType == BuffEffectType.HealthBoost)
                 {
-                    if (playerStats != null && !playerStats.isHealthFull())
+                    if (GameManager.Instance.playerStats != null && !GameManager.Instance.playerStats.isHealthFull())
                     {
-                        playerStats.Heal(card.EffectAmount);
+                        GameManager.Instance.playerStats.Heal(card.EffectAmount);
                         effectApplied = true;
                     }
                     else
@@ -202,7 +201,7 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
                 else if (card.EffectType == BuffEffectType.Shield)
                 {
-                    playerStats?.AddShield(card.EffectAmount);
+                    GameManager.Instance.playerStats?.AddShield(card.EffectAmount);
                     effectApplied = true;
                 }
 
@@ -227,11 +226,7 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             }
             else
             {
-                DropZone discardZone = GetDiscardZone();
-                if (discardZone != null) 
-                {
-                    ExecuteDiscardVisual(discardZone);
-                }
+            
             }
             OnCardUsed?.Invoke(this); 
         }
@@ -258,53 +253,6 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0f), 0.3f, 5);
     }
 
-    private void ExecuteDiscardVisual(DropZone discardZone)
-    {
-        isInteractable = false;
-        Collider2D col = GetComponent<Collider2D>();
-        if (col != null) col.enabled = false;
-
-        discardZone.DiscardedVisuals.Add(this);
-
-        foreach (var stackedCard in discardZone.DiscardedVisuals)
-        {
-            if (stackedCard != this && stackedCard != null)
-            {
-                Canvas stackedCanvas = stackedCard.GetComponentInChildren<Canvas>();
-                if (stackedCanvas != null)
-                {
-                    stackedCanvas.enabled = false;
-                }
-            }
-        }
-
-        if (discardZone.DiscardedVisuals.Count > 2)
-        {
-            CardView oldestCard = discardZone.DiscardedVisuals[0];
-            if (oldestCard != null)
-            {
-                Destroy(oldestCard.gameObject);
-            }
-            discardZone.DiscardedVisuals.RemoveAt(0);
-        }
-
-        int stackIndex = discardZone.DiscardedVisuals.Count - 1;
-        Vector3 offset = new Vector3(0.05f * stackIndex, 0.05f * stackIndex, -0.1f * stackIndex);
-        Vector3 targetPos = discardZone.transform.position + offset;
-
-        SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
-        foreach(var sr in sprites) sr.sortingOrder = stackIndex;
-
-        Canvas canvas = GetComponentInChildren<Canvas>();
-        if (canvas != null)
-        {
-            canvas.overrideSorting = true;
-            canvas.sortingOrder = stackIndex + 1; 
-        }
-
-        transform.DOMove(targetPos, 0.3f).SetEase(Ease.InOutQuad).SetLink(gameObject);
-        transform.DOLocalRotateQuaternion(discardZone.transform.rotation, 0.3f).SetLink(gameObject);
-    }
 
     private DropZone GetDiscardZone()
     {
@@ -376,5 +324,18 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         });
         transform.DOLocalRotateQuaternion(homeRotation, 0.25f).SetLink(gameObject);
         transform.DOScale(new Vector3(2f, 2.5f, 1f), 0.25f).SetLink(gameObject);
+    }
+
+    public void SetStackCount (int count)
+    {
+        if (cost != null)
+        {
+            cost.gameObject.SetActive(true);
+            cost.text = $"{count}x";
+        }
+        else
+        {
+            cost.gameObject.SetActive(false);
+        }
     }
 }
