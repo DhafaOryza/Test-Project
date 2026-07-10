@@ -23,8 +23,6 @@ namespace _01_Scripts.Runtime.Core.Wave
 
         public WaveData CurrentWave => waveDef.WaveData[_currentWave];
 
-        public event Action OnWaveFinished;
-
         private void OnEnable()
         {
             ActionSystem.ActionSystem.AttachPerformer<BattlePhaseGA>(BattlePhasePerformer);
@@ -76,11 +74,11 @@ namespace _01_Scripts.Runtime.Core.Wave
             
             if (!HasNextWave())  
             {
-                ActionSystem.ActionSystem.Instance.Perform(new ResolutionPhaseGA());
+                GameManager.GameManager.Instance.ActionSystem.Perform(new ResolutionPhaseGA());
                 return;
             }
 
-            ActionSystem.ActionSystem.Instance.Perform(new PreparationPhaseGA());
+            GameManager.GameManager.Instance.ActionSystem.Perform(new PreparationPhaseGA());
         }
 
         private Character.Character CreateCharacter(CharacterDefSO def)

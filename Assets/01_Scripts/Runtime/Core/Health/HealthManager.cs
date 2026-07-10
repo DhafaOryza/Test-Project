@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace _01_Scripts.Runtime.Core.Health
 {
-    public class HealthManager : Singleton<HealthManager>
+    public class HealthManager : MonoBehaviour
     {
         [SerializeField]
         private HealthUI _healthUI;
@@ -30,7 +30,7 @@ namespace _01_Scripts.Runtime.Core.Health
 
             if (_currentHealth <= 0)
             {
-                ActionSystem.ActionSystem.Instance.ForcePerform(new ResolutionPhaseGA());
+                GameManager.GameManager.Instance.ActionSystem.ForcePerform(new ResolutionPhaseGA());
             }
         }
     }

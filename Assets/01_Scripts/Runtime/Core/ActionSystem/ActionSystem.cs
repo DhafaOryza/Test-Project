@@ -19,7 +19,7 @@ namespace _01_Scripts.Runtime.Core.ActionSystem
     /// This class is a singleton. Access it via <c>ActionSystem.Instance</c>.
     /// </para>
     /// </summary>
-    public class ActionSystem : Singleton<ActionSystem>
+    public class ActionSystem : MonoBehaviour
     {
         /// <summary>
         /// The active reaction list being populated and consumed during the current phase of

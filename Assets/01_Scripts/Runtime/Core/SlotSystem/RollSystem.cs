@@ -32,7 +32,7 @@ namespace _01_Scripts.Runtime.Core.SlotSystem
 
         public void Roll()
         {
-            if (CoinManager.Instance.CanUseCoin(_startingPrice))
+            if (GameManager.GameManager.Instance.CoinManager.CanUseCoin(_startingPrice))
             {
                 _currentPrice += 50;
                 _slotSystem.Roll();

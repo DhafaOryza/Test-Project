@@ -2,7 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _01_Scripts.Runtime.GameManager
+namespace _01_Scripts.Runtime.GamePhaseSystem
 {
     public class PreparationUI : MonoBehaviour
     {

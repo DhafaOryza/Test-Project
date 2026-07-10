@@ -12,7 +12,7 @@ namespace _01_Scripts.Runtime.Core.Health
         {
             if (other.gameObject.CompareTag(_tagTarget))
             {
-                HealthManager.Instance.TakeDamage(1);
+                GameManager.GameManager.Instance.HealthManager.TakeDamage(1);
                 Destroy(other.gameObject);
             }
         }

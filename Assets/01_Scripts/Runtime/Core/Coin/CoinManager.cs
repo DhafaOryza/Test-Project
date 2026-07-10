@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _01_Scripts.Runtime.Core.Coin
 {
-    public class CoinManager : Singleton<CoinManager>
+    public class CoinManager : MonoBehaviour
     {
         [SerializeField]
         private CoinUI _coinUI;
