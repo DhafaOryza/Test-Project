@@ -1,6 +1,4 @@
-using System.Diagnostics;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 public class BulletTrail : MonoBehaviour
 {
@@ -17,7 +15,7 @@ public class BulletTrail : MonoBehaviour
         initialized = false;
         progress = 0f;
 
-        // Debug.Log($"[Trail {GetInstanceID()}] OnEnable");
+        Debug.Log($"[Trail {GetInstanceID()}] OnEnable");
     }
 
     public void SetTargetPosition(Vector3 target)
@@ -34,27 +32,13 @@ public class BulletTrail : MonoBehaviour
 
         float distance = Vector3.Distance(startPosition, targetPosition);
 
-        if (distance <= 0.01f)
-        {
-            initialized = false;
-            GameManager.Instance.poolManager.Despawn(myPoolId, gameObject);
-            return;
-        }
-
         progress += Time.deltaTime * (speed / distance);
         transform.position = Vector3.Lerp(startPosition, targetPosition, progress);
 
         if (progress >= 1f)
         {
-            // Debug.Log("cek Despwan");
-
             initialized = false;
             GameManager.Instance.poolManager.Despawn(myPoolId, gameObject);
         }
-    }
-
-    private void OnDestroy()
-    {
-        Debug.Log($"'{name}' was Detroyed.\n {new StackTrace(true)}", this);
     }
 }
