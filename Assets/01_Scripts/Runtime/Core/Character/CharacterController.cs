@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace _01_Scripts.Runtime.Core.Character
 {
-    public class CharacterController : MonoBehaviour, IDamageable
+    public class CharacterController : MonoBehaviour, IDamageable, IStatsInfo
     {
         [SerializeField]
         private CharacterDetection characterDetection;
@@ -161,6 +161,11 @@ namespace _01_Scripts.Runtime.Core.Character
         private void OnDestroy()
         {
             OnDeathEvent?.Invoke();
+        }
+
+        public CharacterStats GetCharacterStats()
+        {
+            return _character.CharacterData.CharacterStats;
         }
     }
 }
