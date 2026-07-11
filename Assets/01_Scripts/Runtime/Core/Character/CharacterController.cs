@@ -25,6 +25,8 @@ namespace _01_Scripts.Runtime.Core.Character
         protected List<CharacterController> _targetInRange = new();
         protected CharacterController _target;
         
+        public Transform Transform => transform;
+        
         public event Action OnDeathEvent;
         
         private void Start()
