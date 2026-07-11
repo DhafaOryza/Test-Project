@@ -60,7 +60,7 @@ namespace _01_Scripts.Runtime.Core.Character
         {
             if (_target == null) return;
             if (_characterState != CharacterState.Chasing) return;
-            transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, 0.1f);
+            transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, 0.5f * Time.deltaTime);
         }
 
         private IEnumerator Brain()

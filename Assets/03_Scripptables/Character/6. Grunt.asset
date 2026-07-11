@@ -11,29 +11,27 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 543d1524aa9f493cb322f05f616faaae, type: 3}
   m_Name: 6. Grunt
-  m_EditorClassIdentifier: Assembly-CSharp::_Dev.Script.Runtime.Core.Character.CharacterDefSO
+  m_EditorClassIdentifier: Assembly-CSharp::_01_Scripts.Runtime.Core.Character.CharacterDefSO
   _characterData:
-    rid: 5550902204989440105
-  _characterSprite: {fileID: 0}
+    rid: 5550902295464771674
   references:
     version: 2
     RefIds:
-    - rid: 5550902204989440105
-      type: {class: CharacterData, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 5550902295464771674
+      type: {class: CharacterData, ns: _01_Scripts.Runtime.Core.Character, asm: Assembly-CSharp}
       data:
         _nameCharacter: Grunt
         _characterStats:
-          rid: 5550902204989440106
+          rid: 5550902295464771675
         _characterBehaviour:
-          rid: 5550902204989440107
-    - rid: 5550902204989440106
-      type: {class: CharacterStats, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
+          rid: -2
+    - rid: 5550902295464771675
+      type: {class: CharacterStats, ns: _01_Scripts.Runtime.Core.Character, asm: Assembly-CSharp}
       data:
-        _maxHealth: 120
-        _attack: 18
-        _defense: 10
-        _speed: 100
-        _radius: 1.5
-    - rid: 5550902204989440107
-      type: {class: MeleeCB, ns: _Dev.Script.Runtime.Core.Character.CharacterBehaviour, asm: Assembly-CSharp}
-      data: 
+        _maxHealth: 0
+        _attack: 0
+        _defense: 0
+        _speed: 0
+        _radius: 0

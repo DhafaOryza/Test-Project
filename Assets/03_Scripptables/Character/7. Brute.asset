@@ -11,28 +11,28 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 543d1524aa9f493cb322f05f616faaae, type: 3}
   m_Name: 7. Brute
-  m_EditorClassIdentifier: Assembly-CSharp::_Dev.Script.Runtime.Core.Character.CharacterDefSO
+  m_EditorClassIdentifier: Assembly-CSharp::_01_Scripts.Runtime.Core.Character.CharacterDefSO
   _characterData:
-    rid: 5550902204989440119
-  _characterSprite: {fileID: 0}
+    rid: 5550902295464771676
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 5550902204989440119
-      type: {class: CharacterData, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
+    - rid: 5550902295464771676
+      type: {class: CharacterData, ns: _01_Scripts.Runtime.Core.Character, asm: Assembly-CSharp}
       data:
         _nameCharacter: Brute
         _characterStats:
-          rid: 5550902204989440120
+          rid: 5550902295464771677
         _characterBehaviour:
-          rid: -2
-    - rid: 5550902204989440120
-      type: {class: CharacterStats, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
+          rid: 5550902295464771678
+    - rid: 5550902295464771677
+      type: {class: CharacterStats, ns: _01_Scripts.Runtime.Core.Character, asm: Assembly-CSharp}
       data:
         _maxHealth: 250
         _attack: 15
         _defense: 25
         _speed: 70
         _radius: 1.5
+    - rid: 5550902295464771678
+      type: {class: MeleeCB, ns: _01_Scripts.Runtime.Core.Character.CharacterBehaviour, asm: Assembly-CSharp}
+      data: 

@@ -36,6 +36,7 @@ namespace _01_Scripts.Runtime.GamePhaseSystem
 
         private IEnumerator PreparationPhasePerformer(PreparationPhaseGA preparationPhaseGA)
         {
+            Debug.Log("Preparation phase");
             EnterPreparation();
             yield return null;
         }
@@ -47,7 +48,7 @@ namespace _01_Scripts.Runtime.GamePhaseSystem
         }
         
         
-        void EnterPreparation()
+        private void EnterPreparation()
         {
             _state = GameState.Preparation;
 

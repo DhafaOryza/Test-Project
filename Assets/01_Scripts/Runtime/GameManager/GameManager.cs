@@ -53,7 +53,7 @@ namespace _01_Scripts.Runtime.GameManager
 
         private void Start()
         {
-            if (!_hasInitialized) return;
+            if (_hasInitialized) return;
             UpdateStageData();
         }
 

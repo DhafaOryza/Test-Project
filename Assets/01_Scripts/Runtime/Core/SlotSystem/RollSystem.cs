@@ -18,9 +18,8 @@ namespace _01_Scripts.Runtime.Core.SlotSystem
         [Header("Reference")]
         [SerializeField]
         private SlotSystem _slotSystem;
-
-        [SerializeField] 
-        private TMP_Text _rollPriceText;
+        [SerializeField]
+        private TMP_Text _rollCostText;
 
         private void Start()
         {
@@ -30,6 +29,7 @@ namespace _01_Scripts.Runtime.Core.SlotSystem
         public void ResetRollPrice()
         {
             _currentPrice = _startingPrice;
+            _rollCostText.text = _currentPrice.ToString();
         }
 
         public void Roll()
@@ -38,6 +38,7 @@ namespace _01_Scripts.Runtime.Core.SlotSystem
             {
                 _currentPrice += 50;
                 _slotSystem.Roll();
+                _rollCostText.text = _currentPrice.ToString();
             }
         }
     }

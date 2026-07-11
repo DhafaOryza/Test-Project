@@ -11,29 +11,28 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 543d1524aa9f493cb322f05f616faaae, type: 3}
   m_Name: 5. Spearman
-  m_EditorClassIdentifier: Assembly-CSharp::_Dev.Script.Runtime.Core.Character.CharacterDefSO
+  m_EditorClassIdentifier: Assembly-CSharp::_01_Scripts.Runtime.Core.Character.CharacterDefSO
   _characterData:
-    rid: 5550902204989440082
-  _characterSprite: {fileID: 0}
+    rid: 5550902295464771671
   references:
     version: 2
     RefIds:
-    - rid: 5550902204989440082
-      type: {class: CharacterData, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
+    - rid: 5550902295464771671
+      type: {class: CharacterData, ns: _01_Scripts.Runtime.Core.Character, asm: Assembly-CSharp}
       data:
         _nameCharacter: Spearman
         _characterStats:
-          rid: 5550902204989440083
+          rid: 5550902295464771672
         _characterBehaviour:
-          rid: 5550902204989440084
-    - rid: 5550902204989440083
-      type: {class: CharacterStats, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
+          rid: 5550902295464771673
+    - rid: 5550902295464771672
+      type: {class: CharacterStats, ns: _01_Scripts.Runtime.Core.Character, asm: Assembly-CSharp}
       data:
-        _maxHealth: 120
-        _attack: 24
-        _defense: 14
-        _speed: 100
+        _maxHealth: 150
+        _attack: 30
+        _defense: 12
+        _speed: 110
         _radius: 3
-    - rid: 5550902204989440084
-      type: {class: MeleeCB, ns: _Dev.Script.Runtime.Core.Character.CharacterBehaviour, asm: Assembly-CSharp}
+    - rid: 5550902295464771673
+      type: {class: MeleeCB, ns: _01_Scripts.Runtime.Core.Character.CharacterBehaviour, asm: Assembly-CSharp}
       data: 

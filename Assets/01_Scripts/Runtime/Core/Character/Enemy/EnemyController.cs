@@ -16,11 +16,11 @@ namespace _01_Scripts.Runtime.Core.Character.Enemy
             if (_characterState == CharacterState.Attacking) return;
             if (_target == null)
             {
-                transform.position = Vector3.MoveTowards(transform.position, _baseTransform.position, 0.1f);
+                transform.position = Vector3.MoveTowards(transform.position, _baseTransform.position, 0.5f * Time.deltaTime);
             }
             else
             {
-                transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, 0.1f);
+                transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, 0.5f * Time.deltaTime);
             }
         }
 

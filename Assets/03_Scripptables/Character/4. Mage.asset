@@ -11,29 +11,29 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 543d1524aa9f493cb322f05f616faaae, type: 3}
   m_Name: 4. Mage
-  m_EditorClassIdentifier: Assembly-CSharp::_Dev.Script.Runtime.Core.Character.CharacterDefSO
+  m_EditorClassIdentifier: Assembly-CSharp::_01_Scripts.Runtime.Core.Character.CharacterDefSO
   _characterData:
-    rid: 5550902204989440079
-  _characterSprite: {fileID: 0}
+    rid: 5550902295464771668
   references:
     version: 2
     RefIds:
-    - rid: 5550902204989440079
-      type: {class: CharacterData, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
+    - rid: 5550902295464771668
+      type: {class: CharacterData, ns: _01_Scripts.Runtime.Core.Character, asm: Assembly-CSharp}
       data:
         _nameCharacter: Mage
         _characterStats:
-          rid: 5550902204989440080
+          rid: 5550902295464771669
         _characterBehaviour:
-          rid: 5550902204989440081
-    - rid: 5550902204989440080
-      type: {class: CharacterStats, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
+          rid: 5550902295464771670
+    - rid: 5550902295464771669
+      type: {class: CharacterStats, ns: _01_Scripts.Runtime.Core.Character, asm: Assembly-CSharp}
       data:
-        _maxHealth: 80
-        _attack: 40
-        _defense: 5
-        _speed: 85
+        _maxHealth: 90
+        _attack: 60
+        _defense: 3
+        _speed: 80
         _radius: 5
-    - rid: 5550902204989440081
-      type: {class: MeleeCB, ns: _Dev.Script.Runtime.Core.Character.CharacterBehaviour, asm: Assembly-CSharp}
-      data: 
+    - rid: 5550902295464771670
+      type: {class: RangeCB, ns: _01_Scripts.Runtime.Core.Character.CharacterBehaviour, asm: Assembly-CSharp}
+      data:
+        projectilePoolId: {fileID: 11400000, guid: 92972847b5fd9804aa8af34559e81154, type: 2}

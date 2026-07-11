@@ -11,28 +11,29 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 543d1524aa9f493cb322f05f616faaae, type: 3}
   m_Name: 3. Archer
-  m_EditorClassIdentifier: Assembly-CSharp::_Dev.Script.Runtime.Core.Character.CharacterDefSO
+  m_EditorClassIdentifier: Assembly-CSharp::_01_Scripts.Runtime.Core.Character.CharacterDefSO
   _characterData:
-    rid: 5550902229963636803
-  _characterSprite: {fileID: 0}
+    rid: 5550902295464771664
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 5550902229963636803
-      type: {class: CharacterData, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
+    - rid: 5550902295464771664
+      type: {class: CharacterData, ns: _01_Scripts.Runtime.Core.Character, asm: Assembly-CSharp}
       data:
         _nameCharacter: Archer
         _characterStats:
-          rid: 5550902229963636804
+          rid: 5550902295464771665
         _characterBehaviour:
-          rid: -2
-    - rid: 5550902229963636804
-      type: {class: CharacterStats, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
+          rid: 5550902295464771667
+    - rid: 5550902295464771665
+      type: {class: CharacterStats, ns: _01_Scripts.Runtime.Core.Character, asm: Assembly-CSharp}
       data:
-        _maxHealth: 90
-        _attack: 28
-        _defense: 8
-        _speed: 110
+        _maxHealth: 100
+        _attack: 45
+        _defense: 5
+        _speed: 120
         _radius: 6
+    - rid: 5550902295464771667
+      type: {class: RangeCB, ns: _01_Scripts.Runtime.Core.Character.CharacterBehaviour, asm: Assembly-CSharp}
+      data:
+        projectilePoolId: {fileID: 11400000, guid: 92972847b5fd9804aa8af34559e81154, type: 2}

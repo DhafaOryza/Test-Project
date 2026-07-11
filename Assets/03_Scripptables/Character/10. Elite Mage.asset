@@ -10,29 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 543d1524aa9f493cb322f05f616faaae, type: 3}
-  m_Name: 8. Assassin
+  m_Name: 10. Elite Mage
   m_EditorClassIdentifier: Assembly-CSharp::_01_Scripts.Runtime.Core.Character.CharacterDefSO
   _characterData:
-    rid: 5550902295464771679
+    rid: 5550902295464771686
   references:
     version: 2
     RefIds:
-    - rid: 5550902295464771679
+    - rid: 5550902295464771686
       type: {class: CharacterData, ns: _01_Scripts.Runtime.Core.Character, asm: Assembly-CSharp}
       data:
-        _nameCharacter: Assassin
+        _nameCharacter: Elite Mage
         _characterStats:
-          rid: 5550902295464771680
+          rid: 5550902295464771687
         _characterBehaviour:
-          rid: 5550902295464771682
-    - rid: 5550902295464771680
+          rid: 5550902295464771688
+    - rid: 5550902295464771687
       type: {class: CharacterStats, ns: _01_Scripts.Runtime.Core.Character, asm: Assembly-CSharp}
       data:
-        _maxHealth: 70
-        _attack: 30
-        _defense: 5
-        _speed: 130
-        _radius: 1.5
-    - rid: 5550902295464771682
-      type: {class: MeleeCB, ns: _01_Scripts.Runtime.Core.Character.CharacterBehaviour, asm: Assembly-CSharp}
-      data: 
+        _maxHealth: 80
+        _attack: 40
+        _defense: 4
+        _speed: 85
+        _radius: 5
+    - rid: 5550902295464771688
+      type: {class: RangeCB, ns: _01_Scripts.Runtime.Core.Character.CharacterBehaviour, asm: Assembly-CSharp}
+      data:
+        projectilePoolId: {fileID: 11400000, guid: 92972847b5fd9804aa8af34559e81154, type: 2}

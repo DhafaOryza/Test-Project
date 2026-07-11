@@ -48,9 +48,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7965814924643717253, guid: cde8700abda27794ba947bb5f452633d, type: 3}
+      propertyPath: m_Radius
+      value: 13.8659525
+      objectReference: {fileID: 0}
+    - target: {fileID: 7965814924643717253, guid: cde8700abda27794ba947bb5f452633d, type: 3}
+      propertyPath: m_Offset.x
+      value: 13.5817175
+      objectReference: {fileID: 0}
     - target: {fileID: 8194236511990052039, guid: cde8700abda27794ba947bb5f452633d, type: 3}
       propertyPath: m_Name
-      value: Ally
+      value: Mage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

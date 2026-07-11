@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using _01_Scripts.Runtime.Core.Character;
 using _01_Scripts.Runtime.Core.GameAction;
+using LumineREx.Utils.ListExtenstion;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -42,9 +43,13 @@ namespace _01_Scripts.Runtime.Core.Wave
         {
             foreach (var enemy in CurrentWave.Enemies)
             {
+                List<Transform> spawnPointsCopy = new List<Transform>();
+                spawnPointsCopy.AddRange(spawnPoints);
+                
                 for (int i = 0; i < enemy.Amount; i++)
                 {
-                    Spawn(enemy);
+                    Transform spawn = spawnPointsCopy.Draw();
+                    Spawn(enemy, spawn);
                     
 
                     _enemiesAlive++;
@@ -54,7 +59,7 @@ namespace _01_Scripts.Runtime.Core.Wave
             }
         }
 
-        private void Spawn(SpawnEntry enemy)
+        private void Spawn(SpawnEntry enemy, Transform spawnPoint)
         {
             var point = spawnPoints[Random.Range(0, spawnPoints.Count)];
 

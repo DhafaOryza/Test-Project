@@ -9,7 +9,9 @@ namespace _01_Scripts.Runtime.GamePhaseSystem
         {
             GameManager.GameManager.Instance.HealthManager.Setup(6);
             
+            GameManager.GameManager.Instance.ActionSystem.Unlock();
             GameManager.GameManager.Instance.ActionSystem.Perform(new PreparationPhaseGA());
+            Debug.Log("Start");
         }
     }
 }

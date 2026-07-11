@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: ProjectilePoolCatalog
   m_EditorClassIdentifier: Assembly-CSharp::_01_Scripts.Runtime.PoolingSystem.PoolCatalogSO
   categoryName: Projectile Category
-  pools: []
+  pools:
+  - {fileID: 11400000, guid: a5fe303dd984ced4e8d5891d39a36f7a, type: 2}

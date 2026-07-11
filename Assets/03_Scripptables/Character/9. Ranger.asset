@@ -11,29 +11,29 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 543d1524aa9f493cb322f05f616faaae, type: 3}
   m_Name: 9. Ranger
-  m_EditorClassIdentifier: Assembly-CSharp::_Dev.Script.Runtime.Core.Character.CharacterDefSO
+  m_EditorClassIdentifier: Assembly-CSharp::_01_Scripts.Runtime.Core.Character.CharacterDefSO
   _characterData:
-    rid: 5550902204989440113
-  _characterSprite: {fileID: 0}
+    rid: 5550902295464771683
   references:
     version: 2
     RefIds:
-    - rid: 5550902204989440113
-      type: {class: CharacterData, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
+    - rid: 5550902295464771683
+      type: {class: CharacterData, ns: _01_Scripts.Runtime.Core.Character, asm: Assembly-CSharp}
       data:
         _nameCharacter: Ranger
         _characterStats:
-          rid: 5550902204989440114
+          rid: 5550902295464771684
         _characterBehaviour:
-          rid: 5550902204989440115
-    - rid: 5550902204989440114
-      type: {class: CharacterStats, ns: _Dev.Script.Runtime.Core.Character, asm: Assembly-CSharp}
+          rid: 5550902295464771685
+    - rid: 5550902295464771684
+      type: {class: CharacterStats, ns: _01_Scripts.Runtime.Core.Character, asm: Assembly-CSharp}
       data:
         _maxHealth: 90
         _attack: 25
         _defense: 8
         _speed: 100
         _radius: 5
-    - rid: 5550902204989440115
-      type: {class: MeleeCB, ns: _Dev.Script.Runtime.Core.Character.CharacterBehaviour, asm: Assembly-CSharp}
-      data: 
+    - rid: 5550902295464771685
+      type: {class: RangeCB, ns: _01_Scripts.Runtime.Core.Character.CharacterBehaviour, asm: Assembly-CSharp}
+      data:
+        projectilePoolId: {fileID: 11400000, guid: 92972847b5fd9804aa8af34559e81154, type: 2}

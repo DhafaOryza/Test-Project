@@ -25,7 +25,7 @@ namespace _01_Scripts.Runtime.Core.Character.Ally
 
         public void AddCharacterTest(int rewardIndex)
         {
-            AddCharacter(rewardIndex);
+            AddCharacter(rewardIndex -1);
         }
         
         public bool AddCharacter(int rewardIndex)

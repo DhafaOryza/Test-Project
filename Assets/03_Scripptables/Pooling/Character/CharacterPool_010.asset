@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1154908bce34e9c81a84c47e6f48b80, type: 3}
-  m_Name: ProjectilePool_001
+  m_Name: CharacterPool_010
   m_EditorClassIdentifier: Assembly-CSharp::_01_Scripts.Runtime.PoolingSystem.PoolDataSO
-  poolId: {fileID: 11400000, guid: 92972847b5fd9804aa8af34559e81154, type: 2}
-  prefab: {fileID: 4474639133725236796, guid: 653a101716696814a835fb643447f341, type: 3}
-  initialSize: 10
+  poolId: {fileID: 11400000, guid: 618f2a63710c06747b999ece2cb7ef60, type: 2}
+  prefab: {fileID: 6727900922626050360, guid: 1910d1351f2b0f347a95fada51d69ed9, type: 3}
+  initialSize: 6
   isExpandable: 1

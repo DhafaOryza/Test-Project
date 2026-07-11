@@ -11,17 +11,18 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2aec753af5044b7bf043b551631f86a, type: 3}
   m_Name: Wave
-  m_EditorClassIdentifier: Assembly-CSharp::_Dev.Script.Runtime.Core.Wave.WaveDefSO
+  m_EditorClassIdentifier: Assembly-CSharp::_01_Scripts.Runtime.Core.Wave.WaveDefSO
   waveData:
-  - rid: 5550902204989440133
+  - rid: 5550902295464771663
   references:
     version: 2
     RefIds:
-    - rid: 5550902204989440133
-      type: {class: WaveData, ns: _Dev.Script.Runtime.Core.Wave, asm: Assembly-CSharp}
+    - rid: 5550902295464771663
+      type: {class: WaveData, ns: _01_Scripts.Runtime.Core.Wave, asm: Assembly-CSharp}
       data:
         Enemies:
-        - Character: {fileID: 11400000, guid: 0a5e3e17cd84ec14bbdf0701ccc62279, type: 2}
+        - Character: {fileID: 11400000, guid: 93fcafa3817325b4a9296aabd0b3eaa9, type: 2}
+          poolIdSo: {fileID: 11400000, guid: e376ab175253d8c43b53098be640fce9, type: 2}
           Amount: 2
         PreparationDuration: 15
         SpawnInterval: 0.2
