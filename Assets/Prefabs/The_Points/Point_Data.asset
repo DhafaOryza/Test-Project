@@ -15,4 +15,4 @@ MonoBehaviour:
   poolId: {fileID: 11400000, guid: cdb8f57f4669aa8468e62fe9de999cf5, type: 2}
   prefab: {fileID: 4351417618176587388, guid: f3446d67b0751f03d9177e14b3cd2cf6, type: 3}
   initialSize: 30
-  isExpandable: 0
+  isExpandable: 1

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PoolDataSO
   poolId: {fileID: 11400000, guid: 65ea7b81f80c8ef65bb74a4ce8a35945, type: 2}
   prefab: {fileID: 1938210580906832556, guid: 7fdb6a2547bb03c0ab24563403e5d28d, type: 3}
-  initialSize: 50
+  initialSize: 10
   isExpandable: 1

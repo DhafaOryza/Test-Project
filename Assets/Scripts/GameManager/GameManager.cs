@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
         if (playerStats != null) playerStats.Initialize();
         if (movementPlayer != null) movementPlayer.Initialize();
         if (playerHealth != null) playerHealth.Initalize();
-        if (cameraFollow != null) cameraFollow.Initialize(player);
+        if (cameraFollow != null) cameraFollow.Initialize(cameraTarget);
         if (playerRotation != null) playerRotation.Initialize(player, cameraTarget, mainCamera);
         if (gameTimer != null) gameTimer.Initialize();
         if (playerPoints != null) playerPoints.initialize();
