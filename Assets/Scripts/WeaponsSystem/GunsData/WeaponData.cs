@@ -22,7 +22,7 @@ public class WeaponData : ScriptableObject
     public bool isAutomatic = false;
 
     [Header("Visual")]
-    public GameObject bulletTrailPrefab;
+    public PoolIdSO bulletTrailId;
 
     [Header("Audio")]
     public AudioClip shootClip;

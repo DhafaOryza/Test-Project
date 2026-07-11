@@ -92,7 +92,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.09913165
+        value: 0.07769305
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -164,5 +164,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdc1208447ae39f43b482792211e82c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletTrail
-  lineRenderer: {fileID: 0}
-  fadeDuration: 0.05
+  speed: 60
+  myPoolId: {fileID: 11400000, guid: 65ea7b81f80c8ef65bb74a4ce8a35945, type: 2}

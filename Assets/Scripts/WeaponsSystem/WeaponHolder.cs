@@ -20,8 +20,16 @@ namespace TopDown.Combat
         public void InitializeSession()
         {
             Debug.Log("WeaponHolder Initialize");
-            
+
             int selectedWeapon = 0;
+            
+            foreach (Guns weapon in weapons)
+            {
+                if (weapon != null)
+                {
+                    weapon.Initialize(); 
+                }
+            }
 
             if (GameSession.Instance != null)
             {

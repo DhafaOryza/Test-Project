@@ -193,5 +193,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMelee
   data: {fileID: 11400000, guid: 8870a9266c7304c00a2fac464c8ab5c8, type: 2}
-  pointPrefab: {fileID: 4351417618176587388, guid: f3446d67b0751f03d9177e14b3cd2cf6, type: 3}
+  pointPoolId: {fileID: 11400000, guid: cdb8f57f4669aa8468e62fe9de999cf5, type: 2}
   spawnProtectionDuration: 0.5
+  myPoolId: {fileID: 11400000, guid: fb5f6c271ea4bab12a2c0610b5fb017e, type: 2}

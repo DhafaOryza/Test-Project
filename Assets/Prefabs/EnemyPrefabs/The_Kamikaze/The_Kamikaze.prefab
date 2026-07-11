@@ -285,8 +285,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::The_Kamikaze
   data: {fileID: 11400000, guid: b19f2dbf9a5d5cc1a92f2d82de41c929, type: 2}
-  pointPrefab: {fileID: 4351417618176587388, guid: f3446d67b0751f03d9177e14b3cd2cf6, type: 3}
+  pointPoolId: {fileID: 11400000, guid: cdb8f57f4669aa8468e62fe9de999cf5, type: 2}
   spawnProtectionDuration: 0.5
+  myPoolId: {fileID: 11400000, guid: 2a1c5840a8d9763f9898fc0391fcaab5, type: 2}
   explosionRadius: 2
   explosionDamageToEnemies: 5
   timeExplode: 1.5

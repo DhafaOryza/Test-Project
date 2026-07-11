@@ -163,7 +163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 032cfd0d8e5a7a54c80757846f59a825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TopDown.UI.AmmoUI
-  weaponHolder: {fileID: 462618457}
   ammoText: {fileID: 715831021}
   lowAmmoThreshold: 3
   normalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1801,7 +1800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8b060162cbcf3917b8b505926521ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  poolManager: {fileID: 0}
+  poolManager: {fileID: 1130953186}
   upgradeManager: {fileID: 992257910}
   levelManager: {fileID: 1754724028}
   weaponHolder: {fileID: 462618457}
@@ -1813,6 +1812,12 @@ MonoBehaviour:
   cameraFollow: {fileID: 1926513639}
   playerRotation: {fileID: 1040833425}
   gameTimer: {fileID: 1278765210}
+  playerPoints: {fileID: 1040833427}
+  ammoUI: {fileID: 7230178}
+  mainCamera: {fileID: 1926513637}
+  player: {fileID: 1040833422}
+  cameraTarget: {fileID: 1916275202}
+  hasInitialized: 0
 --- !u!1 &452671334
 GameObject:
   m_ObjectHideFlags: 0
@@ -4234,12 +4239,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ccef5b87838749687af2986fdf1fab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  playerTransform: {fileID: 0}
-  enemyPrefabs:
-  - {fileID: 8237688302899350328, guid: 17751f97a9f6a7fc1aaf6683dc0e05c3, type: 3}
-  - {fileID: 8677620098753660861, guid: d4b026e79ae04fae981654133e84fa9a, type: 3}
-  - {fileID: 3107220305158997570, guid: 9b5d2640ac84fd9999f989acd09546df, type: 3}
-  - {fileID: 411420845899900135, guid: 5fed70de3ae3bdbed861c63602935792, type: 3}
+  playerTransform: {fileID: 1040833422}
+  enemyPoolIds:
+  - {fileID: 11400000, guid: fb5f6c271ea4bab12a2c0610b5fb017e, type: 2}
+  - {fileID: 11400000, guid: 2a1c5840a8d9763f9898fc0391fcaab5, type: 2}
+  - {fileID: 11400000, guid: 3d92be08a3a4d34d680a68edaf1199d0, type: 2}
+  - {fileID: 11400000, guid: 9a9032504fca0f136b455f62305fbae8, type: 2}
   unlockTimes:
   - 0
   - 150
@@ -4374,8 +4379,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a14b2fc03d093026fba4ebbcd2b5dd63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TopDown.Movement.PlayerRotation
-  cameraTarget: {fileID: 1916275202}
-  player: {fileID: 1040833422}
 --- !u!212 &1040833426
 SpriteRenderer:
   serializedVersion: 2
@@ -4665,6 +4668,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1064743465}
   m_CullTransparentMesh: 1
+--- !u!1 &1130953184
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1130953185}
+  - component: {fileID: 1130953186}
+  m_Layer: 0
+  m_Name: PoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1130953185
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130953184}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1003.24524, y: 596.67035, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1130953186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130953184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32f3b254c504748db8d32882d6c66820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PoolManager
+  catalogs:
+  - {fileID: 11400000, guid: 71cb4c50a40a2ea19bce07bc37692e51, type: 2}
 --- !u!1 &1156892179
 GameObject:
   m_ObjectHideFlags: 0
@@ -8482,6 +8531,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 300230215}
   - {fileID: 1926513638}
+  - {fileID: 1130953185}
   - {fileID: 451344821}
   - {fileID: 2062812695}
   - {fileID: 1040833422}

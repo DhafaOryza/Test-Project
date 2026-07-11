@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef735d2d48a34cde98d309d5fe5cd76, type: 3}
+  m_Name: Main_Catalog
+  m_EditorClassIdentifier: Assembly-CSharp::PoolCatalogSO
+  pools:
+  - {fileID: 11400000, guid: f443957b6f2ca62b3bdea78d2594911b, type: 2}
+  - {fileID: 11400000, guid: b041d2cb7de87d9d491111536003ce61, type: 2}
+  - {fileID: 11400000, guid: 903f4fcf6581e124892edb7dd785c237, type: 2}
+  - {fileID: 11400000, guid: da069d911cd5200728902150b7cf5a60, type: 2}
+  - {fileID: 11400000, guid: 2bf261cd512587d3fabe8a36082330d7, type: 2}
+  - {fileID: 11400000, guid: 720a57e34dfd14affab6c857cc126d7b, type: 2}
+  - {fileID: 11400000, guid: 235c00a4ae1dd43778e41cbb7e7d10a4, type: 2}

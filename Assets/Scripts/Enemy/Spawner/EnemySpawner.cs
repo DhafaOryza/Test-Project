@@ -6,7 +6,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Transform playerTransform;
 
     [Header("Enemy Prefabs")]
-    [SerializeField] private GameObject[] enemyPrefabs;
+    [SerializeField] private PoolIdSO[] enemyPoolIds;
 
     [Header("Enemy Progression")]
     // Index 0 (Grunt) = 0 detik
@@ -65,10 +65,10 @@ public class EnemySpawner : MonoBehaviour
 
     private void CheckEnemyUnlocks()
     {
-        if (gameTimer == null || enemyPrefabs.Length == 0) return;
+        if (gameTimer == null || enemyPoolIds.Length == 0) return;
         
         // mengecek apakah waktu untuk enemy sudah unlock atau belum
-        if (availableEnemyCount < enemyPrefabs.Length && availableEnemyCount < unlockTimes.Length)
+        if (availableEnemyCount < enemyPoolIds.Length && availableEnemyCount < unlockTimes.Length)
         {
             if (timeAlive >= unlockTimes[availableEnemyCount])
             {
@@ -98,12 +98,16 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnOneEnemy()
     {
         // cek enemy yang sudah di Unlock untuk di spawn.
-        if (enemyPrefabs.Length == 0 || player == null) return;
+        if (enemyPoolIds.Length == 0 || player == null) return;
 
-        GameObject enemyToSpawn = enemyPrefabs[Random.Range(0, availableEnemyCount)];
+
+        PoolIdSO enemyToSpawn = enemyPoolIds[Random.Range(0, availableEnemyCount)];
         Vector2 spawnPosition = GetRandomPositionAroundPlayer();
 
-        Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity);
+        if (GameManager.Instance != null && GameManager.Instance.poolManager != null)
+        {
+            GameManager.Instance.poolManager.Spawn(enemyToSpawn, spawnPosition, Quaternion.identity);
+        }
     }
 
     private Vector2 GetRandomPositionAroundPlayer()

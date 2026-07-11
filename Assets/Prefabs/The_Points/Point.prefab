@@ -183,3 +183,4 @@ MonoBehaviour:
   value: 1
   pickupRadius: 3
   moveSpeed: 8
+  myPoolId: {fileID: 11400000, guid: cdb8f57f4669aa8468e62fe9de999cf5, type: 2}

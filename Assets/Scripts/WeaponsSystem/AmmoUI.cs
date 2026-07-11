@@ -7,8 +7,10 @@ namespace TopDown.UI
     public class AmmoUI : MonoBehaviour
     {
         [Header("References")]
-        [SerializeField] private WeaponHolder weaponHolder;
         [SerializeField] private TMP_Text ammoText;
+        
+        // Dibuat private dan dihapus SerializeField-nya karena akan diisi oleh GameManager
+        private WeaponHolder weaponHolder; 
 
         [Header("Ammo Settings")]
         [SerializeField] private int lowAmmoThreshold = 3;
@@ -17,31 +19,29 @@ namespace TopDown.UI
 
         private Guns lastWeapon; 
 
-        private void Start()
+        // Dipanggil oleh GameManager
+        public void Initialize(WeaponHolder holder)
         {
-            FindWeaponHolder();
-        }
-
-        private void FindWeaponHolder()
-        {
-            weaponHolder = Object.FindAnyObjectByType<WeaponHolder>();
+            weaponHolder = holder;
+            ammoText.color = normalColor;
+            
+            Debug.Log("AmmoUI berhasil diinisialisasi oleh GameManager.");
         }
 
         private void Update()
         {
-            if (weaponHolder == null)
-            {
-                FindWeaponHolder();
-                return;
-            }
+            // Jika GameManager belum mengirimkan WeaponHolder, diam saja
+            if (weaponHolder == null) return;
 
             Guns currentWeapon = weaponHolder.Currentweapon; 
 
             if (currentWeapon == null) 
             {
+                ammoText.text = "-";
                 return;
             }
 
+            // Mereset warna jika pemain baru saja mengganti senjata
             if (currentWeapon != lastWeapon)
             {
                 ammoText.color = normalColor;
@@ -50,9 +50,10 @@ namespace TopDown.UI
 
             ammoText.text = $"{currentWeapon.CurrentAmmo}";
 
+            // Efek warna UI berdasarkan sisa peluru
             if (currentWeapon.CurrentAmmo == 0)
             {
-                ammoText.color = Color.red;
+                ammoText.color = lowColor;
             }
             else if (currentWeapon.CurrentAmmo <= lowAmmoThreshold)
             {

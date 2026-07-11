@@ -8,9 +8,7 @@ public class GameSession : MonoBehaviour
 
     [Header("Transition Settings")]
     [SerializeField] private float transitionTime = 2f;
-    [SerializeField] private Animator transitionAnimator;
 
-    // TAMBAHKAN INI: Memori permanen untuk menyimpan pilihan senjata
     [Header("Player Data")]
     public int selectedWeaponIndex = 0; 
 
@@ -40,10 +38,6 @@ public class GameSession : MonoBehaviour
 
     private IEnumerator LoadLevelCoroutine(string sceneName)
     {
-        if (transitionAnimator != null)
-        {
-            transitionAnimator.SetTrigger("Start");
-        }
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(sceneName);
     }

@@ -20,7 +20,7 @@ MonoBehaviour:
   range: 15
   damage: 1
   isAutomatic: 1
-  bulletTrailPrefab: {fileID: 1938210580906832556, guid: 7fdb6a2547bb03c0ab24563403e5d28d, type: 3}
+  bulletTrailId: {fileID: 11400000, guid: 65ea7b81f80c8ef65bb74a4ce8a35945, type: 2}
   shootClip: {fileID: 0}
   reloadClip: {fileID: 0}
   shootVolume: 1

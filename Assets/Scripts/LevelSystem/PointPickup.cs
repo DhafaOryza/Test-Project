@@ -6,17 +6,22 @@ public class PointPickup : MonoBehaviour
     [SerializeField] private int value = 1;
     [SerializeField] private float pickupRadius = 2f;
     [SerializeField] private float moveSpeed = 8f;
+    [SerializeField] private PoolIdSO myPoolId;
 
     private Transform player;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        if (GameManager.Instance != null && GameManager.Instance.player != null)
+        {
+            player = GameManager.Instance.player;
+        }
     }
 
     private void Update()
     {
         if (player == null) return;
+
         float distance = Vector2.Distance(transform.position, player.position);
 
         if (distance <= pickupRadius)
@@ -41,6 +46,6 @@ public class PointPickup : MonoBehaviour
             playerPoints.AddPoint(value);
         }
 
-        Destroy(gameObject);
+        GameManager.Instance.poolManager.Despawn(myPoolId, gameObject);
     }
 }

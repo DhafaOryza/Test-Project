@@ -21,6 +21,7 @@ namespace TopDown.Combat
         public void Initialize()
         {
             Debug.Log("Guns Initialize");
+            
             if (data != null)
             {
                 currentAmmo = data.magazineSize;
@@ -84,10 +85,18 @@ namespace TopDown.Combat
 
         protected void SpawnBulletTrail(Vector3 hitpoint)
         {
-            if (data.bulletTrailPrefab == null) return;
+            if (data.bulletTrailId == null) return;
 
-            GameObject trailObj = Instantiate(data.bulletTrailPrefab, gunPoint.position, Quaternion.identity);
-            
+            if (GameManager.Instance == null || GameManager.Instance.poolManager == null) return;
+
+            GameObject trailObj = GameManager.Instance.poolManager.Spawn(data.bulletTrailId, gunPoint.position, Quaternion.identity);
+
+            if (trailObj == null)
+            {
+                Debug.LogWarning("Trail Pool kosong!");
+                return;
+            }
+
             SpriteRenderer sr = trailObj.GetComponent<SpriteRenderer>();
             if (sr != null)
             {
@@ -100,6 +109,6 @@ namespace TopDown.Combat
             {
                 trail.SetTargetPosition(hitpoint);
             }
-        } 
+        }
     }
 }

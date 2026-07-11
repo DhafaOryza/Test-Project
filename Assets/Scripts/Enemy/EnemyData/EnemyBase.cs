@@ -4,8 +4,9 @@ public abstract class EnemyBase : MonoBehaviour
 {
     [Header("Base Data")]
     public EnemyData data;
-    [SerializeField] private GameObject pointPrefab;
+    [SerializeField] private PoolIdSO pointPoolId;
     [SerializeField] private float spawnProtectionDuration = 0.5f;
+    public PoolIdSO myPoolId;
 
     protected float currentHealth;
     protected bool isDead = false;
@@ -21,7 +22,7 @@ public abstract class EnemyBase : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void Start()
+    public void OnEnable()
     {
         currentHealth = data.maxHealth;
 
@@ -60,10 +61,25 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected virtual void Die()
     {
+        if (GameManager.Instance != null && GameManager.Instance.scoreManager != null)
+        {
+            GameManager.Instance.scoreManager.AddKill();
+        }
+
         for (int i = 0; i < data.dropAmount; i++)
         {
-            Instantiate(pointPrefab, transform.position, Quaternion.identity);
+            if (GameManager.Instance != null &&
+                GameManager.Instance.poolManager != null)
+            {
+                GameManager.Instance.poolManager.Spawn(
+                    pointPoolId,
+                    transform.position,
+                    Quaternion.identity);
+            }
         }
-        Destroy(gameObject);
+        if (GameManager.Instance != null && GameManager.Instance.poolManager != null)
+        {
+            GameManager.Instance.poolManager.Despawn(myPoolId, gameObject);
+        }
     }
 }

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f64cbafb0c9bf59f6a7001e3b9938f47, type: 3}
+  m_Name: Splitter_Mini_Data
+  m_EditorClassIdentifier: Assembly-CSharp::PoolDataSO
+  poolId: {fileID: 11400000, guid: c72a25adf26c13f9e8b4e0540536c803, type: 2}
+  prefab: {fileID: 614559110812866716, guid: 5f228cbe3d219bcceb6c97dcc84c733b, type: 3}
+  initialSize: 20
+  isExpandable: 0

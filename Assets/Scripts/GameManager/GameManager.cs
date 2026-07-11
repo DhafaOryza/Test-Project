@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TopDown.Combat;
 using TopDown.Movement;
+using TopDown.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,11 +22,13 @@ public class GameManager : MonoBehaviour
     public CameraFollow cameraFollow;
     public PlayerRotation playerRotation;
     public GameTimer gameTimer;
+    public PlayerPoints playerPoints;
+    public AmmoUI ammoUI;
 
-    private bool hasInitialized = false;
-    private Camera mainCamera;
-    private Transform player;
-    private Transform cameraTarget;
+    public Camera mainCamera;
+    public Transform player;
+    public Transform cameraTarget;
+    public bool hasInitialized = false;
 
     private void Awake()
     {
@@ -75,10 +78,12 @@ public class GameManager : MonoBehaviour
         if (cameraFollow == null) cameraFollow = Object.FindAnyObjectByType<CameraFollow>();
         if (playerRotation == null) playerRotation = Object.FindAnyObjectByType<PlayerRotation>();
         if (gameTimer == null) gameTimer = Object.FindAnyObjectByType<GameTimer>();
+        if (playerPoints == null) playerPoints = Object.FindAnyObjectByType<PlayerPoints>();
+        if (ammoUI == null) ammoUI = Object.FindAnyObjectByType<AmmoUI>();
 
         if (weaponHolder != null) weaponHolder.InitializeSession();
         if (playerAnimation != null) playerAnimation.Initalize();
-        // if (poolManager != null) poolManager.Intialize();
+        if (poolManager != null) poolManager.Initialize();
         if (upgradeManager != null) upgradeManager.Initialize();
         if (levelManager != null) levelManager.Initialize();
         if (scoreManager != null) scoreManager.Initialize();
@@ -88,6 +93,8 @@ public class GameManager : MonoBehaviour
         if (cameraFollow != null) cameraFollow.Initialize(player);
         if (playerRotation != null) playerRotation.Initialize(player, cameraTarget, mainCamera);
         if (gameTimer != null) gameTimer.Initialize();
+        if (playerPoints != null) playerPoints.initialize();
+        if (ammoUI != null) ammoUI.Initialize(weaponHolder);
     
     }
 

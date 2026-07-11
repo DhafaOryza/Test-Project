@@ -4,6 +4,11 @@ public class PlayerPoints : MonoBehaviour
 {
     public int CurrentPoints { get; private set; }
 
+    public void initialize()
+    {
+        CurrentPoints = 0;
+    }
+
     public void AddPoint(int amount)
     {
         CurrentPoints += amount;

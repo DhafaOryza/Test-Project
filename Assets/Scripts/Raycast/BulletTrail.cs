@@ -1,39 +1,60 @@
+using System.Diagnostics;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
-namespace TopDown.Combat
+public class BulletTrail : MonoBehaviour
 {
-    public class BulletTrail : MonoBehaviour
+    [SerializeField] private float speed = 60f;
+    [SerializeField] private PoolIdSO myPoolId;
+
+    private Vector3 startPosition;
+    private Vector3 targetPosition;
+    private float progress;
+    private bool initialized;
+
+    private void OnEnable()
     {
-        [SerializeField] private float speed = 60f;
+        initialized = false;
+        progress = 0f;
 
-        private Vector3 startPosition;
-        private Vector3 targetPosition;
-        private float progress;
+        // Debug.Log($"[Trail {GetInstanceID()}] OnEnable");
+    }
 
-        public void SetTargetPosition(Vector3 target)
+    public void SetTargetPosition(Vector3 target)
+    {
+        startPosition = transform.position;
+        targetPosition = target;
+        progress = 0f;
+        initialized = true;
+    }
+
+    private void Update()
+    {
+        if (!initialized) return;
+
+        float distance = Vector3.Distance(startPosition, targetPosition);
+
+        if (distance <= 0.01f)
         {
-            // mengambil posisi awal,target dengan Vector3 dan progress degan float 
-            startPosition = transform.position;
-            targetPosition = target;
-            progress = 0f;
+            initialized = false;
+            GameManager.Instance.poolManager.Despawn(myPoolId, gameObject);
+            return;
         }
 
-        void Update()
+        progress += Time.deltaTime * (speed / distance);
+        transform.position = Vector3.Lerp(startPosition, targetPosition, progress);
+
+        if (progress >= 1f)
         {
-            // memasukkan jarak dari start position dan target position
-            float distance = Vector3.Distance(startPosition, targetPosition);
-            if (distance <= 0.01f) return;
+            // Debug.Log("cek Despwan");
 
-            // perhitungan untuk menembak
-            progress += Time.deltaTime * speed / distance;
-
-            // menggunakan perhitungan Lerp untuk menentukan posisi
-            transform.position = Vector3.Lerp(startPosition, targetPosition, progress);
-
-            // menghapus bullet trial
-            if (progress >= 1f)
-                Destroy(gameObject);
+            initialized = false;
+            GameManager.Instance.poolManager.Despawn(myPoolId, gameObject);
         }
+    }
 
+    private void OnDestroy()
+    {
+        Debug.Log($"'{name}' was Detroyed.\n {new StackTrace(true)}", this);
     }
 }
