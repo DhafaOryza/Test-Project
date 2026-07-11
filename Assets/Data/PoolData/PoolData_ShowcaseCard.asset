@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac1e08486f5015e4bb25eb229d59ccc4, type: 3}
+  m_Name: PoolData_ShowcaseCard
+  m_EditorClassIdentifier: Assembly-CSharp::PoolDataSO
+  poolId: {fileID: 11400000, guid: 4a6b5cda1f48f7342b72a3fcbe75bc6d, type: 2}
+  prefab: {fileID: 635088034058363121, guid: c6440f98b63a41a4d874415202ae8d1f, type: 3}
+  initialSize: 6
+  isExpandable: 0

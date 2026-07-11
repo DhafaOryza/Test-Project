@@ -7,7 +7,7 @@ using DG.Tweening;
 public class ChoiceCardSlot : MonoBehaviour, IPointerClickHandler , IPointerEnterHandler, IPointerExitHandler
 {
     [Header("UI Components")]
-    [SerializeField] private Image cardImage;   // <-- Berubah dari SpriteRenderer ke Image
+    [SerializeField] private Image cardImage;  
     [SerializeField] private TMP_Text title;              
     [SerializeField] private TMP_Text description;        
     [SerializeField] private TMP_Text damage;             

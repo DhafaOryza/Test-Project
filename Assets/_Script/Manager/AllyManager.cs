@@ -10,7 +10,7 @@ public class AllyManager : MonoBehaviour
     [Header("Pooling System")]
     [SerializeField] private PoolIdSO playerCardPoolId;
 
-    private List<CardView> activeAllies = new List<CardView>();
+    public List<CardView> activeAllies = new List<CardView>();
 
     // Membuka akses list ini agar nanti bisa dibaca oleh TurnManager
     public List<CardView> ActiveAllies => activeAllies;

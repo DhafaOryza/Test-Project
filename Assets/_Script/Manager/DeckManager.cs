@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
-using Unity.VisualScripting;
 
 public class DeckManager : MonoBehaviour
 {
@@ -12,6 +11,7 @@ public class DeckManager : MonoBehaviour
 
     [Header("Pooling System")]
     [SerializeField] private PoolIdSO dummyCardPoolId;
+    [SerializeField] private PoolIdSO showcaseCardPoolId;
     
     [Header("UI System")]
     [SerializeField] private GameObject gameOverPanel;
@@ -322,6 +322,8 @@ public class DeckManager : MonoBehaviour
         if (CancelButton != null) CancelButton.SetActive(true);
 
         List<CardView> activeHandCard = GameManager.Instance.handManager != null ? GameManager.Instance.handManager.GetHandCardViews() : new List<CardView>();
+        List<CardView> activeAllies = GameManager.Instance.allyManager != null ? GameManager.Instance.allyManager.activeAllies : new List<CardView>();
+
         List<Card> allPlayerCards = new List<Card>();
         allPlayerCards.AddRange(drawPile);
         allPlayerCards.AddRange(discardPile);
@@ -332,6 +334,15 @@ public class DeckManager : MonoBehaviour
             {
                 handCard.gameObject.SetActive(false);
                 allPlayerCards.Add(handCard.CardData);
+            }
+        }
+
+        foreach (var allyCard in activeAllies)
+        {
+            if (allyCard != null && allyCard.CardData != null)
+            {
+                allyCard.gameObject.SetActive(false);
+                allPlayerCards.Add(allyCard.CardData);
             }
         }
 
@@ -365,8 +376,6 @@ public class DeckManager : MonoBehaviour
         {
             Card cardData = kvp.Value.data;
             int stackCount = kvp.Value.count;
-
-            // Titik awal terbang dari tengah layar agar menyebar elegan
             Vector3 startPos = showcaseCenterPoint.position; 
             
             AnimateGroupedCardToLineup(cardData, stackCount, startPos, StartX, spacing, globalIndex);
@@ -376,8 +385,11 @@ public class DeckManager : MonoBehaviour
 
     private void AnimateGroupedCardToLineup(Card cardToDisplay, int stackCount, Vector3 startPos, float startX, float spacing, int index)
     {
-        GameObject dummy = GameManager.Instance.poolManager.Spawn(dummyCardPoolId, startPos, Quaternion.identity);
+        GameObject dummy = GameManager.Instance.poolManager.Spawn(showcaseCardPoolId, startPos, Quaternion.identity);
         
+        dummy.transform.DOKill();
+        dummy.transform.localScale = new Vector3(2f, 2.5f, 1f);
+
         foreach (Transform child in dummy.transform)
         {
             if (child != null)
@@ -390,8 +402,8 @@ public class DeckManager : MonoBehaviour
         {
             canvas.enabled = true;
             canvas.gameObject.SetActive(true);
-            canvas.overrideSorting = false;
-            canvas.sortingOrder = 0;
+            canvas.overrideSorting = true;
+            canvas.sortingOrder = 51;
         }
 
         CardView view = dummy.GetComponent<CardView>();
@@ -425,7 +437,7 @@ public class DeckManager : MonoBehaviour
         {
             if (dummy != null)
             {
-                GameManager.Instance.poolManager.Despawn(dummyCardPoolId, dummy);
+                GameManager.Instance.poolManager.Despawn(showcaseCardPoolId, dummy);
             }
         }
         showcasedDummyCards.Clear();
@@ -437,6 +449,16 @@ public class DeckManager : MonoBehaviour
                 if (card != null)
                 {
                     card.gameObject.SetActive(true);
+                }
+            }
+        }
+        if(GameManager.Instance.allyManager != null)
+        {
+            foreach(var ally in GameManager.Instance.allyManager.ActiveAllies)
+            {
+                if (ally != null)
+                {
+                    ally.gameObject.SetActive(true);
                 }
             }
         }
