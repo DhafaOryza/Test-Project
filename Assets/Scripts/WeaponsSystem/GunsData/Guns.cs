@@ -85,6 +85,8 @@ namespace TopDown.Combat
 
         protected void SpawnBulletTrail(Vector3 hitpoint)
         {
+            if (gunPoint == null) return;
+
             if (data.bulletTrailId == null) return;
 
             if (GameManager.Instance == null || GameManager.Instance.poolManager == null) return;

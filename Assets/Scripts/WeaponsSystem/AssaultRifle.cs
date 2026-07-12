@@ -13,7 +13,7 @@ namespace TopDown.Combat
 
             Vector3 endPoint;
 
-            if (hit.collider != null)
+            if (hit.collider != null && hit.collider.gameObject.activeInHierarchy)
             {
                 endPoint = hit.point;
 

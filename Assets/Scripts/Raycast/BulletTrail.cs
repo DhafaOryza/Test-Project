@@ -32,6 +32,12 @@ public class BulletTrail : MonoBehaviour
 
         float distance = Vector3.Distance(startPosition, targetPosition);
 
+        // if (progress >= 0.005f)
+        // {
+        //     initialized = false;
+        //     GameManager.Instance.poolManager.Despawn(myPoolId, gameObject);
+        // }
+
         progress += Time.deltaTime * (speed / distance);
         transform.position = Vector3.Lerp(startPosition, targetPosition, progress);
 
