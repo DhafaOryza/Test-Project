@@ -7,7 +7,7 @@ namespace _01_Scripts.Runtime.Interaction
     using UnityEngine.InputSystem;
 
     [RequireComponent(typeof(Collider2D))]
-    public class Draggle : MonoBehaviour
+    public class CharacterInteraction : MonoBehaviour
     {
         public event Action DragStarted;
         public event Action Dragging;
@@ -15,14 +15,14 @@ namespace _01_Scripts.Runtime.Interaction
 
         [SerializeField] private Collider2D boundary;
 
-        private Collider2D selfCollider;
+        private Collider2D _selfCollider;
 
-        private bool isDragging;
-        private Vector3 offset;
+        private bool _isDragging;
+        private Vector3 _offset;
 
         void Awake()
         {
-            selfCollider = GetComponent<Collider2D>();
+            _selfCollider = GetComponent<Collider2D>();
         }
 
         public void SetBoundary(Collider2D area)
@@ -36,19 +36,19 @@ namespace _01_Scripts.Runtime.Interaction
             Debug.Log("OnMouseDown");
             Vector3 mouse = MousePosition();
 
-            offset = transform.position - mouse;
+            _offset = transform.position - mouse;
 
-            isDragging = true;
+            _isDragging = true;
 
             DragStarted?.Invoke();
         }
 
         private void OnMouseDrag()
         {
-            if (!isDragging)
+            if (!_isDragging)
                 return;
 
-            Vector3 target = MousePosition() + offset;
+            Vector3 target = MousePosition() + _offset;
 
             transform.position = Clamp(target);
 
@@ -57,10 +57,10 @@ namespace _01_Scripts.Runtime.Interaction
 
         private void OnMouseUp()
         {
-            if (!isDragging)
+            if (!_isDragging)
                 return;
 
-            isDragging = false;
+            _isDragging = false;
 
             DragEnded?.Invoke();
         }
@@ -80,7 +80,7 @@ namespace _01_Scripts.Runtime.Interaction
                 return target;
 
             Bounds area = boundary.bounds;
-            Bounds self = selfCollider.bounds;
+            Bounds self = _selfCollider.bounds;
 
             float x = self.extents.x;
             float y = self.extents.y;

@@ -15,7 +15,7 @@ namespace _01_Scripts.Runtime.Core.Spawner
         {
             AllyController allyController = GameManager.GameManager.Instance.PoolManager.Spawn<AllyController>(poolIdSo, position.position, Quaternion.identity);
             allyController.Initialize(character);
-            allyController.Draggle.SetBoundary(boundaryCollider);
+            allyController.CharacterInteraction.SetBoundary(boundaryCollider);
             return allyController;
         }
     }   

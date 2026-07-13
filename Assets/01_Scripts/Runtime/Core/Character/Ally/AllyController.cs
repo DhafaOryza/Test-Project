@@ -1,14 +1,15 @@
 using _01_Scripts.Runtime.Interaction;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _01_Scripts.Runtime.Core.Character.Ally
 {
     public class AllyController : CharacterController
     {
-        [SerializeField]
-        private Draggle _draggle;
+        [FormerlySerializedAs("_draggle")] [SerializeField]
+        private CharacterInteraction characterInteraction;
         
-        public Draggle Draggle => _draggle;
+        public CharacterInteraction CharacterInteraction => characterInteraction;
         
     }
 }

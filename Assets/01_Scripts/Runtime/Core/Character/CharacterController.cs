@@ -9,11 +9,10 @@ using UnityEngine;
 
 namespace _01_Scripts.Runtime.Core.Character
 {
-    public class CharacterController : MonoBehaviour, IDamageable, IStatsInfo
+    public class CharacterController : MonoBehaviour, IDamageable, IStatsInfo, ICharacterMergeable
     {
         [SerializeField]
         private CharacterDetection characterDetection;
-        
         [SerializeField]
         private HealthBar healthBar;
         
@@ -168,6 +167,11 @@ namespace _01_Scripts.Runtime.Core.Character
         public CharacterStats GetCharacterStats()
         {
             return _character.CharacterData.CharacterStats;
+        }
+
+        public void OnCharacterDrop(CharacterController characterController)
+        {
+            throw new NotImplementedException();
         }
     }
 }
