@@ -48,58 +48,6 @@ public class AllyManager : MonoBehaviour
         {
             GameManager.Instance.poolManager.Despawn(playerCardPoolId, deadAlly.gameObject);
         }
-        ///
-        ///  Tidak Temp Code => kadang ngebug
-        /// 
-        /*Debug.Log($"[AllyManager] {deadAlly.CardData.Title} gugur dalam pertempuran!");
-        
-        // 1. Lepas pendaftaran dan hapus dari daftar pasukan
-        deadAlly.OnCardDefeated -= HandleAllyDefeated;
-        activeAllies.Remove(deadAlly);
-
-        // 2. Setor datanya ke GameManager agar bisa di-reshuffle nantinya
-        if (GameManager.Instance.deckManager != null)
-        {
-            GameManager.Instance.deckManager.AddCardToDiscard(deadAlly.CardData);
-        }
-
-        // 3. Animasi visual membuang Ally yang mati ke tumpukan Discard
-        if (discardDropZone != null)
-        {
-            deadAlly.SetInteractable(false);
-            Collider2D col = deadAlly.GetComponent<Collider2D>();
-            if (col != null) col.enabled = false;
-
-            discardDropZone.DiscardedVisuals.Add(deadAlly);
-
-            Canvas canvas = deadAlly.GetComponentInChildren<Canvas>();
-            if (canvas != null) canvas.gameObject.SetActive(false);
-
-            if (discardDropZone.DiscardedVisuals.Count > 3)
-            {
-                CardView oldest = discardDropZone.DiscardedVisuals[0];
-                discardDropZone.DiscardedVisuals.RemoveAt(0);
-
-                if (oldest != null) 
-                {
-                   GameManager.Instance.poolManager.Despawn(playerCardPoolId, oldest.gameObject);
-                }
-
-            int stackIndex = discardDropZone.DiscardedVisuals.Count - 1;
-            Vector3 offset = new Vector3(0.05f * stackIndex, 0.05f * stackIndex, -0.1f * stackIndex);
-            Vector3 targetPos = discardDropZone.transform.position + offset;
-
-            SpriteRenderer[] sprites = deadAlly.GetComponentsInChildren<SpriteRenderer>();
-            foreach(var sr in sprites) sr.sortingOrder = stackIndex;
-
-            deadAlly.transform.DOMove(targetPos, 0.3f).SetEase(Ease.InOutQuad).SetLink(deadAlly.gameObject);
-            deadAlly.transform.DOLocalRotateQuaternion(discardDropZone.transform.rotation, 0.3f).SetLink(deadAlly.gameObject);
-        }
-        else
-        {
-            GameManager.Instance.poolManager.Despawn(playerCardPoolId, deadAlly.gameObject);
-        }
-        }*/
     }
 
     public void AllyAttackTarget(CardView allyCard, Transform targetTransform, System.Action onComplete = null)
@@ -129,7 +77,11 @@ public class AllyManager : MonoBehaviour
             CardView targetEnemy = targetTransform.GetComponent<CardView>();
             if (targetEnemy != null)
             {
-                int dmg = allyCard.CardData.Damage;
+                int dmg = 0;
+                if (allyCard.CardData is SummonCard summonData)
+                {
+                    dmg = summonData.Damage;
+                }
                 targetEnemy.ReceiveDamage(dmg);
             }
 

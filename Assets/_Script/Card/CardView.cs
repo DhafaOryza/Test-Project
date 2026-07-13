@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -16,8 +17,8 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     [SerializeField] private bool isInteractable = true;
     [SerializeField] private BuffEffectType EffectType;
 
-    public Card CardData => card;
-    private Card card;
+    public BaseCard CardData => card;
+    private BaseCard card;
     private Camera mainCam;
     private Vector3 homePosition;
     private Quaternion homeRotation;
@@ -39,14 +40,9 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         allSprites = GetComponentsInChildren<SpriteRenderer>();
     }
 
-    public void Setup(Card card)
+    public void Setup(BaseCard newCard)
     {
-        this.card = card;
-
-        if (card.Type == CardType.Summon || card.Type == CardType.Enemy)
-        {
-            card.ResetHealth();
-        }
+        this.card = newCard;
         
         if (card.Sprite == null)
         {
@@ -57,19 +53,35 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             cardImage.color = new Color(1, 1, 1, 1);
             cardImage.sprite = card.Sprite;
         }
-        // ------------------------
 
         title.text = card.Title;
         description.text = card.Description;
-        damage.text = card.Damage.ToString();
-
         if (cost != null) cost.gameObject.SetActive(false);
 
-        bool showsHealth = card.Type == CardType.Enemy || card.Type == CardType.Summon;
-        if (healthText != null)
+        if (card is AttackCard atkCard)
         {
-            healthText.gameObject.SetActive(showsHealth);
-            if (showsHealth) healthText.text = $"{card.CurrentHealth}";
+            damage.gameObject.SetActive(true);
+            damage.text = atkCard.Damage.ToString();
+        }
+        else if (card is SummonCard summonCardforDmg)
+        {
+            damage.gameObject.SetActive(true);
+            damage.text = summonCardforDmg.Damage.ToString();
+        }
+        else
+        {
+            damage.gameObject.SetActive(false);
+        }
+
+        if (card is SummonCard summonCard)
+        {
+            healthText.gameObject.SetActive(true);
+            healthText.text = summonCard.currentHealth.ToString();
+            summonCard.ResetHealth();
+        }
+        else
+        {
+            healthText.gameObject.SetActive(false);
         }
     }
 
@@ -158,82 +170,21 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             return;
         }
 
-        bool effectApplied = false;
-
-        switch (card.Type)
-        {
-            case CardType.Attack:
-                if (zone.EnemyCardView != null && zone.EnemyCardView.CardData.IsAlive)
-                {
-                    zone.EnemyCardView.ReceiveDamage(card.Damage);
-                    effectApplied = true;
-                }
-                break;
-            case CardType.Debuff:
-                if (zone.EnemyCardView != null && zone.EnemyCardView.CardData.IsAlive)
-                {
-                    if (card.Effect == "AttackDown")
-                    {
-                        zone.EnemyCardView.ReceiveAttackDebuff(card.EffectAmount);
-                        zone.EnemyCardView.ReceiveDamage(card.Damage);
-                        effectApplied = true; 
-                    }
-                    else
-                    {
-                        
-                    }
-                }
-                break;
-
-            case CardType.Buff:
-            if (card.EffectType == BuffEffectType.HealthBoost)
-                {
-                    if (GameManager.Instance.playerStats != null && !GameManager.Instance.playerStats.isHealthFull())
-                    {
-                        GameManager.Instance.playerStats.Heal(card.EffectAmount);
-                        effectApplied = true;
-                    }
-                    else
-                    {
-                        effectApplied = false;
-                    }
-                }
-
-                else if (card.EffectType == BuffEffectType.Shield)
-                {
-                    GameManager.Instance.playerStats?.AddShield(card.EffectAmount);
-                    effectApplied = true;
-                }
-
-                else if (card.EffectType == BuffEffectType.DrawExtraCard)
-                {
-                    OnCardDrawTriggered?.Invoke(card.EffectAmount);
-                    effectApplied = true;
-                }
-
-                break;
-            case CardType.Summon:
-                effectApplied = true;
-                break;
-        }
-
+        bool effectApplied = card.ResolveEffect(zone);
         if (effectApplied)
         {
-            if (card.Type == CardType.Summon)
+            if (card is SummonCard)
             {
                 ExecuteSummonVisual();
                 OnCardSummoned?.Invoke(this);
             }
-            else
-            {
-            
-            }
-            OnCardUsed?.Invoke(this); 
+            OnCardUsed?.Invoke(this);
         }
         else
         {
             ReturnToHand();
         }
+        
     }
 
     private void ExecuteSummonVisual()
@@ -266,52 +217,61 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void ReceiveDamage(int amount)
     {
-        card.TakeDamage(amount);
-
-        if (healthText != null)
-            healthText.text = $"{card.CurrentHealth}";
-
-        if (!card.IsAlive)
+        if (card is SummonCard summonCard)
         {
-            OnCardDefeated?.Invoke(this);
-        }
-        else
-        {
-            if (cardImage != null)
+            summonCard.TakeDamage(amount);
+            if(healthText != null)
             {
-                cardImage.DOColor(Color.red, 0.15f).OnComplete(() => 
-                {
-                    cardImage.DOColor(Color.white, 0.15f); 
-                });
+                healthText.text = summonCard.currentHealth.ToString();
             }
-            
-            transform.DOShakePosition(0.25f, strength: new Vector3(0.3f, 0.3f, 0),vibrato: 15).SetLink(gameObject);
+
+            if (!summonCard.IsAlive)
+            {
+                OnCardDefeated?.Invoke(this);
+            }
+            else
+            {
+                if (cardImage != null)
+                {
+                    cardImage.DOColor(Color.red, 0.15f).OnComplete(() => 
+                    {
+                        cardImage.DOColor(Color.white, 0.15f); 
+                    });
+                }   
+                transform.DOShakePosition(0.25f, strength: new Vector3(0.3f, 0.3f, 0),vibrato: 15).SetLink(gameObject);
+            }
         }
     }
 
     public void ReceiveAttackDebuff(int percentage)
     {
-        int ReductionAmount = Mathf.RoundToInt(card.Damage * percentage / 100f);
-        card.Damage -= ReductionAmount;
+        int currentDamage = 0;
 
-        if (card.Damage < 2)
+        if (card is AttackCard atkCard)
         {
-            card.Damage = 2;
+            int ReductionAmount = Mathf.RoundToInt(atkCard.Damage * percentage / 100f);
+            atkCard.Damage -= ReductionAmount;
+            if (atkCard.Damage < 2) atkCard.Damage = 2;
+            currentDamage = atkCard.Damage;
+        }
+        else if (card is SummonCard summonCard)
+        {
+            int ReductionAmount = Mathf.RoundToInt(summonCard.Damage * percentage / 100f);
+            summonCard.Damage -= ReductionAmount;
+            if (summonCard.Damage < 2) summonCard.Damage = 2;
+            currentDamage = summonCard.Damage;
+        }
+        else
+        {
+            return;
         }
 
-        if (damage != null)
-        {
-            damage.text = card.Damage.ToString();
-        }
+        if (damage != null) damage.text = currentDamage.ToString();
 
-        if (card.Damage != null)
+        if (cardImage != null)
         {
-            cardImage.DOColor(new Color(0.6f, 0.2f, 0.8f), 0.3f).OnComplete(() =>
-            {
-                cardImage.DOColor(Color.white, 0.3f);
-            });
+            cardImage.DOColor(new Color(0.6f, 0.2f, 0.8f), 0.3f).OnComplete(() => cardImage.DOColor(Color.white, 0.3f));
         }
-
         transform.DOPunchScale(new Vector3(-0.1f, -0.1f, 0), 0.3f, 5).SetLink(gameObject);
     }
 

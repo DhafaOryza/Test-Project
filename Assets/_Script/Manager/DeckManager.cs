@@ -27,8 +27,8 @@ public class DeckManager : MonoBehaviour
     [SerializeField] private Transform showcaseCenterPoint;
     [SerializeField] private float maxSpreadWidth = 12f;
 
-    private List<Card> drawPile = new();
-    private List<Card> discardPile = new();
+    private List<BaseCard> drawPile = new();
+    private List<BaseCard> discardPile = new();
     private List<GameObject> showcasedDummyCards = new List<GameObject>();
 
     public int DrawPileCount => drawPile.Count;
@@ -65,7 +65,7 @@ public class DeckManager : MonoBehaviour
 
     private void AddRewardCardToDeck(CardData rewardData)
     {
-        Card newCard = new Card(rewardData);
+        BaseCard newCard = CardFactory.CreateCard(rewardData);
         AddCardToDiscard(newCard);
         
         //Debug.Log($"[GameManager] Kartu baru '{rewardData.Title}' telah ditambahkan ke deck pemain!");
@@ -87,7 +87,7 @@ public class DeckManager : MonoBehaviour
 
         foreach (CardData data in playerStartingDeck)
         {
-            drawPile.Add(new Card(data));
+            drawPile.Add(CardFactory.CreateCard(data));
         }
 
         ShuffleList(drawPile);
@@ -129,7 +129,7 @@ public class DeckManager : MonoBehaviour
         }
     }
 
-    public void AddCardToDiscard(Card discardedCard)
+    public void AddCardToDiscard(BaseCard discardedCard)
     {
         if(discardedCard == null || discardedCard.Type == CardType.Enemy)
         {
@@ -146,7 +146,7 @@ public class DeckManager : MonoBehaviour
             return;
         }
 
-        Card drawnCard = drawPile[0];
+        BaseCard drawnCard = drawPile[0];
         drawPile.RemoveAt(0);
         GameManager.Instance.handManager.AddCardToHand(drawnCard);
     }
@@ -206,7 +206,7 @@ public class DeckManager : MonoBehaviour
         return totalDuration + 0.1f;
     }
 
-    public void SpawnDiscardVisual(Card cardData, Vector3 startPos)
+    public void SpawnDiscardVisual(BaseCard cardData, Vector3 startPos)
     {
         GameObject dummy = GameManager.Instance.poolManager.Spawn(dummyCardPoolId, startPos, Quaternion.identity);
 
@@ -290,16 +290,16 @@ public class DeckManager : MonoBehaviour
         }
     }
 
-    private void HandleCardDiscarded(Card discardedCard)
+    private void HandleCardDiscarded(BaseCard discardedCard)
     {
         discardPile.Add(discardedCard);
     }
 
-    private void ShuffleList(List<Card> list)
+    private void ShuffleList(List<BaseCard> list)
     {
         for (int i = 0; i < list.Count; i++)
         {
-            Card temp = list[i];
+            BaseCard temp = list[i];
             int randomIndex = Random.Range(i, list.Count);
             list[i] = list[randomIndex];
             list[randomIndex] = temp;
@@ -324,7 +324,7 @@ public class DeckManager : MonoBehaviour
         List<CardView> activeHandCard = GameManager.Instance.handManager != null ? GameManager.Instance.handManager.GetHandCardViews() : new List<CardView>();
         List<CardView> activeAllies = GameManager.Instance.allyManager != null ? GameManager.Instance.allyManager.activeAllies : new List<CardView>();
 
-        List<Card> allPlayerCards = new List<Card>();
+        List<BaseCard> allPlayerCards = new List<BaseCard>();
         allPlayerCards.AddRange(drawPile);
         allPlayerCards.AddRange(discardPile);
 
@@ -348,9 +348,9 @@ public class DeckManager : MonoBehaviour
 
         if (allPlayerCards.Count == 0) return;
 
-        Dictionary<string, (Card data, int count)> groupedCards = new Dictionary<string, (Card, int)>();
+        Dictionary<string, (BaseCard data, int count)> groupedCards = new Dictionary<string, (BaseCard, int)>();
 
-        foreach (Card c in allPlayerCards)
+        foreach (BaseCard c in allPlayerCards)
         {
             if (groupedCards.ContainsKey(c.Title))
             {
@@ -374,7 +374,7 @@ public class DeckManager : MonoBehaviour
         
         foreach (var kvp in groupedCards)
         {
-            Card cardData = kvp.Value.data;
+            BaseCard cardData = kvp.Value.data;
             int stackCount = kvp.Value.count;
             Vector3 startPos = showcaseCenterPoint.position; 
             
@@ -383,7 +383,7 @@ public class DeckManager : MonoBehaviour
         }
     }
 
-    private void AnimateGroupedCardToLineup(Card cardToDisplay, int stackCount, Vector3 startPos, float startX, float spacing, int index)
+    private void AnimateGroupedCardToLineup(BaseCard cardToDisplay, int stackCount, Vector3 startPos, float startX, float spacing, int index)
     {
         GameObject dummy = GameManager.Instance.poolManager.Spawn(showcaseCardPoolId, startPos, Quaternion.identity);
         

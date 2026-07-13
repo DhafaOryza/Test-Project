@@ -19,7 +19,7 @@ public class HandManager : MonoBehaviour
 
     public System.Action<int> OnPlaysChanged; // dikirim tiap kesempatan berubah, dengar dari ChanceUI/TurnManager
     public System.Action OnPlaysExhausted;    // dikirim sekali saat kesempatan habis (giliran musuh mulai)
-    public System.Action<Card> OnCardSentToDiscardPile;
+    public System.Action<BaseCard> OnCardSentToDiscardPile;
 
     private void Awake()
     {
@@ -37,9 +37,9 @@ public class HandManager : MonoBehaviour
         ResetRoundPlays();
     }
 
-    public List<Card> GetAllCardsInHand()
+    public List<BaseCard> GetAllCardsInHand()
     {
-        List<Card> handData = new List<Card>();
+        List<BaseCard> handData = new List<BaseCard>();
         foreach (var cardView in handCards)
         {
             if (cardView != null &&  cardView.CardData != null)
@@ -70,7 +70,7 @@ public class HandManager : MonoBehaviour
         }
     }
 
-    public void AddCardToHand(Card card)
+    public void AddCardToHand(BaseCard card)
     {
         if (card == null || card.Type == CardType.Enemy) return;
         

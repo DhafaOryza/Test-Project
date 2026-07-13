@@ -135,7 +135,7 @@ public class EnemyManager : MonoBehaviour
             CardView view = dummy.GetComponent<CardView>();
             if (i == 0 && enemyDeckQueue.Count > 0 && view != null)
             {
-                view.Setup(new Card(enemyDeckQueue.Peek()));
+                view.Setup(CardFactory.CreateCard(enemyDeckQueue.Peek()));
             }
 
             foreach (Transform child in dummy.transform)
@@ -187,14 +187,18 @@ public class EnemyManager : MonoBehaviour
     private void SpawnEnemyToSlot(int slotIndex, int levelIndex)
     {
         CardData nextMonster = enemyDeckQueue.Dequeue();
-        Card enemyCard = new Card(nextMonster);
+        BaseCard enemyCard = CardFactory.CreateCard(nextMonster);
 
         // Status Scaling
-        float hpBonus = enemyCard.MaxHealth * (hpScalePerLevel * levelIndex);
-        float dmgBonus = enemyCard.Damage * (damageScalePerLevel * levelIndex);
-        enemyCard.MaxHealth += Mathf.RoundToInt(hpBonus);
-        enemyCard.CurrentHealth = enemyCard.MaxHealth;
-        enemyCard.Damage += Mathf.RoundToInt(dmgBonus);
+        if (enemyCard is SummonCard summonCard)
+        {
+            float hpBonus = summonCard.Maxhealth * (hpScalePerLevel * levelIndex);
+            float dmgBonus = summonCard.Damage * (damageScalePerLevel * levelIndex);
+            summonCard.Maxhealth += Mathf.RoundToInt(hpBonus);
+            summonCard.currentHealth = summonCard.Maxhealth;
+            summonCard.Damage += Mathf.RoundToInt(dmgBonus);
+        }
+        
 
         GameObject g = GameManager.Instance.poolManager.Spawn(enemyCardPoolId, enemyDeckPoint.position, enemyDeckPoint.rotation);
 
@@ -331,7 +335,14 @@ public class EnemyManager : MonoBehaviour
         
         attacker.transform.DOMove(targetPos, 0.25f).SetEase(Ease.InBack).SetLink(attacker.gameObject).OnComplete(() =>
         {
-            int dmg = attacker.CardData.Damage;
+            int dmg = 0;
+            //Debug.Log($"[DEBUG] Musuh menyerang! Tipe kartu attacker: {attacker.CardData.GetType()}");
+
+            if (attacker.CardData is SummonCard enemySummonData)
+            {
+                dmg = enemySummonData.Damage;
+                //Debug.Log($"[DEBUG] KTP Cocok! Damage musuh ini adalah: {dmg}");
+            }
             
             PlayerStats targetPlayer = targetTransform.GetComponent<PlayerStats>();
             if (targetPlayer != null)
